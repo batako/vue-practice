@@ -1,0 +1,34 @@
+version: '3.7'
+services:
+  api:
+    build:
+      context: .
+      dockerfile: ./docker/api/Dockerfile
+    container_name: vue_api
+    entrypoint: /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    ports:
+      - 3000:3000
+    volumes:
+      - ./api:/api:cached
+      - bundle:/usr/local/bundle:cached
+      # exclude volumes
+      - /api/vendor
+      - /api/tmp
+      - /api/log
+      - /api/.git
+  front:
+    build:
+      context: .
+      dockerfile: ./docker/front/Dockerfile
+    container_name: vue_front
+    entrypoint: yarn serve
+    ports:
+      - 8080:8080
+    volumes:
+      - ./front:/front:cached
+      - yarn_cache:/usr/local/share/.cache/yarn/v6:cached # `yarn cache dir`
+      # exclude volumes
+      - /front/node_modules
+volumes:
+  bundle:
+  yarn_cache:
