@@ -29,9 +29,6 @@
 <script>
 export default {
   name: 'login',
-  created () {
-    this.$_initialize()
-  },
   data() {
     return {
       login_id: null,
@@ -48,9 +45,6 @@ export default {
     },
   },
   methods: {
-    $_initialize() {
-      console.log('_initialize')
-    },
     login() {
       this.$_utils_axios({
         settings: {
