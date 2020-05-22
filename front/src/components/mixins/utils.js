@@ -13,6 +13,9 @@ export default {
   //   }
   // },
   methods: {
+    $_utils_nl2br (str = '') {
+      return str.replace(/\r?\n/g, '<br>')
+    },
     $_utils_axios (params) {
       // params = {
       //   settings: {

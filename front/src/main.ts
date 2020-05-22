@@ -18,6 +18,9 @@ Vue.mixin(utils)
 window.moment = require('moment')
 window.moment.locale('ja')
 
+import Toastrs from '@/components/toastrs'
+Vue.component('toastrs', Toastrs)
+
 Vue.config.productionTip = false
 
 new Vue({

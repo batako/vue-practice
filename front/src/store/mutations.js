@@ -26,12 +26,12 @@ const mutations = {
 
     scope[scope_key] = params.value
   },
-  // setToastr: (state, toastr) => {
-  //   toastr.key = moment().format('YYYYMMDDHHmmssSSS')
+  setToastr: (state, toastr) => {
+    toastr.key = window.moment().format('YYYYMMDDHHmmssSSS')
 
-  //   if (toastr.force) state.toastrs = [toastr]
-  //   else state.toastrs.push(toastr)
-  // },
+    if (toastr.force) state.toastrs = [toastr]
+    else state.toastrs.push(toastr)
+  },
   // ブラウザリロード対応 sessionStrageからstore情報を復元
   // initializeStore (state) {
   //   if (Vue.ls.get('token')) {
