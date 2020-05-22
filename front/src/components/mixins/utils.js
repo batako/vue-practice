@@ -38,9 +38,7 @@ export default {
             (params.settings || {}).headers,
           )
         },
-        { proxy: { host: 'localhost', port: 3000 } }
       )
-      console.log('settings', settings)
 
       if (!params.skip_loading) this.$store.commit('set', {
         name: 'is_processing',
