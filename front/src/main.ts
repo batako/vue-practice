@@ -15,6 +15,9 @@ Vue.use(VueAxios, axios)
 import utils from '@/components/mixins/utils'
 Vue.mixin(utils)
 
+window.moment = require('moment')
+window.moment.locale('ja')
+
 Vue.config.productionTip = false
 
 new Vue({
