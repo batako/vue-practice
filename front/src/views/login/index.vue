@@ -31,7 +31,7 @@ export default {
   name: 'login',
   data() {
     return {
-      login_id: null,
+      email:    null,
       password: null,
     }
   },
@@ -60,9 +60,15 @@ export default {
           self.$ls.set('access-token', response.headers['access-token'])
           self.$ls.set('client', response.headers.client)
           self.$ls.set('uid', response.headers.uid)
+
+          self.$router.push('/')
         },
-        failure: () => {
-          console.log('@failure')
+        failure: (response) => {
+          self.$store.commit('setToastr', {
+            type   : 'danger',
+            message: response.data.errors.map(message => '<div>' + message + '</div>').join(),
+            force  : false,
+          })
         },
       })
     },
