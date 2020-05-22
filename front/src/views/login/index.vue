@@ -46,7 +46,8 @@ export default {
   },
   methods: {
     login() {
-      this.$_utils_axios({
+      const self = this
+      self.$_utils_axios({
         settings: {
           method: 'post',
           url   : '/api/auth/sign_in',
@@ -56,7 +57,9 @@ export default {
           },
         },
         success: (response) => {
-          console.log('@success', response)
+          self.$ls.set('access-token', response.headers['access-token'])
+          self.$ls.set('client', response.headers.client)
+          self.$ls.set('uid', response.headers.uid)
         },
         failure: () => {
           console.log('@failure')

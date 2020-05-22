@@ -36,6 +36,11 @@ export default {
               // Token: this.$ls.get('token'),
             },
             (params.settings || {}).headers,
+            {
+              'access-token': self.$ls.get('access-token'),
+              client:         self.$ls.get('client'),
+              uid:            self.$ls.get('uid'),
+            }
           )
         },
       )
