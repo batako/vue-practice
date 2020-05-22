@@ -29,6 +29,9 @@
 <script>
 export default {
   name: 'login',
+  mounted () {
+    this.$_initialize()
+  },
   data() {
     return {
       email:    null,
@@ -45,6 +48,9 @@ export default {
     },
   },
   methods: {
+    $_initialize () {
+      this.$ls.clear()
+    },
     login() {
       const self = this
       self.$_utils_axios({
