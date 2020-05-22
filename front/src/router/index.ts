@@ -31,4 +31,19 @@ const router = new VueRouter({
   routes
 })
 
+// グローバルガード
+router.beforeEach((to, from, next) => {
+  console.log(to)
+  if (
+    to.path == '/login' || (
+      Vue.ls.get('access-token') && Vue.ls.get('client') && Vue.ls.get('uid')
+    )
+  ) {
+    next()
+
+  } else {
+    next({ path: '/login' })
+  }
+})
+
 export default router
