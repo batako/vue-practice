@@ -6,8 +6,8 @@
 
                 <input type="text"
                        class="form-control"
-                       placeholder="ログインID"
-                       v-model="login_id">
+                       placeholder="メールアドレス"
+                       v-model="email">
 
                 <input type="password"
                        class="form-control"
@@ -40,8 +40,8 @@ export default {
   },
   watch: {
     // 半角英字に変換
-    login_id: function(v) {
-      this.login_id = v.replace(
+    email: function(v) {
+      this.email = v.replace(
           /[Ａ-Ｚａ-ｚ０-９]/g,
           function(s) { return String.fromCharCode(s.charCodeAt(0) - 65248).replace(/^[^0-9a-zA-Z]*$/g, '') }
         )
