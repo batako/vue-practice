@@ -1,29 +1,29 @@
 <template>
-    <div class="login">
-        <div class = "container">
-            <div class="wrapper">
-                <hr class="colorgraph"><br>
+  <div class="login">
+    <div class = "container">
+      <div class="wrapper">
+        <hr class="colorgraph"><br>
 
-                <input type="text"
-                       class="form-control"
-                       placeholder="メールアドレス"
-                       v-model="email">
+        <input type="text"
+               class="form-control"
+               placeholder="メールアドレス"
+               v-model="email">
 
-                <input type="password"
-                       class="form-control"
-                       placeholder="パスワード"
-                       v-model="password">
+        <input type="password"
+               class="form-control"
+               placeholder="パスワード"
+               v-model="password">
 
-                <input type="button"
-                       value="ログイン"
-                       @click="login">
-            </div>
-        </div>
+        <input type="button"
+               value="ログイン"
+               @click="login">
+      </div>
     </div>
+  </div>
 </template>
 
 <style lang="scss" scoped>
-    @import "./index.scss";
+@import "./index.scss";
 </style>
 
 <script>
