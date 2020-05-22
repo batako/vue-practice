@@ -29,6 +29,7 @@
 <script>
 export default {
   name: 'login',
+  title: 'ログイン',
   mounted () {
     this.$_initialize()
   },

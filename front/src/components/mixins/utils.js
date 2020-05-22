@@ -3,15 +3,21 @@ import axios from 'axios'
 import router from '../../router/index'
 
 export default {
-  // created () {
-  //   let {title} = this.$options
+  created () {
+    let {title} = this.$options
 
-  //   if (title) {
-  //     title = typeof title === 'function' ? title.call(this) : title
+    if (title) {
+      title = typeof title === 'function' ? title.call(this) : title
 
-  //     this.$data.$_utils_title = title
-  //   }
-  // },
+      this.$data.$_utils_title = title
+    }
+  },
+  // 参照する際は $data 経由で参照すること！
+  data () {
+    return {
+      $_utils_title: '',
+    }
+  },
   methods: {
     $_utils_nl2br (str = '') {
       return str.replace(/\r?\n/g, '<br>')
@@ -161,11 +167,11 @@ export default {
       })
     },
   },
-  // watch: {
-  //   "$data.$_utils_title" (title = '', _) {
-  //     if (!title) return
+  watch: {
+    "$data.$_utils_title" (title = '', _) {
+      if (!title) return
 
-  //     document.title = title
-  //   },
-  // },
+      document.title = title
+    },
+  },
 }
