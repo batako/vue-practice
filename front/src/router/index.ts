@@ -33,7 +33,6 @@ const router = new VueRouter({
 
 // グローバルガード
 router.beforeEach((to, from, next) => {
-  console.log(to)
   if (
     to.path == '/login' || (
       Vue.ls.get('access-token') && Vue.ls.get('client') && Vue.ls.get('uid')
