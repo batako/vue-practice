@@ -52,8 +52,22 @@ export default {
       console.log('_initialize')
     },
     login() {
-      console.log('login', this.login_id, this.password)
-      return
+      this.$_utils_axios({
+        settings: {
+          method: 'post',
+          url   : '/api/auth/sign_in',
+          params: {
+            email:    this.email,
+            password: this.password,
+          },
+        },
+        success: (response) => {
+          console.log('@success', response)
+        },
+        failure: () => {
+          console.log('@failure')
+        },
+      })
     },
   },
 }
