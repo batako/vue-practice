@@ -2,20 +2,11 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import Storage from 'vue-ls'
 
+import { Toastr } from '@/types/toastr';
+import { State } from '@/types/state';
+
 Vue.use(Vuex)
 Vue.use(Storage, { storage: 'local' })
-
-interface Toastr {
-  type:    'success' | 'danger' | 'warning';
-  message: string;
-  force:   boolean; // 他のメッセージを消すか
-  key:     string;  // 自動設定
-}
-
-interface State {
-  is_processing: boolean;
-  toastrs:       Array<Toastr>;
-}
 
 export default new Vuex.Store({
   state: {
