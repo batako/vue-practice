@@ -58,7 +58,7 @@ export default {
         settings: {
           method: 'post',
           url   : '/api/auth/sign_in',
-          params: {
+          data: {
             email:    this.email,
             password: this.password,
           },
