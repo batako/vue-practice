@@ -12,11 +12,16 @@ interface Toastr {
   key:     string;  // 自動設定
 }
 
+interface State {
+  is_processing: boolean;
+  toastrs:       Array<Toastr>;
+}
+
 export default new Vuex.Store({
   state: {
     is_processing: false,
-    toastrs:       [] as Array<Toastr>,
-  },
+    toastrs:       [],
+  } as State,
   mutations: {
     // state: {
     //   AAA: {
