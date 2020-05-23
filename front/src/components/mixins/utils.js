@@ -89,32 +89,32 @@ export default {
               switch (response_data.status) {
                 case 'success':
                   self.$store.commit('setToastr', {
-                    type: 'success',
+                    type:    'success',
                     message: response_data.message,
-                    force: false,
+                    force:   false,
                   })
                   break
                 case 'caution':
                 case 'failure':
                   self.$store.commit('setToastr', {
-                    type: 'failure',
+                    type:    'danger',
                     message: response_data.message,
-                    force: false,
+                    force:   false,
                   })
                   break
                 default:
                   if (response_status == 'failure') {
                     if (response_data.error_detail) {
                       self.$store.commit('setToastr', {
-                        type: 'failure',
+                        type:    'danger',
                         message: response_data.error_detail,
-                        force: true,
+                        force:   true,
                       })
                     } else if (response_data.message) {
                       self.$store.commit('setToastr', {
-                        type: 'failure',
+                        type:    'danger',
                         message: response_data.message,
-                        force: true,
+                        force:   true,
                       })
                       console.error(`[${self.$_utils_upperCase(settings.method)}]${settings.url}`, response_data.error_detail)
                     }
@@ -140,17 +140,17 @@ export default {
             case 'caution':
             case 'failure':
               self.$store.commit('setToastr', {
-                type: 'failure',
+                type:    'danger',
                 message: action_response.data.error_detail || action_response.data.message,
-                force: false,
+                force:   false,
               })
               break
             default:
               if (response_status == 'failure') {
                 self.$store.commit('setToastr', {
-                  type: 'failure',
+                  type:    'danger',
                   message: action_response.data.error_detail || action_response.data.message,
-                  force: true,
+                  force:   true,
                 })
               }
               break
