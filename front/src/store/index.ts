@@ -6,19 +6,17 @@ Vue.use(Vuex)
 Vue.use(Storage, { storage: 'local' })
 
 interface Toastr {
-  type   : string;  // success or danger or warning
+  type:    string;
   message: string;
-  force  : boolean; // 他のメッセージを消すか
-  key    : string;  // 自動設定
-}
-
-interface State {
-  is_processing: boolean;
-  toastrs      : Array<Toastr>;
+  force:   boolean; // 他のメッセージを消すか
+  key:     string;  // 自動設定
 }
 
 export default new Vuex.Store({
-  state: {} as State,
+  state: {
+    is_processing: false,
+    toastrs:       [] as Array<Toastr>,
+  },
   mutations: {
     // state: {
     //   AAA: {
