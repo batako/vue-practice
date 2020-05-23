@@ -12,13 +12,10 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 Vue.use(VueAxios, axios)
 
-import utils from '@/components/mixins/utils'
+import utils from './components/mixins/utils.js'
 Vue.mixin(utils)
 
-window.moment = require('moment')
-window.moment.locale('ja')
-
-import Toastrs from '@/components/toastrs'
+import Toastrs from './components/toastrs.vue'
 Vue.component('toastrs', Toastrs)
 
 Vue.config.productionTip = false
