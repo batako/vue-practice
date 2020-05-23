@@ -155,6 +155,12 @@ export default {
               }
               break
           }
+        } else if (action_response.status != 200) {
+          self.$store.commit('setToastr', {
+            type:    'danger',
+            message: action_response.data,
+            force:   true,
+          })
         }
 
         if (!params.skip_loading) self.$store.commit('set', {

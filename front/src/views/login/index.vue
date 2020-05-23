@@ -35,8 +35,8 @@ export default {
   },
   data() {
     return {
-      email:    null,
-      password: null,
+      email:    'example@example.com',
+      password: 'password',
     }
   },
   watch: {
@@ -69,13 +69,6 @@ export default {
           self.$ls.set('uid', response.headers.uid)
 
           self.$router.push('/')
-        },
-        failure: (response) => {
-          self.$store.commit('setToastr', {
-            type   : 'danger',
-            message: response.data.errors.map(message => '<div>' + message + '</div>').join(),
-            force  : false,
-          })
         },
       })
     },
