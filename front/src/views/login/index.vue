@@ -43,11 +43,13 @@ export default class LoginIndex extends Vue {
   }
 
   $_initialize() {
+    this.$data.$_utils_title = 'ログイン'
+
     this.$ls.clear()
   }
 
   login() {
-    this.$_utils_axios({
+    this.$api({
       settings: {
         method: 'post',
         url   : '/api/auth/sign_in',

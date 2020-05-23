@@ -18,6 +18,7 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     '@typescript-eslint/camelcase': 0, // APIサーバの変数形式（スネークケース）に合わせる
     '@typescript-eslint/no-this-alias': 0,
+    '@typescript-eslint/no-explicit-any': 0,
   },
   overrides: [
     {
