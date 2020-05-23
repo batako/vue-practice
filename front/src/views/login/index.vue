@@ -26,52 +26,52 @@
 @import "./index.scss";
 </style>
 
-<script>
-export default {
-  name: 'login',
-  title: 'ログイン',
-  mounted () {
-    this.$_initialize()
-  },
-  data() {
-    return {
-      email:    'example@example.com',
-      password: 'password',
-    }
-  },
-  watch: {
-    // 半角英字に変換
-    email: function(v) {
-      this.email = v.replace(
-          /[Ａ-Ｚａ-ｚ０-９]/g,
-          function(s) { return String.fromCharCode(s.charCodeAt(0) - 65248).replace(/^[^0-9a-zA-Z]*$/g, '') }
-        )
-    },
-  },
-  methods: {
-    $_initialize () {
-      this.$ls.clear()
-    },
-    login() {
-      const self = this
-      self.$_utils_axios({
-        settings: {
-          method: 'post',
-          url   : '/api/auth/sign_in',
-          data: {
-            email:    this.email,
-            password: this.password,
-          },
-        },
-        success: (response) => {
-          self.$ls.set('access-token', response.headers['access-token'])
-          self.$ls.set('client', response.headers.client)
-          self.$ls.set('uid', response.headers.uid)
+<script lang="ts">
+import {
+    Component,
+    Vue,
+    Watch,
+  } from 'vue-property-decorator'
 
-          self.$router.push('/')
+@Component
+  email    = ''
+  password = ''
+export default class LoginIndex extends Vue {
+
+  mounted() {
+    this.$_initialize()
+  }
+
+  $_initialize() {
+    this.$ls.clear()
+  }
+
+  login() {
+    this.$_utils_axios({
+      settings: {
+        method: 'post',
+        url   : '/api/auth/sign_in',
+        data: {
+          email:    this.email,
+          password: this.password,
         },
-      })
-    },
-  },
+      },
+      success: (response) => {
+        this.$ls.set('access-token', response.headers['access-token'])
+        this.$ls.set('client', response.headers.client)
+        this.$ls.set('uid', response.headers.uid)
+
+        this.$router.push('/')
+      },
+    })
+  }
+
+  @Watch('email')
+  onEmailChanged(newText: string, oldText: string) {
+    this.email = newText.replace(
+      /[Ａ-Ｚａ-ｚ０-９]/g,
+      function(s) { return String.fromCharCode(s.charCodeAt(0) - 65248).replace(/^[^0-9a-zA-Z]*$/g, '') }
+    )
+  }
 }
 </script>
