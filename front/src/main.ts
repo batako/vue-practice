@@ -12,12 +12,6 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 Vue.use(VueAxios, axios)
 
-import utils from './components/mixins/utils'
-Vue.mixin(utils)
-
-import api from './components/mixins/api'
-Vue.mixin(api)
-
 import Toastrs from './components/toastrs.vue'
 Vue.component('toastrs', Toastrs)
 

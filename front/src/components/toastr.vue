@@ -6,7 +6,7 @@
          :class="class_converter[toastr.type]">
       <a class="close-icon-wrap"
          @click="close()">
-        <img :src="close_image"
+        <img src="@/assets/images/toast-close-btn.png"
              class="close-icon">
       </a>
       <div v-html="$_utils_nl2br(toastr.message)"></div>
@@ -58,26 +58,31 @@
 }
 </style>
 
-<script>
-export default {
-  props: ['toastr'],
-  data () {
-    return {
-      opened: false,
-      animation_time: 3000,
-      class_converter: {
-        success: 'alert-success',
-        danger:  'alert-danger',
-        warning: 'alert-warning',
-      },
-    }
-  },
-  computed: {
-    close_image () {
-      return require('@/assets/images/toast-close-btn.png')
-    },
-  },
-  updated () {
+<script lang="ts">
+import {
+    Component,
+    Mixins,
+    Prop,
+    Vue,
+  } from 'vue-property-decorator'
+
+import Utils from './mixins/utils'
+import { Toastr as ToastrType } from '../types/toastr'
+
+@Component
+export default class Toastr extends Mixins(Utils) {
+  @Prop({required: true})
+  toastr: ToastrType
+
+  opened = false
+  animation_time = 3000
+  class_converter = {
+    success: 'alert-success',
+    danger:  'alert-danger',
+    warning: 'alert-warning',
+  }
+
+  updated() {
     if (this.toastr.force) {
       this.toastr.force = false
       this.opened = false
@@ -87,28 +92,29 @@ export default {
         self.$_initialize()
       })
     }
-  },
-  mounted () {
+  }
+
+  mounted() {
     this.$_initialize()
-  },
-  methods: {
-    $_initialize () {
-      this.opened = true
+  }
 
-      if (this.toastr.type == 'success') {
-        setTimeout(() => {
-          this.opened = false
-        }, this.animation_time)
-      }
-    },
-    close () {
-      this.opened = false
+  $_initialize () {
+    this.opened = true
 
+    if (this.toastr.type == 'success') {
       setTimeout(() => {
-          this.$destroy()
-          this.$el.parentNode.removeChild(this.$el)
-      }, 300)
-    },
+        this.opened = false
+      }, this.animation_time)
+    }
+  }
+
+  close () {
+    this.opened = false
+
+    setTimeout(() => {
+        this.$destroy()
+        this.$el.parentNode.removeChild(this.$el)
+    }, 300)
   }
 }
 </script>

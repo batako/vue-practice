@@ -5,31 +5,17 @@ import {
 import axios from 'axios'
 import router from '../../router/index'
 
-interface Settings {
-  method:  string;
-  url:     string;
-  data:    any; // BODYに含めるパラメータ
-  params:  any; // URLに含めるパラメータ
-  headers: any;
-}
-
-interface SubmitParams {
-  settings:            Settings;
-  skip_loading:        boolean;
-  skip_success_toastr: boolean;
-  success:             void;
-  failure:             void;
-}
+import { ApiSubmitParams, ApiSettings } from '../../types/api'
 
 @Component
 export default class API extends Vue {
-  $_api_params = {} as SubmitParams
-  $_api_settings = {} as Settings
+  $_api_params = {} as ApiSubmitParams
+  $_api_settings = {} as ApiSettings
   $_api_action_response: any = {}
   $_api_response_status: 'success' | 'failure' | null = null
 
 
-  $_api_initialize(params = {} as SubmitParams) {
+  $_api_initialize(params: ApiSubmitParams) {
     self.$api = this
     this.$_api_params = params
     this.$_api_settings = Object.assign({},
@@ -52,13 +38,13 @@ export default class API extends Vue {
       value: true,
     })
 
-    if (process.env.URL_BASE) {
+    if (process.env.URL_BASE && params.settings?.url) {
       params.settings.url = process.env.URL_BASE + params.settings.url
     }
   }
 
 
-  $api(params = {} as SubmitParams) {
+  $api(params: ApiSubmitParams) {
     this.$_api_initialize(params)
 
     return axios(self.$api.$_api_settings).then(function(response: any) {

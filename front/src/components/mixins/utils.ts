@@ -1,11 +1,13 @@
 import {
   Component,
-  Vue,
+  Mixins,
   Watch,
 } from 'vue-property-decorator'
 
+import API from './api'
+
 @Component
-export default class Utils extends Vue {
+export default class Utils extends Mixins(API) {
   $_utils_title = ''
 
   $_utils_upper_case(str: string) {

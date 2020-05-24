@@ -29,14 +29,17 @@
 <script lang="ts">
 import {
     Component,
+    Mixins,
     Vue,
     Watch,
   } from 'vue-property-decorator'
 
+import Utils from '../../components/mixins/utils'
+
 @Component
+export default class LoginIndex extends Mixins(Utils) {
   email    = ''
   password = ''
-export default class LoginIndex extends Vue {
 
   mounted() {
     this.$_initialize()
