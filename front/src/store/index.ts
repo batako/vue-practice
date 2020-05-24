@@ -26,19 +26,19 @@ export default new Vuex.Store({
     //   value: 'CCC VALUE',
     // }
     // state.AAA.BBB.CCC = 'CCC VALUE'
-    // set: (state, params) => {
-    //   let scope = state
-    //   const keys = (params.name || '').split('.')
-    //   const scope_key = keys.pop()
+    set: (state: any, params) => {
+      let scope = state
+      const keys = (params.name || '').split('.')
+      const scope_key = keys.pop()
 
-    //   if (keys.length > 0) {
-    //     for (const key of keys) {
-    //       scope = scope[key]
-    //     }
-    //   }
+      if (keys.length > 0) {
+        for (const key of keys) {
+          scope = scope[key]
+        }
+      }
 
-    //   scope[scope_key] = params.value
-    // },
+      scope[scope_key] = params.value
+    },
     setToastr: (state: State, toastr: Toastr) => {
       toastr.key = String(Date.now())
 
