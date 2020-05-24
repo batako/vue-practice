@@ -20,23 +20,26 @@
 }
 </style>
 
-<script>
+<script lang="ts">
+import {
+    Component,
+    Vue,
+  } from 'vue-property-decorator'
+import { ShareModule } from "@/store/modules/share"
 import toastr from './toastr'
-import { mapState } from 'vuex'
 
-export default {
+@Component({
   components: {
     toastr,
   },
-  destroyed () {
-    this.$store.commit('set', {
-        name : 'toastrs',
-        value: [],
-      }
-    )
-  },
-  computed: mapState({
-    toastrs: state => state.toastrs,
-  }),
+})
+export default class Toastrs extends Vue {
+  destroyed() {
+    ShareModule.clear_toastr()
+  }
+
+  get toastrs() {
+    return ShareModule.toastrs
+  }
 }
 </script>

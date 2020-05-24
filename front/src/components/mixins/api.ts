@@ -2,6 +2,7 @@ import {
     Component,
     Vue,
   } from 'vue-property-decorator'
+import { ShareModule } from "@/store/modules/share"
 import axios from 'axios'
 import router from '../../router/index'
 
@@ -33,10 +34,7 @@ export default class API extends Vue {
       },
     )
 
-    if (!params.skip_loading) this.$store.commit('set', {
-      name: 'is_processing',
-      value: true,
-    })
+    if (!params.skip_loading) ShareModule.start_process()
 
     if (process.env.URL_BASE && params.settings?.url) {
       params.settings.url = process.env.URL_BASE + params.settings.url
@@ -80,7 +78,7 @@ export default class API extends Vue {
         ) {
           switch (response_data.status) {
             case 'success':
-              self.$api.$store.commit('setToastr', {
+              ShareModule.set_toastr({
                 type:    'success',
                 message: response_data.message,
                 force:   false,
@@ -88,7 +86,7 @@ export default class API extends Vue {
               break
             case 'caution':
             case 'failure':
-              self.$api.$store.commit('setToastr', {
+              ShareModule.set_toastr({
                 type:    'danger',
                 message: response_data.message,
                 force:   false,
@@ -97,13 +95,13 @@ export default class API extends Vue {
             default:
               if (self.$api.$_api_response_status == 'failure') {
                 if (response_data.error_detail) {
-                  self.$api.$store.commit('setToastr', {
+                  ShareModule.set_toastr({
                     type:    'danger',
                     message: response_data.error_detail,
                     force:   true,
                   })
                 } else if (response_data.message) {
-                  self.$api.$store.commit('setToastr', {
+                  ShareModule.set_toastr({
                     type:    'danger',
                     message: response_data.message,
                     force:   true,
@@ -124,7 +122,7 @@ export default class API extends Vue {
     ) {
       switch (self.$api.$_api_action_response.data.status) {
         case 'success':
-          self.$api.$store.commit('setToastr', {
+          ShareModule.set_toastr({
             type: 'success',
             message: self.$api.$_api_action_response.data.message,
             force: false,
@@ -132,7 +130,7 @@ export default class API extends Vue {
           break
         case 'caution':
         case 'failure':
-          self.$api.$store.commit('setToastr', {
+          ShareModule.set_toastr({
             type:    'danger',
             message: self.$api.$_api_action_response.data.error_detail || self.$api.$_api_action_response.data.message,
             force:   false,
@@ -140,7 +138,7 @@ export default class API extends Vue {
           break
         default:
           if (self.$api.$_api_response_status == 'failure') {
-            self.$api.$store.commit('setToastr', {
+            ShareModule.set_toastr({
               type:    'danger',
               message: self.$api.$_api_action_response.data.error_detail || self.$api.$_api_action_response.data.message,
               force:   true,
@@ -151,17 +149,14 @@ export default class API extends Vue {
 
     // エラーの場合
     } else if (self.$api.$_api_action_response.status != 200) {
-      self.$api.$store.commit('setToastr', {
+      ShareModule.set_toastr({
         type:    'danger',
         message: self.$api.$_api_get_respose_message(),
         force:   true,
       })
     }
 
-    if (!self.$api.$_api_params.skip_loading) self.$api.$store.commit('set', {
-      name: 'is_processing',
-      value: false,
-    })
+    if (!self.$api.$_api_params.skip_loading) ShareModule.stop_process()
 
     const after_action = self.$api.$_api_params[self.$api.$_api_response_status]
     if (after_action) after_action(self.$api.$_api_action_response)
