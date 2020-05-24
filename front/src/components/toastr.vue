@@ -72,7 +72,7 @@ import { Toastr as ToastrType } from '../types/toastr'
 @Component
 export default class Toastr extends Mixins(Utils) {
   @Prop({required: true})
-  toastr: ToastrType
+  toastr!: ToastrType
 
   opened = false
   animation_time = 3000
@@ -113,7 +113,7 @@ export default class Toastr extends Mixins(Utils) {
 
     setTimeout(() => {
         this.$destroy()
-        this.$el.parentNode.removeChild(this.$el)
+        this.$el?.parentNode?.removeChild(this.$el)
     }, 300)
   }
 }

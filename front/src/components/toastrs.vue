@@ -25,14 +25,9 @@ import {
     Component,
     Vue,
   } from 'vue-property-decorator'
-import { ShareModule } from "@/store/modules/share"
-import toastr from './toastr'
+import { ShareModule } from '../store/modules/share'
 
-@Component({
-  components: {
-    toastr,
-  },
-})
+@Component({})
 export default class Toastrs extends Vue {
   destroyed() {
     ShareModule.clear_toastr()

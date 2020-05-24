@@ -14,11 +14,13 @@ Vue.use(VueAxios, axios)
 
 import Toastrs from './components/toastrs.vue'
 Vue.component('toastrs', Toastrs)
+import Toastr from './components/toastr.vue'
+Vue.component('toastr', Toastr)
 
 Vue.config.productionTip = false
 
 new Vue({
   router,
   store,
-  render: h => h(App)
+  render: h => h(App),
 }).$mount('#app')
