@@ -13,11 +13,10 @@ export default class API extends Vue {
   $_api_params = {} as ApiSubmitParams
   $_api_settings = {} as ApiSettings
   $_api_action_response: any = {}
-  $_api_response_status: 'success' | 'failure' | null = null
+  $_api_response_status: 'success' | 'failure' | '' = ''
 
 
   $_api_initialize(params: ApiSubmitParams) {
-    self.$api = this
     this.$_api_params = params
     this.$_api_settings = Object.assign({},
       params.settings, {
@@ -45,27 +44,36 @@ export default class API extends Vue {
   $api(params: ApiSubmitParams) {
     this.$_api_initialize(params)
 
-    return axios(self.$api.$_api_settings).then(function(response: any) {
-      self.$api.$_api_action_response = response
-      self.$api.$_api_response_status = 'success'
+    return axios(this.$_api_settings)
+      .then((response: any) => {
+        this.$_api_sucess(response)
+      }).catch((error: any) => {
+        this.$_api_error(error)
+      }).finally(() => {
+        this.$_api_finally()
+      })
+  }
 
-    }).catch((error: any) => {
-      self.$api.$_api_action_response = error.response
-      self.$api.$_api_response_status = 'failure'
 
-      if (error.response.status == 401) router.push('/Login')
+  $_api_sucess(response: any) {
+    this.$_api_action_response = response
+    this.$_api_response_status = 'success'
+  }
 
-    }).finally(() => {
-      self.$api.$_api_finally()
-    })
+
+  $_api_error(error: any) {
+    this.$_api_action_response = error.response
+    this.$_api_response_status = 'failure'
+
+    if (error.response.status == 401) router.push('/Login')
   }
 
 
   $_api_finally() {
     // レスポンスがファイルの場合
     if (
-      self.$api.$_api_action_response.request.responseType == 'blob' &&
-      self.$api.$_api_action_response.headers['content-type'].match(/application\/json/)
+      this.$_api_action_response.request.responseType == 'blob' &&
+      this.$_api_action_response.headers['content-type'].match(/application\/json/)
     ) {
       const reader = new FileReader()
 
@@ -74,7 +82,7 @@ export default class API extends Vue {
 
         if (
           response_data.message &&
-          !(self.$api.$_api_action_response.status == 200 && self.$api.$_api_params.skip_success_toastr)
+          !(this.$_api_action_response.status == 200 && this.$_api_params.skip_success_toastr)
         ) {
           switch (response_data.status) {
             case 'success':
@@ -93,7 +101,7 @@ export default class API extends Vue {
               })
               break
             default:
-              if (self.$api.$_api_response_status == 'failure') {
+              if (this.$_api_response_status == 'failure') {
                 if (response_data.error_detail) {
                   ShareModule.set_toastr({
                     type:    'danger',
@@ -113,18 +121,18 @@ export default class API extends Vue {
           }
         }
       }
-      reader.readAsText(self.$api.$_api_action_response.data)
+      reader.readAsText(this.$_api_action_response.data)
 
     // レスポンスにメッセージを含みトーストを表示させる必要がある場合
     } else if (
-      (self.$api.$_api_action_response.data.message || self.$api.$_api_action_response.data.error_detail) &&
-      !(self.$api.$_api_action_response.status == 200 && self.$api.$_api_params.skip_success_toastr)
+      (this.$_api_action_response.data.message || this.$_api_action_response.data.error_detail) &&
+      !(this.$_api_action_response.status == 200 && this.$_api_params.skip_success_toastr)
     ) {
-      switch (self.$api.$_api_action_response.data.status) {
+      switch (this.$_api_action_response.data.status) {
         case 'success':
           ShareModule.set_toastr({
             type: 'success',
-            message: self.$api.$_api_action_response.data.message,
+            message: this.$_api_action_response.data.message,
             force: false,
           })
           break
@@ -132,15 +140,15 @@ export default class API extends Vue {
         case 'failure':
           ShareModule.set_toastr({
             type:    'danger',
-            message: self.$api.$_api_action_response.data.error_detail || self.$api.$_api_action_response.data.message,
+            message: this.$_api_action_response.data.error_detail || this.$_api_action_response.data.message,
             force:   false,
           })
           break
         default:
-          if (self.$api.$_api_response_status == 'failure') {
+          if (this.$_api_response_status == 'failure') {
             ShareModule.set_toastr({
               type:    'danger',
-              message: self.$api.$_api_action_response.data.error_detail || self.$api.$_api_action_response.data.message,
+              message: this.$_api_action_response.data.error_detail || this.$_api_action_response.data.message,
               force:   true,
             })
           }
@@ -148,20 +156,26 @@ export default class API extends Vue {
       }
 
     // エラーの場合
-    } else if (self.$api.$_api_action_response.status != 200) {
+    } else if (this.$_api_action_response.status != 200) {
       ShareModule.set_toastr({
         type:    'danger',
-        message: self.$api.$_api_get_respose_message(),
+        message: this.$_api_get_respose_message(),
         force:   true,
       })
     }
 
-    if (!self.$api.$_api_params.skip_loading) ShareModule.stop_process()
+    if (!this.$_api_params.skip_loading) ShareModule.stop_process()
 
-    const after_action = self.$api.$_api_params[self.$api.$_api_response_status]
-    if (after_action) after_action(self.$api.$_api_action_response)
-
-    self.$api = null
+    if ( Object.keys(this.$_api_params).indexOf(this.$_api_response_status) > 0 ) {
+      switch (this.$_api_response_status) {
+        case 'success':
+          this.$_api_params['success']()
+          break;
+        case 'failure':
+          this.$_api_params['failure']()
+          break;
+      }
+    }
   }
 
 

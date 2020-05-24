@@ -1,5 +1,5 @@
 export interface ApiSettings {
-  method:   string;
+  method:   'get' | 'delete'| 'post'| 'put';
   url:      string;
   data?:    any; // BODYに含めるパラメータ
   params?:  any; // URLに含めるパラメータ
