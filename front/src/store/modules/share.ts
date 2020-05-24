@@ -21,7 +21,7 @@ export interface ShareState {
 })
 class Share extends VuexModule {
   is_processing = false
-  toastrs       = Array()
+  toastrs       = [] as Toastr[]
 
   @Mutation
   set_toastr(toastr: Toastr) {
