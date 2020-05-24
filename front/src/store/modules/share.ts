@@ -14,10 +14,10 @@ export interface ShareState {
 }
 
 @Module({
-  dynamic:   true,
-  store:     store,
-  name:      'share',
-  namespace: true,
+  dynamic:    true,
+  store:      store,
+  name:       'share',
+  namespaced: true,
 })
 class Share extends VuexModule {
   is_processing = false

@@ -61,7 +61,7 @@ export default class LoginIndex extends Mixins(Utils) {
           password: this.password,
         },
       },
-      success: (response) => {
+      success: (response: any) => {
         this.$ls.set('access-token', response.headers['access-token'])
         this.$ls.set('client', response.headers.client)
         this.$ls.set('uid', response.headers.uid)
