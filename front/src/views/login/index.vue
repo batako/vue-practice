@@ -35,6 +35,7 @@ import {
   } from 'vue-property-decorator'
 
 import Utils from '../../components/mixins/utils'
+import { ShareModule } from '../../store/modules/share'
 
 @Component
 export default class LoginIndex extends Mixins(Utils) {
@@ -67,6 +68,8 @@ export default class LoginIndex extends Mixins(Utils) {
         this.$ls.set('uid', response.headers.uid)
 
         this.$router.push('/')
+
+        ShareModule.clear_toastr()
       },
     })
   }
