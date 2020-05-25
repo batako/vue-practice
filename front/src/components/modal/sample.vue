@@ -83,11 +83,11 @@ export default class LoginIndex extends Vue {
     console.log('primary')
     ShareModule.startProcess()
 
-    setTimeout(function(){
+    setTimeout(() => {
       this.$emit('close')
       ShareModule.clearToastrs()
       ShareModule.stopProcess()
-    }.bind(this), 2000)
+    }, 2000)
   }
 
   danger() {
