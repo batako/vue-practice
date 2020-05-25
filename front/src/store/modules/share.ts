@@ -24,7 +24,7 @@ class Share extends VuexModule {
   toastrs       = [] as Toastr[]
 
   @Mutation
-  set_toastr(toastr: Toastr) {
+  setToastr(toastr: Toastr) {
     toastr.key = String(Date.now())
 
     if (toastr.force) this.toastrs = [toastr]
@@ -32,17 +32,17 @@ class Share extends VuexModule {
   }
 
   @Mutation
-  clear_toastr() {
+  clearToastrs() {
     this.toastrs = []
   }
 
   @Mutation
-  start_process() {
+  startProcess() {
     this.is_processing = true
   }
 
   @Mutation
-  stop_process() {
+  stopProcess() {
     this.is_processing = false
   }
 }

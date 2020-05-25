@@ -57,7 +57,7 @@ export default class LoginIndex extends Mixins(Title) {
       .login(this.email, this.password)
       .then((response: any) => {
         this.$router.push('/')
-        ShareModule.clear_toastr()
+        ShareModule.clearToastrs()
       })
   }
 

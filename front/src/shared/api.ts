@@ -45,7 +45,7 @@ export const API = new class {
       },
     )
 
-    if (!params.skip_loading) ShareModule.start_process()
+    if (!params.skip_loading) ShareModule.startProcess()
 
     if (process.env.URL_BASE && params.settings?.url) {
       params.settings.url = process.env.URL_BASE + params.settings.url
@@ -84,7 +84,7 @@ export const API = new class {
         ) {
           switch (response_data.status) {
             case 'success':
-              ShareModule.set_toastr({
+              ShareModule.setToastr({
                 type:    'success',
                 message: response_data.message,
                 force:   false,
@@ -92,7 +92,7 @@ export const API = new class {
               break
             case 'caution':
             case 'failure':
-              ShareModule.set_toastr({
+              ShareModule.setToastr({
                 type:    'danger',
                 message: response_data.message,
                 force:   false,
@@ -101,13 +101,13 @@ export const API = new class {
             default:
               if (this.response_status == 'failure') {
                 if (response_data.error_detail) {
-                  ShareModule.set_toastr({
+                  ShareModule.setToastr({
                     type:    'danger',
                     message: response_data.error_detail,
                     force:   true,
                   })
                 } else if (response_data.message) {
-                  ShareModule.set_toastr({
+                  ShareModule.setToastr({
                     type:    'danger',
                     message: response_data.message,
                     force:   true,
@@ -128,7 +128,7 @@ export const API = new class {
     ) {
       switch (this.action_response.data.status) {
         case 'success':
-          ShareModule.set_toastr({
+          ShareModule.setToastr({
             type: 'success',
             message: this.action_response.data.message,
             force: false,
@@ -136,7 +136,7 @@ export const API = new class {
           break
         case 'caution':
         case 'failure':
-          ShareModule.set_toastr({
+          ShareModule.setToastr({
             type:    'danger',
             message: this.action_response.data.error_detail || this.action_response.data.message,
             force:   false,
@@ -144,7 +144,7 @@ export const API = new class {
           break
         default:
           if (this.response_status == 'failure') {
-            ShareModule.set_toastr({
+            ShareModule.setToastr({
               type:    'danger',
               message: this.action_response.data.error_detail || this.action_response.data.message,
               force:   true,
@@ -155,7 +155,7 @@ export const API = new class {
 
     // エラーの場合
     } else if (this.action_response.status != 200) {
-      ShareModule.set_toastr({
+      ShareModule.setToastr({
         type:    'danger',
         message: this.getResposeMessage(),
         force:   false,
@@ -164,7 +164,7 @@ export const API = new class {
 
     this.afterAction()
 
-    if (!this.submit_params.skip_loading) ShareModule.stop_process()
+    if (!this.submit_params.skip_loading) ShareModule.stopProcess()
   }
 
 

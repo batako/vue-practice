@@ -81,17 +81,17 @@ export default class LoginIndex extends Vue {
 
   primary() {
     console.log('primary')
-    ShareModule.start_process()
+    ShareModule.startProcess()
 
     setTimeout(function(){
       this.$emit('close')
-      ShareModule.clear_toastr()
-      ShareModule.stop_process()
+      ShareModule.clearToastrs()
+      ShareModule.stopProcess()
     }.bind(this), 2000)
   }
 
   danger() {
-    ShareModule.set_toastr({
+    ShareModule.setToastr({
       type:    'danger',
       message: 'Danger ボタンを押下しました',
       force:   false,
@@ -99,7 +99,7 @@ export default class LoginIndex extends Vue {
   }
 
   warning() {
-    ShareModule.set_toastr({
+    ShareModule.setToastr({
       type:    'warning',
       message: 'Warning ボタンを押下しました',
       force:   false,
