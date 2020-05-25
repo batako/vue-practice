@@ -35,7 +35,6 @@ import {
 
 import AuthService from '../../services/auth'
 import Title from '../../components/mixins/title'
-import router from '../../router'
 import { ShareModule } from '../../store/modules/share'
 
 @Component
@@ -56,7 +55,7 @@ export default class LoginIndex extends Mixins(Title) {
     AuthService
       .login(this.email, this.password)
       .then((response: any) => {
-        router.push('/')
+        this.$router.push('/')
         ShareModule.clear_toastr()
       })
   }
