@@ -80,7 +80,6 @@ export default class LoginIndex extends Vue {
   title!: string
 
   primary() {
-    console.log('primary')
     ShareModule.startProcess()
 
     setTimeout(() => {
