@@ -4,19 +4,20 @@
       <div class="wrapper">
         <hr class="colorgraph"><br>
 
-        <input type="text"
-               class="form-control"
-               placeholder="メールアドレス"
-               v-model="email">
+        <form @submit.prevent="login">
+          <input type="email"
+                 class="form-control"
+                 placeholder="メールアドレス"
+                 v-model="email">
 
-        <input type="password"
-               class="form-control"
-               placeholder="パスワード"
-               v-model="password">
+          <input type="password"
+                 class="form-control"
+                 placeholder="パスワード"
+                 v-model="password">
 
-        <input type="button"
-               value="ログイン"
-               @click="login">
+          <input type="submit"
+                 value="ログイン">
+        </form>
       </div>
     </div>
   </div>
