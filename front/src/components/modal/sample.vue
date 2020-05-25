@@ -85,16 +85,25 @@ export default class LoginIndex extends Vue {
 
     setTimeout(function(){
       this.$emit('close')
+      ShareModule.clear_toastr()
       ShareModule.stop_process()
     }.bind(this), 2000)
   }
 
   danger() {
-    console.log('danger')
+    ShareModule.set_toastr({
+      type:    'danger',
+      message: 'Danger ボタンを押下しました',
+      force:   false,
+    })
   }
 
   warning() {
-    console.log('warning')
+    ShareModule.set_toastr({
+      type:    'warning',
+      message: 'Warning ボタンを押下しました',
+      force:   false,
+    })
   }
 }
 </script>
