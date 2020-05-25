@@ -20,6 +20,9 @@ Vue.component('toastr', Toastr)
 import VModal from 'vue-js-modal'
 Vue.use(VModal, { dynamic: true, injectModalsContainer: true })
 
+import Loading from '@/components/loading.vue'
+Vue.component('loading', Loading)
+
 Vue.config.productionTip = false
 
 new Vue({
