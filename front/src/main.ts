@@ -17,6 +17,9 @@ Vue.component('toastrs', Toastrs)
 import Toastr from './components/toastr.vue'
 Vue.component('toastr', Toastr)
 
+import VModal from 'vue-js-modal'
+Vue.use(VModal, { dynamic: true, injectModalsContainer: true })
+
 Vue.config.productionTip = false
 
 new Vue({
