@@ -40,9 +40,9 @@ import { ShareModule } from '../../store/modules/share'
 
 @Component
 export default class LoginIndex extends Mixins(Title) {
-  title = 'ログイン'
-  email    = 'example@example.com'
-  password = 'password'
+  title    = 'ログイン'
+  email    = ''
+  password = ''
 
   mounted() {
     this.$_initialize()
