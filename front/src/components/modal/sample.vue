@@ -72,6 +72,8 @@ import {
     Vue,
   } from 'vue-property-decorator'
 
+import { ShareModule } from '../../store/modules/share'
+
 @Component
 export default class LoginIndex extends Vue {
   @Prop({required: true})
@@ -79,6 +81,12 @@ export default class LoginIndex extends Vue {
 
   primary() {
     console.log('primary')
+    ShareModule.start_process()
+
+    setTimeout(function(){
+      this.$emit('close')
+      ShareModule.stop_process()
+    }.bind(this), 2000)
   }
 
   danger() {
