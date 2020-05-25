@@ -86,6 +86,11 @@ export default class LoginIndex extends Vue {
     setTimeout(() => {
       this.$emit('close')
       ShareModule.clearToastrs()
+      ShareModule.setToastr({
+        type:    'success',
+        message: 'Primary ボタンを押下しました',
+        force:   true,
+      })
       ShareModule.stopProcess()
     }, 2000)
   }
