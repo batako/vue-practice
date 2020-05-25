@@ -1,0 +1,55 @@
+.vm--modal {
+  overflow: visible;
+  border-radius: 9px;
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+  .header,
+  .footer {
+    padding: 10px;
+  }
+
+  .header {
+    position: relative;
+    background: #69f0ae;
+    text-align: center;
+    font-size: 18px;
+    margin: 0 0 10px;
+    font-weight: bold;
+    border-radius: 9px 0 0 0 / 9px 0 0 0;
+
+    &.draggable {
+      cursor: pointer;
+    }
+
+    .close-icon {
+      background-color: #69f0ae;
+      cursor: pointer;
+      position: absolute;
+      right: -10px;
+      top: -10px;
+      height: 48px;
+      width: 48px;
+      display: block;
+      background-size: 60%;
+      border-radius: 50%;
+      z-index: 1;
+
+      img {
+        width: 38px;
+        margin: 5px;
+      }
+    }
+  }
+
+  .body {
+    padding: 0 10px;
+  }
+
+  .footer {
+    text-align: center;
+
+    button:nth-of-type(n+2) {
+      margin-left: 30px;
+    }
+  }
+}
