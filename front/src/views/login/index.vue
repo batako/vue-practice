@@ -33,16 +33,16 @@ import {
     Watch,
   } from 'vue-property-decorator'
 
+import AuthService from '../../services/auth'
 import Title from '../../components/mixins/title'
+import router from '../../router'
 import { ShareModule } from '../../store/modules/share'
-
-import { API } from '../../shared/api'
 
 @Component
 export default class LoginIndex extends Mixins(Title) {
   title = 'ログイン'
-  email    = ''
-  password = ''
+  email    = 'example@example.com'
+  password = 'password'
 
   mounted() {
     this.$_initialize()
@@ -53,25 +53,12 @@ export default class LoginIndex extends Mixins(Title) {
   }
 
   login() {
-    API.submit({
-      settings: {
-        method: 'post',
-        url   : '/api/auth/sign_in',
-        data: {
-          email:    this.email,
-          password: this.password,
-        },
-      },
-      success: (response: any) => {
-        this.$ls.set('access-token', response.headers['access-token'])
-        this.$ls.set('client', response.headers.client)
-        this.$ls.set('uid', response.headers.uid)
-
-        this.$router.push('/')
-
+    AuthService
+      .login(this.email, this.password)
+      .then((response: any) => {
+        router.push('/')
         ShareModule.clear_toastr()
-      },
-    })
+      })
   }
 
   @Watch('email')
