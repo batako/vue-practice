@@ -1,11 +1,11 @@
-import axios from 'axios';
-import Vue from 'vue';
+import axios from 'axios'
+import Vue from 'vue'
 
-import { ShareModule } from '@/store/modules/share';
+import { ShareModule } from '@/store/modules/share'
 
-import router from '../router/index';
-import { ApiSettings, ApiSubmitParams } from '../types/api';
-import { upperCase } from './util';
+import router from '../router/index'
+import { ApiSettings, ApiSubmitParams } from '../types/api'
+import { upperCase } from './util'
 
 export const API = new class {
   private submit_params = {} as ApiSubmitParams
