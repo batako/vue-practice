@@ -9,7 +9,7 @@
         <img src="@/assets/images/toast-close-btn.png"
              class="close-icon">
       </a>
-      <div v-html="$_utils_nl2br(toastr.message)"></div>
+      <div v-html="message"></div>
     </div>
   </div>
 </template>
@@ -66,11 +66,11 @@ import {
     Vue,
   } from 'vue-property-decorator'
 
-import Utils from './mixins/utils'
+import { nl2br } from '../shared/util'
 import { Toastr as ToastrType } from '../types/toastr'
 
 @Component
-export default class Toastr extends Mixins(Utils) {
+export default class Toastr extends Vue {
   @Prop({required: true})
   toastr!: ToastrType
 
@@ -81,6 +81,7 @@ export default class Toastr extends Mixins(Utils) {
     danger:  'alert-danger',
     warning: 'alert-warning',
   }
+  message = nl2br(this.toastr.message)
 
   updated() {
     if (this.toastr.force) {

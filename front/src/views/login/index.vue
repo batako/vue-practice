@@ -30,15 +30,17 @@
 import {
     Component,
     Mixins,
-    Vue,
     Watch,
   } from 'vue-property-decorator'
 
-import Utils from '../../components/mixins/utils'
+import Title from '../../components/mixins/title'
 import { ShareModule } from '../../store/modules/share'
 
+import { API } from '../../shared/api'
+
 @Component
-export default class LoginIndex extends Mixins(Utils) {
+export default class LoginIndex extends Mixins(Title) {
+  title = 'ログイン'
   email    = ''
   password = ''
 
@@ -47,13 +49,11 @@ export default class LoginIndex extends Mixins(Utils) {
   }
 
   $_initialize() {
-    this.$data.$_utils_title = 'ログイン'
-
     this.$ls.clear()
   }
 
   login() {
-    this.$api({
+    API.submit({
       settings: {
         method: 'post',
         url   : '/api/auth/sign_in',
