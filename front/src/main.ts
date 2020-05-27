@@ -25,8 +25,13 @@ Vue.component('loading', Loading)
 
 Vue.config.productionTip = false
 
+import { ShareModule } from '@/store/modules/share'
+
 new Vue({
   router,
   store,
   render: h => h(App),
+  beforeCreate: () => {
+    ShareModule.setLoginStatus()
+  }
 }).$mount('#app')
