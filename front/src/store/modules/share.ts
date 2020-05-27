@@ -1,4 +1,3 @@
-import store from '@/store/index'
 import Vue from 'vue'
 import {
     getModule,
@@ -7,6 +6,7 @@ import {
     VuexModule,
   } from 'vuex-module-decorators'
 
+import store from '@/store/index'
 import { Toastr } from '@/types/toastr'
 
 export interface ShareState {
