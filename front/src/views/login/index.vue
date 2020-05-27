@@ -49,7 +49,7 @@ export default class LoginIndex extends Mixins(Title) {
   }
 
   $_initialize() {
-    this.$ls.clear()
+    AuthService.logout()
   }
 
   login() {

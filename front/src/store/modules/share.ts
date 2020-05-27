@@ -1,4 +1,5 @@
 import store from '@/store/index'
+import Vue from 'vue'
 import {
     getModule,
     Module,
@@ -11,6 +12,7 @@ import { Toastr } from '@/types/toastr'
 export interface ShareState {
   is_processing: boolean;
   toastrs:       Toastr[];
+  is_logined:    boolean;
 }
 
 @Module({
@@ -22,6 +24,7 @@ export interface ShareState {
 class Share extends VuexModule {
   is_processing = false
   toastrs       = [] as Toastr[]
+  is_logined    = false
 
   @Mutation
   setToastr(toastr: Toastr) {
@@ -44,6 +47,16 @@ class Share extends VuexModule {
   @Mutation
   stopProcess() {
     this.is_processing = false
+  }
+
+  @Mutation
+  setLoginStatus() {
+    this.is_logined = !!(Vue.ls.get('access-token') && Vue.ls.get('client') && Vue.ls.get('uid'))
+  }
+
+  @Mutation
+  clearLoginStatus() {
+    this.is_logined = false
   }
 }
 
