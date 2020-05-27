@@ -2,7 +2,8 @@
   <div id="app">
     <loading />
     <toastrs />
-    <div id="nav">
+    <div v-if="is_logined"
+         id="nav">
       <router-link to="/">Home</router-link>
       | <router-link to="/about">About</router-link>
       | <router-link to="/test">Test</router-link>
@@ -33,3 +34,19 @@
   }
 }
 </style>
+
+<script lang="ts">
+import {
+    Component,
+    Vue,
+  } from 'vue-property-decorator'
+
+import { ShareModule } from './store/modules/share'
+
+@Component
+export default class App extends Vue {
+  get is_logined() {
+    return ShareModule.is_logined
+  }
+}
+</script>
