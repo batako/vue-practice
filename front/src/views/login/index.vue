@@ -28,45 +28,94 @@
 </style>
 
 <script lang="ts">
+/* composition-api */
 import {
-    Component,
-    Mixins,
-    Watch,
-  } from 'vue-property-decorator'
+    reactive,
+    onMounted,
+    toRefs,
+  } from '@vue/composition-api'
+import router from '@/router'
 
 import AuthService from '../../services/auth'
-import Title from '../../components/mixins/title'
+// import Title from '../../components/mixins/title'
 import { ShareModule } from '../../store/modules/share'
 
-@Component
-export default class LoginIndex extends Mixins(Title) {
-  title    = 'ログイン'
-  email    = ''
-  password = ''
+export default {
+  setup() {
+    // const title = 'ログイン'
+    const state = reactive({
+      email:    'example@example.com',
+      password: 'password',
+    })
 
-  mounted() {
-    this.$_initialize()
-  }
 
-  $_initialize() {
-    AuthService.logout()
-  }
+    function _init() {
+      AuthService.logout()
+    }
 
-  login() {
-    AuthService
-      .login(this.email, this.password)
-      .then((response: any) => {
-        this.$router.push('/')
-        ShareModule.clearToastrs()
-      })
-  }
 
-  @Watch('email')
-  onEmailChanged(newText: string, oldText: string) {
-    this.email = newText.replace(
-      /[Ａ-Ｚａ-ｚ０-９]/g,
-      function(s) { return String.fromCharCode(s.charCodeAt(0) - 65248).replace(/^[^0-9a-zA-Z]*$/g, '') }
-    )
+    function login() {
+      AuthService
+        .login(state.email, state.password)
+        .then((response: any) => {
+          router.push('/')
+          ShareModule.clearToastrs()
+        })
+    }
+
+
+    onMounted(() => {
+      _init()
+    })
+
+
+    return {
+      login,
+      ...toRefs(state),
+    }
   }
 }
+
+/* vue-property-decorator */
+// import {
+//     Component,
+//     Mixins,
+//     Watch,
+//   } from 'vue-property-decorator'
+
+// import AuthService from '../../services/auth'
+// import Title from '../../components/mixins/title'
+// import { ShareModule } from '../../store/modules/share'
+
+// @Component
+// export default class LoginIndex extends Mixins(Title) {
+//   title    = 'ログイン'
+//   email    = 'example@example.com'
+//   password = 'password'
+
+//   mounted() {
+//     this._init()
+//   }
+
+//   _init() {
+//     AuthService.logout()
+//   }
+
+//   login() {
+//     AuthService
+//       .login(this.email, this.password)
+//       .then((response: any) => {
+//         this.$router.push('/')
+//         ShareModule.clearToastrs()
+//       })
+//   }
+
+//   @Watch('email')
+//   onEmailChanged(newText: string, oldText: string) {
+//     this.email = newText.replace(
+//       /[Ａ-Ｚａ-ｚ０-９]/g,
+//       function(s) { return String.fromCharCode(s.charCodeAt(0) - 65248).replace(/^[^0-9a-zA-Z]*$/g, '') }
+//     )
+//   }
+// }
 </script>
