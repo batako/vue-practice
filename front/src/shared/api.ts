@@ -19,10 +19,10 @@ export const API = new class {
 
     return new Promise((resolve, reject) => {
         axios(this.settings)
-          .then((response: any) => {
+          .then((response) => {
             this.sucess(response)
             resolve(response)
-          }).catch((error: any) => {
+          }).catch((error) => {
             this.error(error)
             reject(error)
           }).finally(() => {
