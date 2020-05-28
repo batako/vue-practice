@@ -14,6 +14,6 @@ export default class Title extends Vue {
 
   @Watch('title')
   $_onTitleChange(title = '') {
-    if (this.title) document.title = this.title
+    if (this.title) document.title = title
   }
 }
