@@ -122,6 +122,8 @@
 
 
 /* options api */
+import Vue from 'vue'
+
 // mixin ファイルは options api 記法でも vue-property-decorator 記法でも動く
 // import Title from '../../components/mixins/title'
 import Title from '../../components/mixins/title.legacy'
@@ -129,7 +131,7 @@ import Title from '../../components/mixins/title.legacy'
 import AuthService from '../../services/auth'
 import { ShareModule } from '../../store/modules/share'
 
-export default {
+export default Vue.extend({
   mixins: [
     Title,
   ],
@@ -156,5 +158,5 @@ export default {
         })
     },
   },
-}
+})
 </script>
