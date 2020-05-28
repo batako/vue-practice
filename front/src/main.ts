@@ -23,6 +23,13 @@ Vue.use(VModal, { dynamic: true, injectModalsContainer: true })
 import Loading from '@/components/loading.vue'
 Vue.component('loading', Loading)
 
+import { DatePicker } from 'element-ui'
+import lang from 'element-ui/lib/locale/lang/ja'
+import locale from 'element-ui/lib/locale'
+import 'element-ui/lib/theme-chalk/index.css'
+locale.use(lang)
+Vue.use(DatePicker)
+
 Vue.config.productionTip = false
 
 import { ShareModule } from '@/store/modules/share'
