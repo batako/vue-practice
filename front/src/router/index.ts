@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
+import { ShareModule } from '../store/modules/share'
 
 Vue.use(VueRouter)
 
@@ -34,13 +35,9 @@ const router = new VueRouter({
 
 // グローバルガード
 router.beforeEach((to, from, next) => {
-  if (
-    to.path == '/login' || (
-      Vue.ls.get('access-token') && Vue.ls.get('client') && Vue.ls.get('uid')
-    )
-  ) {
+  // ShareModule.setLoginStatus() より先に実行されるので vue-ls からログイン状態を取得する
+  if (to.path == '/login' || ShareModule.login_status) {
     next()
-
   } else {
     next({ path: '/login' })
   }

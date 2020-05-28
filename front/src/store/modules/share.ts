@@ -58,6 +58,13 @@ class Share extends VuexModule {
   clearLoginStatus() {
     this.is_logined = false
   }
+
+  public get login_status(): boolean {
+    // vue-ls は監視対象外となるため is_logined を絡める
+    return this.is_logined || !!(
+      Vue.ls.get('access-token') && Vue.ls.get('client') && Vue.ls.get('uid')
+    )
+  }
 }
 
 export const ShareModule = getModule(Share)

@@ -46,7 +46,7 @@ import { ShareModule } from './store/modules/share'
 @Component
 export default class App extends Vue {
   get is_logined() {
-    return ShareModule.is_logined
+    return ShareModule.login_status
   }
 }
 </script>
