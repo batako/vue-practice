@@ -1,0 +1,6 @@
+import '@/plugins/axios'
+import '@/plugins/bootstrap'
+import '@/plugins/element-ui'
+import '@/plugins/loading'
+import '@/plugins/toastrs'
+import '@/plugins/vue-js-modal'
