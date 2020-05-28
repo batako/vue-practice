@@ -95,10 +95,10 @@
 //   password = 'password'
 
 //   mounted() {
-//     this._init()
+//     this.$_init()
 //   }
 
-//   _init() {
+//   $_init() {
 //     AuthService.logout()
 //   }
 
