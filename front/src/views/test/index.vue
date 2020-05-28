@@ -54,7 +54,10 @@ import {
     Component,
     Mixins,
   } from 'vue-property-decorator'
-import { KinesisContainer, KinesisElement} from 'vue-kinesis'
+import {
+    KinesisContainer,
+    KinesisElement,
+  } from 'vue-kinesis'
 
 import Title from '../../components/mixins/title'
 
