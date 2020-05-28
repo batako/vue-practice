@@ -1,5 +1,6 @@
 import '@/plugins/axios'
 import '@/plugins/bootstrap'
+import '@/plugins/composition-api'
 import '@/plugins/element-ui'
 import '@/plugins/loading'
 import '@/plugins/toastrs'
