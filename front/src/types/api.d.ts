@@ -10,6 +10,4 @@ export interface ApiSubmitParams {
   settings:            ApiSettings;
   skip_loading?:        boolean;
   skip_success_toastr?: boolean;
-  success:              any;
-  failure?:             any;
 }

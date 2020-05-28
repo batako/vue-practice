@@ -17,14 +17,18 @@ export const API = new class {
   public submit(params: ApiSubmitParams) {
     this.initialize(params)
 
-    return axios(this.settings)
-      .then((response: any) => {
-        this.sucess(response)
-      }).catch((error: any) => {
-        this.error(error)
-      }).finally(() => {
-        this.finally()
-      })
+    return new Promise((resolve, reject) => {
+        axios(this.settings)
+          .then((response: any) => {
+            this.sucess(response)
+            resolve(response)
+          }).catch((error: any) => {
+            this.error(error)
+            reject(error)
+          }).finally(() => {
+            this.finally()
+          })
+    })
   }
 
 
@@ -162,8 +166,6 @@ export const API = new class {
       })
     }
 
-    this.afterAction()
-
     if (!this.submit_params.skip_loading) ShareModule.stopProcess()
   }
 
@@ -186,19 +188,5 @@ export const API = new class {
     }
 
     return value
-  }
-
-
-  private afterAction() {
-    if ( Object.keys(this.submit_params).indexOf(this.response_status) > 0 ) {
-      switch (this.response_status) {
-        case 'success':
-          this.submit_params['success'](this.action_response)
-          break;
-        case 'failure':
-          this.submit_params['failure'](this.action_response)
-          break;
-      }
-    }
   }
 }
