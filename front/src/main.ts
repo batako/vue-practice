@@ -26,6 +26,13 @@ Vue.component('loading', Loading)
 import VueKinesis from 'vue-kinesis'
 Vue.use(VueKinesis)
 
+import { DatePicker } from 'element-ui'
+import lang from 'element-ui/lib/locale/lang/ja'
+import locale from 'element-ui/lib/locale'
+import 'element-ui/lib/theme-chalk/index.css'
+locale.use(lang)
+Vue.use(DatePicker)
+
 Vue.config.productionTip = false
 
 import { ShareModule } from '@/store/modules/share'
