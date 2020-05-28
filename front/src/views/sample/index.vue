@@ -59,9 +59,8 @@ import {
     KinesisElement,
   } from 'vue-kinesis'
 
-import Title from '../../components/mixins/title'
-
 import SampleModal from '../../components/modal/sample.vue'
+import Title from '../../components/mixins/title'
 
 
 @Component({
@@ -70,8 +69,8 @@ import SampleModal from '../../components/modal/sample.vue'
     KinesisElement,
   }
 })
-export default class TestIndex extends Mixins(Title) {
-  title = 'テスト'
+export default class SampleIndex extends Mixins(Title) {
+  title = 'サンプル'
   datetime = null
 
   openModal() {
