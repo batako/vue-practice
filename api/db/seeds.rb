@@ -5,3 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# ユーザ作成
+[
+  {email: 'example@example.com', password: 'password'}
+].each{|user, arr|
+  User.find_or_initialize_by(email: user[:email]) \
+    .update(password: user[:password], password_confirmation: user[:password])
+}
