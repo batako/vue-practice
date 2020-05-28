@@ -18,7 +18,7 @@ export default {
         Vue.ls.set('access-token', response.headers['access-token'])
         Vue.ls.set('client', response.headers.client)
         Vue.ls.set('uid', response.headers.uid)
-        ShareModule.setLoginStatus()
+        ShareModule.login()
       },
     })
   },
@@ -26,6 +26,6 @@ export default {
 
   logout() {
     Vue.ls.clear()
-    ShareModule.clearLoginStatus()
-  }
+    ShareModule.logout()
+  },
 }

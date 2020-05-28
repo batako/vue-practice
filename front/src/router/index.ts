@@ -35,7 +35,7 @@ const router = new VueRouter({
 
 // グローバルガード
 router.beforeEach((to, from, next) => {
-  // ShareModule.setLoginStatus() より先に実行されるので vue-ls からログイン状態を取得する
+  // ShareModule.login() より先に実行されるので vue-ls からログイン状態を取得する
   if (to.path == '/login' || ShareModule.login_status) {
     next()
   } else {

@@ -32,6 +32,6 @@ new Vue({
   store,
   render: h => h(App),
   beforeCreate: () => {
-    ShareModule.setLoginStatus()
+    ShareModule.login()
   }
 }).$mount('#app')

@@ -50,12 +50,12 @@ class Share extends VuexModule {
   }
 
   @Mutation
-  setLoginStatus() {
+  login() {
     this.is_logined = !!(Vue.ls.get('access-token') && Vue.ls.get('client') && Vue.ls.get('uid'))
   }
 
   @Mutation
-  clearLoginStatus() {
+  logout() {
     this.is_logined = false
   }
 
