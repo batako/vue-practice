@@ -158,5 +158,13 @@ export default Vue.extend({
         })
     },
   },
+  // watch: {
+  //   email(newVlue = '') {
+  //     this.email = newVlue.replace(
+  //       /[Ａ-Ｚａ-ｚ０-９]/g,
+  //       function(s: string) { return String.fromCharCode(s.charCodeAt(0) - 65248).replace(/^[^0-9a-zA-Z]*$/g, '') }
+  //     )
+  //   },
+  // },
 })
 </script>
