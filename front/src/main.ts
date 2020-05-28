@@ -23,6 +23,9 @@ Vue.use(VModal, { dynamic: true, injectModalsContainer: true })
 import Loading from '@/components/loading.vue'
 Vue.component('loading', Loading)
 
+import VueKinesis from 'vue-kinesis'
+Vue.use(VueKinesis)
+
 Vue.config.productionTip = false
 
 import { ShareModule } from '@/store/modules/share'
