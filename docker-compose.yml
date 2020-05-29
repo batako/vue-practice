@@ -29,6 +29,20 @@ services:
       - yarn_cache:/usr/local/share/.cache/yarn/v6:cached # `yarn cache dir`
       # exclude volumes
       - /front/node_modules
+  vue3:
+    build:
+      context: .
+      dockerfile: ./docker/vue3/Dockerfile
+    container_name: vue_vue3
+    entrypoint: yarn serve
+    ports:
+      - 8888:8888
+    volumes:
+      - ./vue3:/vue3:cached
+      - yarn_cache2:/usr/local/share/.cache/yarn/v6:cached # `yarn cache dir`
+      # exclude volumes
+      - /vue3/node_modules
 volumes:
   bundle:
   yarn_cache:
+  yarn_cache2:
