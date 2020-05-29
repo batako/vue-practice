@@ -37,9 +37,11 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+// import Vue from 'vue';              // ２系の場合
+import { defineComponent } from 'vue'; // ３系の場合
 
-export default Vue.extend({
+// export default Vue.extend({   // ２系の場合
+export default defineComponent({ // ３系の場合
   name: 'HelloWorld',
   props: {
     msg: String,
