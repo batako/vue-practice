@@ -1,9 +1,26 @@
 <template>
-  <div class="toastrs-wrap">
-    <div class="position">
-      <toastr v-for="toastr in toastrs"
-              :key="toastr.key"
-              :toastr.sync="toastr"></toastr>
+  <div>
+    <header>
+      <slot name="head"></slot>
+    </header>
+
+    <p>これは共通で表示される</p>
+    <slot name="default"></slot>
+
+    <slot name="body"></slot>
+
+     <slot name="test"
+           :text="text1"></slot>
+
+    <slot name="test2"
+          :text="text2"></slot>
+
+    <div class="toastrs-wrap">
+      <div class="position">
+        <toastr v-for="toastr in toastrs"
+                :key="toastr.key"
+                :toastr.sync="toastr"></toastr>
+      </div>
     </div>
   </div>
 </template>
@@ -29,6 +46,9 @@ import { ShareModule } from '../store/modules/share'
 
 @Component({})
 export default class Toastrs extends Vue {
+  text1 = '@1'
+  text2 = '@2'
+
   destroyed() {
     ShareModule.clearToastrs()
   }

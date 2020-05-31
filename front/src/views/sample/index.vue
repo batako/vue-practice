@@ -1,5 +1,11 @@
 <template>
   <div class="test">
+    <!-- <template #head>
+      <h1>HEAD</h1>
+    </template>
+    <template #body>
+      <div>BODY</div>
+    </template> -->
     <h1>This is an test page</h1>
 
     <button @click="openModal">モーダル</button>

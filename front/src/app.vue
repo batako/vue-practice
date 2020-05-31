@@ -1,7 +1,31 @@
 <template>
   <div id="app">
     <loading />
-    <toastrs />
+    <toastrs>
+      <template #head>
+        <h1>HEAD</h1>
+      </template>
+
+      <template #body>
+        <div>BODY</div>
+      </template>
+
+      <template #default>
+        <div class="child">
+          <h1>これも表示させる</h1>
+          <!-- ここで親の値を参照したいが、以下のように単に text と書いても参照できない -->
+          <p>{{ text }}</p>
+        </div>
+      </template>
+
+      <template #[slot_name]="slotProps">
+        <div class="child">
+          <h1>これも表示させる</h1>
+          <!-- ここで親の値を参照したいが、以下のように単に text と書いても参照できない -->
+          <p>{{ slotProps.text }}</p>
+        </div>
+      </template>
+    </toastrs>
     <div v-if="is_logined"
          id="nav">
       <router-link to="/">Home</router-link>
@@ -45,6 +69,9 @@ import { ShareModule } from './store/modules/share'
 
 @Component
 export default class App extends Vue {
+  text = '@@@@@@@@@@@@@@2'
+  slot_name = 'test'
+
   get is_logined() {
     return ShareModule.login_status
   }
