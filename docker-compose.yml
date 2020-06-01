@@ -26,8 +26,10 @@ services:
       - 8080:8080
     volumes:
       - ./front:/front:cached
+      - ./api/public:/public
       - yarn_cache:/usr/local/share/.cache/yarn/v6:cached # `yarn cache dir`
       # exclude volumes
+      - /front/dist
       - /front/node_modules
   vue3:
     build:
