@@ -32,38 +32,18 @@
 import {
     defineComponent,
     onMounted,
-    reactive,
     toRefs,
   } from '@vue/composition-api'
-import router from '@/router'
 
-import AuthService from '../../services/auth'
-// import Title from '../../components/mixins/title'
-import { ShareModule } from '../../store/modules/share'
+import { composition } from './index.composition'
 
 export default defineComponent({
   setup() {
-    // const title = 'ログイン'
-    const state = reactive({
-      email:    'example@example.com',
-      password: 'password',
-    })
-
-
-    function _init() {
-      AuthService.logout()
-    }
-
-
-    function login() {
-      AuthService
-        .login(state.email, state.password)
-        .then((response: any) => {
-          router.push('/')
-          ShareModule.clearToastrs()
-        })
-    }
-
+    const {
+        state,
+        _init,
+        login,
+      } = composition()
 
     onMounted(() => {
       _init()
