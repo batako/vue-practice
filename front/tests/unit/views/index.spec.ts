@@ -63,4 +63,30 @@ describe('@/views/login/login.vue', () => {
     const wrapper = mount(LoginIndex)
     expect(wrapper.find('input[type=submit]').exists()).to.be.true
   })
+
+
+  it('can sign in', () => {
+    const access_token = 'sign_in_access_token'
+    const client = 'sign_in_client'
+    const uid = 'sign_in_uid'
+
+    mockAxios.onPost('/api/auth/sign_in').reply(200, {
+      status: 'sucess',
+    }, {
+      'access-token': access_token,
+      'client':       client,
+      'uid':          uid,
+    })
+
+    const wrapper = mount(LoginIndex)
+    wrapper.find('form').trigger('submit.prevent')
+
+    // TODO: 他の書き方がないか要検討
+    setTimeout(() => {
+      expect(Vue.ls.get('access-token')).to.equal(access_token)
+      expect(Vue.ls.get('client')).to.equal(client)
+      expect(Vue.ls.get('uid')).to.equal(uid)
+      expect(ShareModule.is_logined).to.be.true
+    })
+  })
 })
