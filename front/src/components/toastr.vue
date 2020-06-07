@@ -114,7 +114,7 @@ export default class Toastr extends Vue {
 
     setTimeout(() => {
         this.$destroy()
-        this.$el?.parentNode?.removeChild(this.$el)
+        if (this.$el && this.$el.parentNode) this.$el.parentNode.removeChild(this.$el)
     }, 300)
   }
 }
