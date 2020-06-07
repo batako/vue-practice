@@ -51,9 +51,9 @@ export const API = new class {
 
     if (!params.skip_loading) ShareModule.startProcess()
 
-    // if (process.env.URL_BASE && params.settings?.url) {
-    //   params.settings.url = process.env.URL_BASE + params.settings.url
-    // }
+    if (process.env.URL_BASE && params.settings.url) {
+      params.settings.url = process.env.URL_BASE + params.settings.url
+    }
   }
 
 
