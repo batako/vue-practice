@@ -2,7 +2,6 @@ import '@/plugins'
 
 import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
-import { expect } from 'chai'
 import Vue from 'vue'
 
 import { ShareModule } from '@/store/modules/share'
@@ -27,41 +26,41 @@ describe('@/views/login/login.vue', () => {
 
 
   it('sign out', () => {
-    expect(Vue.ls.get('access-token')).to.equal(init_access_token)
-    expect(Vue.ls.get('client')).to.equal(init_client)
-    expect(Vue.ls.get('uid')).to.equal(init_uid)
-    expect(ShareModule.is_logined).to.be.true
+    expect(Vue.ls.get('access-token')).toBe(init_access_token)
+    expect(Vue.ls.get('client')).toBe(init_client)
+    expect(Vue.ls.get('uid')).toBe(init_uid)
+    expect(ShareModule.is_logined).toBe(true)
 
     mount(LoginIndex)
 
-    expect(Vue.ls.get('access-token')).to.be.null
-    expect(Vue.ls.get('client')).to.be.null
-    expect(Vue.ls.get('uid')).to.be.null
-    expect(ShareModule.is_logined).to.be.false
+    expect(Vue.ls.get('access-token')).toBe(null)
+    expect(Vue.ls.get('client')).toBe(null)
+    expect(Vue.ls.get('uid')).toBe(null)
+    expect(ShareModule.is_logined).toBe(false)
   })
 
 
   it('has a login form', () => {
     const wrapper = mount(LoginIndex)
-    expect(wrapper.find('form').exists()).to.be.true
+    expect(wrapper.find('form').exists()).toBe(true)
   })
 
 
   it('has a email input', () => {
     const wrapper = mount(LoginIndex)
-    expect(wrapper.find('input[type=email]').exists()).to.be.true
+    expect(wrapper.find('input[type=email]').exists()).toBe(true)
   })
 
 
   it('has a password input', () => {
     const wrapper = mount(LoginIndex)
-    expect(wrapper.find('input[type=password]').exists()).to.be.true
+    expect(wrapper.find('input[type=password]').exists()).toBe(true)
   })
 
 
   it('has a submit button', () => {
     const wrapper = mount(LoginIndex)
-    expect(wrapper.find('input[type=submit]').exists()).to.be.true
+    expect(wrapper.find('input[type=submit]').exists()).toBe(true)
   })
 
 
@@ -83,10 +82,10 @@ describe('@/views/login/login.vue', () => {
 
     // TODO: 他の書き方がないか要検討
     setTimeout(() => {
-      expect(Vue.ls.get('access-token')).to.equal(access_token)
-      expect(Vue.ls.get('client')).to.equal(client)
-      expect(Vue.ls.get('uid')).to.equal(uid)
-      expect(ShareModule.is_logined).to.be.true
+      expect(Vue.ls.get('access-token')).toBe(access_token)
+      expect(Vue.ls.get('client')).toBe(client)
+      expect(Vue.ls.get('uid')).toBe(uid)
+      expect(ShareModule.is_logined).toBe(true)
     })
   })
 })
