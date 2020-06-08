@@ -1,12 +1,13 @@
-import '@/plugins'
-
 import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
 import Vue from 'vue'
 
+import plugins from '@/plugins'
 import { ShareModule } from '@/store/modules/share'
 import LoginIndex from '@/views/login/index.vue'
 import { mount } from '@vue/test-utils'
+
+Vue.use(plugins)
 
 const init_access_token = 'init_access_token'
 const init_client       = 'init_client'
@@ -22,7 +23,7 @@ describe('@/views/login/login.vue', () => {
     Vue.ls.set('client',       init_client)
     Vue.ls.set('uid',          init_uid)
     ShareModule.login()
-  });
+  })
 
 
   it('sign out', () => {
