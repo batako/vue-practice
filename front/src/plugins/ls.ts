@@ -1,4 +1,8 @@
-import Vue from 'vue'
-import Storage from 'vue-ls'
+import Storage from 'vue-ls';
+import { VueConstructor } from 'vue/types/vue';
 
-Vue.use(Storage, { storage: 'local' })
+export default {
+  install (Vue: VueConstructor) {
+    Vue.use(Storage, { storage: 'local' })
+  }
+}

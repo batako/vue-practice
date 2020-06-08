@@ -1,4 +1,8 @@
-import Vue from 'vue'
 import VModal from 'vue-js-modal'
+import { VueConstructor } from 'vue/types/vue'
 
-Vue.use(VModal, { dynamic: true, injectModalsContainer: true })
+export default {
+  install (Vue: VueConstructor) {
+    Vue.use(VModal, { dynamic: true, injectModalsContainer: true })
+  }
+}

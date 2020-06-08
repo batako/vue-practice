@@ -1,4 +1,8 @@
-import Vue from 'vue'
-import VueKinesis from 'vue-kinesis'
+import VueKinesis from 'vue-kinesis';
+import { VueConstructor } from 'vue/types/vue';
 
-Vue.use(VueKinesis)
+export default {
+  install (Vue: VueConstructor) {
+    Vue.use(VueKinesis)
+  }
+}

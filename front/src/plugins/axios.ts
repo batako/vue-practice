@@ -1,5 +1,9 @@
-import Vue from 'vue'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import { VueConstructor } from 'vue/types/vue'
 
-Vue.use(VueAxios, axios)
+export default {
+  install (Vue: VueConstructor) {
+    Vue.use(VueAxios, axios)
+  }
+}

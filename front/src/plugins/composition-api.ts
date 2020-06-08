@@ -1,4 +1,8 @@
-import Vue from 'vue'
 import VueCompositionApi from '@vue/composition-api'
+import { VueConstructor } from 'vue/types/vue'
 
-Vue.use(VueCompositionApi)
+export default {
+  install (Vue: VueConstructor) {
+    Vue.use(VueCompositionApi)
+  }
+}

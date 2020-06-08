@@ -1,9 +1,11 @@
-import Vue from 'vue'
 import { DatePicker } from 'element-ui'
-import lang from 'element-ui/lib/locale/lang/ja'
 import locale from 'element-ui/lib/locale'
-// import 'element-ui/lib/theme-chalk/index.css'
+import lang from 'element-ui/lib/locale/lang/ja'
+import { VueConstructor } from 'vue/types/vue'
 
-locale.use(lang)
-
-Vue.use(DatePicker)
+export default {
+  install (Vue: VueConstructor) {
+    Vue.use(DatePicker)
+    locale.use(lang)
+  }
+}
