@@ -1,4 +1,3 @@
-import { expect } from 'chai'
 import { shallowMount } from '@vue/test-utils'
 import HelloWorld from '@/components/hello_world.vue'
 
@@ -8,6 +7,6 @@ describe('hello_world.vue', () => {
     const wrapper = shallowMount(HelloWorld, {
       propsData: { msg }
     })
-    expect(wrapper.text()).to.include(msg)
+    expect(wrapper.text()).toMatch(msg)
   })
 })
