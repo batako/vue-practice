@@ -5,9 +5,14 @@ import Vue from 'vue'
 import plugins from '@/plugins'
 import { ShareModule } from '@/store/modules/share'
 import LoginIndex from '@/views/login/index.vue'
-import { mount } from '@vue/test-utils'
+import {
+  createLocalVue,
+  shallowMount,
+} from '@vue/test-utils'
 
-Vue.use(plugins)
+
+const localVue = createLocalVue()
+localVue.use(plugins)
 
 const init_access_token = 'init_access_token'
 const init_client       = 'init_client'
@@ -32,7 +37,9 @@ describe('@/views/login/login.vue', () => {
     expect(localStorage.getItem('uid')).toBe(init_uid)
     expect(ShareModule.is_logined).toBe(true)
 
-    mount(LoginIndex)
+    shallowMount(LoginIndex, {
+      localVue,
+    })
 
     expect(localStorage.getItem('access-token')).toBe(null)
     expect(localStorage.getItem('client')).toBe(null)
@@ -42,25 +49,33 @@ describe('@/views/login/login.vue', () => {
 
 
   it('has a login form', () => {
-    const wrapper = mount(LoginIndex)
+    const wrapper = shallowMount(LoginIndex, {
+      localVue,
+    })
     expect(wrapper.find('form').exists()).toBe(true)
   })
 
 
   it('has a email input', () => {
-    const wrapper = mount(LoginIndex)
+    const wrapper = shallowMount(LoginIndex, {
+      localVue,
+    })
     expect(wrapper.find('input[type=email]').exists()).toBe(true)
   })
 
 
   it('has a password input', () => {
-    const wrapper = mount(LoginIndex)
+    const wrapper = shallowMount(LoginIndex, {
+      localVue,
+    })
     expect(wrapper.find('input[type=password]').exists()).toBe(true)
   })
 
 
   it('has a submit button', () => {
-    const wrapper = mount(LoginIndex)
+    const wrapper = shallowMount(LoginIndex, {
+      localVue,
+    })
     expect(wrapper.find('input[type=submit]').exists()).toBe(true)
   })
 
@@ -78,7 +93,9 @@ describe('@/views/login/login.vue', () => {
       'uid':          uid,
     })
 
-    const wrapper = mount(LoginIndex)
+    const wrapper = shallowMount(LoginIndex, {
+      localVue,
+    })
     wrapper.find('form').trigger('submit.prevent')
 
     // TODO: 他の書き方がないか要検討
