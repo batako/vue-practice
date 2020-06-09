@@ -7,13 +7,15 @@ import { ShareModule } from '../../store/modules/share'
 
 const composition = () => {
   const state = reactive({
-    email:    'example@example.com',
-    password: 'password',
+    email:    '',
+    password: '',
   })
 
 
   const _init = () => {
     document.title = 'ログイン'
+    state.email    = 'example@example.com'
+    state.password = 'password'
     AuthService.logout()
   }
 
