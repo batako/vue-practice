@@ -31,8 +31,6 @@ services:
       - ./front:/front:cached
       - ./front/node_modules:/front/node_modules:delegated
       - yarn_cache:/usr/local/share/.cache/yarn/v6:cached # `yarn cache dir`
-      # exclude volumes
-      - /front/dist
   e2e:
     build:
       context: .

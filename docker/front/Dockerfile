@@ -12,4 +12,5 @@ ADD [ \
       "./" \
     ]
 
-RUN yarn install;
+RUN yarn install; \
+    mv build.sh /build.sh;
