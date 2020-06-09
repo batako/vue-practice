@@ -1,4 +1,8 @@
+import axios from 'axios'
+import MockAdapter from 'axios-mock-adapter'
+
 import plugins from '@/plugins'
+import { ShareModule } from '@/store/modules/share'
 
 import * as composition from '@/views/login/index.composition'
 import LoginIndex from '@/views/login/index.vue'
@@ -10,25 +14,37 @@ import {
 const localVue = createLocalVue()
 localVue.use(plugins)
 
-describe('@/views/login/login.vue', () => {
-  it('can sign out', () => {
-    const _init = jest.fn()
-    const {
-      state,
-      login
-    } = composition.composition()
+const init_access_token = 'init_access_token'
+const init_client       = 'init_client'
+const init_uid          = 'init_uid'
 
-    jest.spyOn(composition, 'composition').mockReturnValue({
-      state,
-      login,
-      _init
-    })
+describe('@/views/login/login.vue', () => {
+  let mockAxios: MockAdapter
+
+  beforeEach(() => {
+    mockAxios = new MockAdapter(axios)
+
+    localStorage.setItem('access-token', init_access_token)
+    localStorage.setItem('client',       init_client)
+    localStorage.setItem('uid',          init_uid)
+    ShareModule.login()
+  })
+
+
+  it('can sign out', () => {
+    expect(localStorage.getItem('access-token')).toBe(init_access_token)
+    expect(localStorage.getItem('client')).toBe(init_client)
+    expect(localStorage.getItem('uid')).toBe(init_uid)
+    expect(ShareModule.is_logined).toBe(true)
 
     shallowMount(LoginIndex, {
       localVue,
     })
 
-    expect(_init).toHaveBeenCalled()
+    expect(localStorage.getItem('access-token')).toBe(null)
+    expect(localStorage.getItem('client')).toBe(null)
+    expect(localStorage.getItem('uid')).toBe(null)
+    expect(ShareModule.is_logined).toBe(false)
   })
 
 
@@ -64,16 +80,29 @@ describe('@/views/login/login.vue', () => {
   })
 
 
-  it('can sign in', () => {
-    const login = jest.fn()
+  it('can sign in', async () => {
+    const access_token = 'sign_in_access_token'
+    const client       = 'sign_in_client'
+    const uid          = 'sign_in_uid'
+
+    mockAxios.onPost('/api/auth/sign_in').reply(200, {
+      status: 'sucess',
+    }, {
+      'access-token': access_token,
+      'client':       client,
+      'uid':          uid,
+    })
+
     const {
       state,
       _init,
+      login,
     } = composition.composition()
+    const loginSpy = jest.fn()
 
     jest.spyOn(composition, 'composition').mockReturnValue({
       state,
-      login,
+      login: loginSpy,
       _init
     })
 
@@ -82,6 +111,13 @@ describe('@/views/login/login.vue', () => {
     })
 
     wrapper.find('form').trigger('submit.prevent')
-    expect(login).toHaveBeenCalled()
+    expect(loginSpy).toHaveBeenCalled()
+
+    await login()
+
+    expect(localStorage.getItem('access-token')).toBe(access_token)
+    expect(localStorage.getItem('client')).toBe(client)
+    expect(localStorage.getItem('uid')).toBe(uid)
+    expect(ShareModule.is_logined).toBe(true)
   })
 })

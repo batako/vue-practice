@@ -18,7 +18,7 @@ const composition = () => {
 
 
   const login = () => {
-    AuthService
+    return AuthService
       .login(state.email, state.password)
       .then(() => {
         router.push('/')
