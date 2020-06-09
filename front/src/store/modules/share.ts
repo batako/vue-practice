@@ -1,4 +1,3 @@
-import Vue from 'vue'
 import {
     getModule,
     Module,
@@ -51,7 +50,7 @@ class Share extends VuexModule {
 
   @Mutation
   login() {
-    this.is_logined = !!(Vue.ls.get('access-token') && Vue.ls.get('client') && Vue.ls.get('uid'))
+    this.is_logined = !!(localStorage.getItem('access-token') && localStorage.getItem('client') && localStorage.getItem('uid'))
   }
 
   @Mutation
@@ -62,7 +61,7 @@ class Share extends VuexModule {
   public get login_status(): boolean {
     // vue-ls は監視対象外となるため is_logined を絡める
     return this.is_logined || !!(
-      Vue.ls.get('access-token') && Vue.ls.get('client') && Vue.ls.get('uid')
+      localStorage.getItem('access-token') && localStorage.getItem('client') && localStorage.getItem('uid')
     )
   }
 }

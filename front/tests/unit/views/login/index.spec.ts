@@ -19,24 +19,24 @@ describe('@/views/login/login.vue', () => {
   beforeEach(() => {
     mockAxios = new MockAdapter(axios)
 
-    Vue.ls.set('access-token', init_access_token)
-    Vue.ls.set('client',       init_client)
-    Vue.ls.set('uid',          init_uid)
+    localStorage.setItem('access-token', init_access_token)
+    localStorage.setItem('client',       init_client)
+    localStorage.setItem('uid',          init_uid)
     ShareModule.login()
   })
 
 
   it('sign out', () => {
-    expect(Vue.ls.get('access-token')).toBe(init_access_token)
-    expect(Vue.ls.get('client')).toBe(init_client)
-    expect(Vue.ls.get('uid')).toBe(init_uid)
+    expect(localStorage.getItem('access-token')).toBe(init_access_token)
+    expect(localStorage.getItem('client')).toBe(init_client)
+    expect(localStorage.getItem('uid')).toBe(init_uid)
     expect(ShareModule.is_logined).toBe(true)
 
     mount(LoginIndex)
 
-    expect(Vue.ls.get('access-token')).toBe(null)
-    expect(Vue.ls.get('client')).toBe(null)
-    expect(Vue.ls.get('uid')).toBe(null)
+    expect(localStorage.getItem('access-token')).toBe(null)
+    expect(localStorage.getItem('client')).toBe(null)
+    expect(localStorage.getItem('uid')).toBe(null)
     expect(ShareModule.is_logined).toBe(false)
   })
 
@@ -83,9 +83,9 @@ describe('@/views/login/login.vue', () => {
 
     // TODO: 他の書き方がないか要検討
     setTimeout(() => {
-      expect(Vue.ls.get('access-token')).toBe(access_token)
-      expect(Vue.ls.get('client')).toBe(client)
-      expect(Vue.ls.get('uid')).toBe(uid)
+      expect(localStorage.getItem('access-token')).toBe(access_token)
+      expect(localStorage.getItem('client')).toBe(client)
+      expect(localStorage.getItem('uid')).toBe(uid)
       expect(ShareModule.is_logined).toBe(true)
     })
   })

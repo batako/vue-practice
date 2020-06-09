@@ -1,5 +1,3 @@
-import Vue from 'vue'
-
 import { API } from '../shared/api'
 import { ShareModule } from '../store/modules/share'
 
@@ -16,9 +14,9 @@ export default {
           },
         },
       }).then((response: any) => {
-        Vue.ls.set('access-token', response.headers['access-token'])
-        Vue.ls.set('client', response.headers.client)
-        Vue.ls.set('uid', response.headers.uid)
+        localStorage.setItem('access-token', response.headers['access-token'])
+        localStorage.setItem('client',       response.headers.client)
+        localStorage.setItem('uid',          response.headers.uid)
         ShareModule.login()
         resolve(response)
       }).catch((error: any) => {
@@ -29,7 +27,7 @@ export default {
 
 
   logout() {
-    Vue.ls.clear()
+    localStorage.clear()
     ShareModule.logout()
   },
 }

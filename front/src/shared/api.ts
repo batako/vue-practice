@@ -1,5 +1,4 @@
 import axios from 'axios'
-import Vue from 'vue'
 
 import { ShareModule } from '@/store/modules/share'
 
@@ -41,9 +40,9 @@ export const API = new class {
           },
           (params.settings || {}).headers,
           {
-            'access-token': Vue.ls.get('access-token'),
-            client:         Vue.ls.get('client'),
-            uid:            Vue.ls.get('uid'),
+            'access-token': localStorage.getItem('access-token'),
+            client:         localStorage.getItem('client'),
+            uid:            localStorage.getItem('uid'),
           }
         )
       },
