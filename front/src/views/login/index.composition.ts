@@ -20,7 +20,7 @@ const composition = () => {
   const login = () => {
     AuthService
       .login(state.email, state.password)
-      .then((response: any) => {
+      .then(() => {
         router.push('/')
         ShareModule.clearToastrs()
       })

@@ -61,7 +61,6 @@
 <script lang="ts">
 import {
     Component,
-    Mixins,
     Prop,
     Vue,
   } from 'vue-property-decorator'

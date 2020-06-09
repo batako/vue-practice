@@ -1,6 +1,5 @@
 import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
-import Vue from 'vue'
 
 import plugins from '@/plugins'
 import { ShareModule } from '@/store/modules/share'
