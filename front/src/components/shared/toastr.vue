@@ -65,8 +65,8 @@ import {
     Vue,
   } from 'vue-property-decorator'
 
-import { nl2br } from '../shared/util'
-import { Toastr as ToastrType } from '../types/toastr'
+import { nl2br } from '@/shared/util'
+import { Toastr as ToastrType } from '@/types/toastr'
 
 @Component
 export default class Toastr extends Vue {

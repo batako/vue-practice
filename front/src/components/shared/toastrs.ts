@@ -1,7 +1,7 @@
 import { VueConstructor } from 'vue/types/vue'
 
-import Toastr from '@/components/toastr.vue'
-import Toastrs from '@/components/toastrs.vue'
+import Toastr from '@/components/shared/toastr.vue'
+import Toastrs from '@/components/shared/toastrs.vue'
 
 export default {
   install (Vue: VueConstructor) {
