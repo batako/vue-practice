@@ -6,8 +6,9 @@ RUN apk update; \
 ENV APP_HOME /front
 WORKDIR $APP_HOME
 ADD [ \
-      "front/package.json", \
       "docker/front/build.sh", \
+      "front/package.json", \
+      "front/yarn.lock", \
       "./" \
     ]
 
