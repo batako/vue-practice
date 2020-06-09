@@ -31,6 +31,20 @@ services:
       - yarn_cache:/usr/local/share/.cache/yarn/v6:cached # `yarn cache dir`
       # exclude volumes
       - /front/dist
+  e2e:
+    build:
+      context: .
+      dockerfile: ./docker/cypress/Dockerfile
+    container_name: cypress
+    command: yarn test:e2e
+    depends_on:
+      - front
+    environment:
+      - CYPRESS_baseUrl=http://front
+    volumes:
+      - ./front:/cypress:cached
+      # exclude volumes
+      - /cypress/node_modules
   vue3:
     build:
       context: .
