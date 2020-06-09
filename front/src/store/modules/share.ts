@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { Vue as VueType } from 'vue/types/vue'
+import { VueConstructor } from 'vue/types/vue'
 import {
     getModule,
     Module,
@@ -11,7 +11,7 @@ import store from '@/store/index'
 import { Toastr } from '@/types/toastr'
 
 export interface ShareState {
-  instance_vue:  VueType;
+  instance_vue:  VueConstructor;
   is_processing: boolean;
   toastrs:       Toastr[];
   is_logined:    boolean;
@@ -30,7 +30,7 @@ class Share extends VuexModule {
   is_logined    = false
 
   @Mutation
-  setVue(vue: VueType) {
+  setVue(vue: VueConstructor) {
     this.instance_vue = vue
   }
 
@@ -67,7 +67,7 @@ class Share extends VuexModule {
     this.is_logined = false
   }
 
-  public get vue(): VueType {
+  public get vue(): VueConstructor {
     return this.instance_vue
   }
 
