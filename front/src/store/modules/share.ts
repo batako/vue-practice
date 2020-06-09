@@ -1,3 +1,5 @@
+import Vue from 'vue'
+import { Vue as VueType } from 'vue/types/vue'
 import {
     getModule,
     Module,
@@ -9,6 +11,7 @@ import store from '@/store/index'
 import { Toastr } from '@/types/toastr'
 
 export interface ShareState {
+  instance_vue:  VueType;
   is_processing: boolean;
   toastrs:       Toastr[];
   is_logined:    boolean;
@@ -21,9 +24,15 @@ export interface ShareState {
   namespaced: true,
 })
 class Share extends VuexModule {
+  instance_vue  = Vue
   is_processing = false
   toastrs       = [] as Toastr[]
   is_logined    = false
+
+  @Mutation
+  setVue(vue: VueType) {
+    this.instance_vue = vue
+  }
 
   @Mutation
   setToastr(toastr: Toastr) {
@@ -56,6 +65,10 @@ class Share extends VuexModule {
   @Mutation
   logout() {
     this.is_logined = false
+  }
+
+  public get vue(): VueType {
+    return this.instance_vue
   }
 
   public get login_status(): boolean {

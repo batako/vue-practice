@@ -51,40 +51,40 @@
 
 <script lang="ts">
 import {
-    Component,
-    Mixins,
-  } from 'vue-property-decorator'
+    defineComponent,
+    onMounted,
+    toRefs,
+  } from '@vue/composition-api'
+
 import {
     KinesisContainer,
     KinesisElement,
   } from 'vue-kinesis'
 
-import SampleModal from '../../components/modal/sample.vue'
-import Title from '../../components/mixins/title'
+import { composition } from './index.composition'
 
-
-@Component({
+export default defineComponent({
   components: {
     KinesisContainer,
     KinesisElement,
+  },
+  setup() {
+    const {
+        state,
+        _init,
+        openModal,
+      } = composition()
+
+
+    onMounted(() => {
+      _init()
+    })
+
+
+    return {
+      openModal,
+      ...toRefs(state),
+    }
   }
 })
-export default class SampleIndex extends Mixins(Title) {
-  title = 'サンプル'
-  datetime = null
-
-  openModal() {
-    this.$modal.show(
-      SampleModal,
-      {
-        title: 'タイトル',
-      },
-      {
-        height:       'auto',
-        clickToClose: false,
-        draggable:    '.draggable',
-      },
-    )
-  }
-}
 </script>

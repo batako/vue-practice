@@ -18,7 +18,7 @@ Vue.use(SharedComponents)
 
 Vue.config.productionTip = false
 
-new Vue({
+const vue = new Vue({
   router,
   store,
   render: h => h(App),
@@ -26,3 +26,5 @@ new Vue({
     ShareModule.login()
   }
 }).$mount('#app')
+
+ShareModule.setVue(vue)

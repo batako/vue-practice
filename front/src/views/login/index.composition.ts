@@ -13,6 +13,7 @@ const composition = () => {
 
 
   const _init = () => {
+    document.title = 'ログイン'
     AuthService.logout()
   }
 

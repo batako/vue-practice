@@ -6,14 +6,35 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import HelloWorld from '@/components/hello_world.vue'
 
-export default {
-  name: 'home',
-  title: 'Home',
+import {
+    defineComponent,
+    onMounted,
+    toRefs,
+  } from '@vue/composition-api'
+
+import { composition } from './index.composition'
+
+export default defineComponent({
   components: {
-    HelloWorld
+    HelloWorld,
+  },
+  setup() {
+    const {
+        state,
+        _init,
+      } = composition()
+
+
+    onMounted(() => {
+      _init()
+    })
+
+
+    return {
+      ...toRefs(state),
+    }
   }
-}
+})
 </script>
