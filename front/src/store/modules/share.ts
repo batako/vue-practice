@@ -11,7 +11,7 @@ import store from '@/store/index'
 import { Toastr } from '@/types/toastr'
 
 export interface ShareState {
-  instance_vue:  VueConstructor;
+  vm:            VueConstructor;
   is_processing: boolean;
   toastrs:       Toastr[];
   is_logined:    boolean;
@@ -24,14 +24,14 @@ export interface ShareState {
   namespaced: true,
 })
 class Share extends VuexModule {
-  instance_vue  = Vue
+  vm            = Vue
   is_processing = false
   toastrs       = [] as Toastr[]
   is_logined    = false
 
   @Mutation
-  setVue(vue: VueConstructor) {
-    this.instance_vue = vue
+  setVue(vm: VueConstructor) {
+    this.vm = vm
   }
 
   @Mutation
@@ -65,19 +65,6 @@ class Share extends VuexModule {
   @Mutation
   logout() {
     this.is_logined = false
-  }
-
-  public get data(): ShareState {
-    return {
-      instance_vue:  this.instance_vue,
-      is_processing: this.is_processing,
-      toastrs:       this.toastrs,
-      is_logined:    this.is_logined,
-    }
-  }
-
-  public get vue(): VueConstructor {
-    return this.instance_vue
   }
 
   public get login_status(): boolean {

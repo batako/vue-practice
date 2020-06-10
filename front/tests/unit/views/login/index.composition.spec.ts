@@ -39,7 +39,7 @@ describe('@/views/login/index.composition.ts', () => {
     // NOTE: AuthService.logout() のテストを分離すべきか？
     ShareModule.login()
     expect(Object.keys(localStorage).length).toBe(3)
-    expect(ShareModule.data.is_logined).toBe(true)
+    expect(ShareModule.is_logined).toBe(true)
 
     _init()
 
@@ -50,7 +50,7 @@ describe('@/views/login/index.composition.ts', () => {
 
     // NOTE: AuthService.logout() のテストを分離すべきか？
     expect(Object.keys(localStorage).length).toBe(0)
-    expect(ShareModule.data.is_logined).toBe(false)
+    expect(ShareModule.is_logined).toBe(false)
   })
 
 
@@ -78,12 +78,12 @@ describe('@/views/login/index.composition.ts', () => {
       force:   false,
     })
 
-    expect(ShareModule.data.toastrs.length).toBe(1)
+    expect(ShareModule.toastrs.length).toBe(1)
 
     await login()
 
     expect(loginSpy).toHaveBeenCalled()
-    expect(ShareModule.data.toastrs.length).toBe(0)
+    expect(ShareModule.toastrs.length).toBe(0)
     // TODO: ログイン成功時のページ遷移テストを追加（viewのテスト？e2eのテスト？）
   })
 })

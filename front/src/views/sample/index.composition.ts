@@ -14,7 +14,7 @@ const composition = () => {
 
 
   const openModal = () => {
-    ShareModule.vue.$modal.show(
+    ShareModule.vm.$modal.show(
       SampleModal,
       {
         title: 'タイトル',
