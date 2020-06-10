@@ -31,6 +31,19 @@ describe('@/views/login/login.vue', () => {
   })
 
 
+  // TODO: router のテストに移行する
+  it("can't go to other page", async () => {
+    const wrapper = shallowMount(LoginIndex, {
+      localVue,
+      router,
+    })
+
+    wrapper.vm.$router.push('/sample')
+    await wrapper.vm.$nextTick()
+    expect(wrapper.vm.$route.path).toBe('/')
+  })
+
+
   it('can sign out', () => {
     expect(localStorage.getItem('access-token')).toBe(init_access_token)
     expect(localStorage.getItem('client')).toBe(init_client)
