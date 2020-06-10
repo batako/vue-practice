@@ -67,6 +67,15 @@ class Share extends VuexModule {
     this.is_logined = false
   }
 
+  public get data(): ShareState {
+    return {
+      instance_vue:  this.instance_vue,
+      is_processing: this.is_processing,
+      toastrs:       this.toastrs,
+      is_logined:    this.is_logined,
+    }
+  }
+
   public get vue(): VueConstructor {
     return this.instance_vue
   }
