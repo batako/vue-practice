@@ -1,13 +1,13 @@
 // https://docs.cypress.io/api/introduction/api.html
 
 const typeValidValue = () => {
-  cy.get('input[type=email]').type('example@example.com')
-  cy.get('input[type=password]').type('password')
+  cy.get('input[type=email]').clear().type('example@example.com')
+  cy.get('input[type=password]').clear().type('password')
 }
 
 const typeInvalidValue = () => {
-  cy.get('input[type=email]').type('invalid@example.com')
-  cy.get('input[type=password]').type('invalid')
+  cy.get('input[type=email]').clear().type('invalid@example.com')
+  cy.get('input[type=password]').clear().type('invalid')
 }
 
 describe('ログインページのテスト', () => {
