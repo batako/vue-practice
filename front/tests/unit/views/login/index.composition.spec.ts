@@ -30,7 +30,7 @@ describe('@/views/login/index.composition.ts', () => {
       state,
       _init,
     } = composition()
-    const logoutSpy = jest.spyOn(AuthService, 'logout')
+    const authLogoutSpy = jest.spyOn(AuthService, 'logout')
 
     localStorage.setItem('access-token', 'dumy')
     localStorage.setItem('client',       'dumy')
@@ -40,17 +40,19 @@ describe('@/views/login/index.composition.ts', () => {
     ShareModule.login()
     expect(Object.keys(localStorage).length).toBe(3)
     expect(ShareModule.is_logined).toBe(true)
+    expect(ShareModule.login_status).toBe(true)
 
     _init()
 
     expect(document.title).toBe('ログイン')
     expect(state.email).toBe('example@example.com')
     expect(state.password).toBe('password')
-    expect(logoutSpy).toHaveBeenCalled()
+    expect(authLogoutSpy).toHaveBeenCalled()
 
     // NOTE: AuthService.logout() のテストを分離すべきか？
     expect(Object.keys(localStorage).length).toBe(0)
     expect(ShareModule.is_logined).toBe(false)
+    expect(ShareModule.login_status).toBe(false)
   })
 
 
@@ -61,8 +63,8 @@ describe('@/views/login/index.composition.ts', () => {
     const access_token = 'sign_in_access_token'
     const client       = 'sign_in_client'
     const uid          = 'sign_in_uid'
-    const mockAxios = new MockAdapter(axios)
-    const loginSpy = jest.spyOn(AuthService, 'login')
+    const mockAxios    = new MockAdapter(axios)
+    const authLoginSpy = jest.spyOn(AuthService, 'login')
 
     mockAxios.onPost('/api/auth/sign_in').reply(200, {
       status: 'sucess',
@@ -82,8 +84,15 @@ describe('@/views/login/index.composition.ts', () => {
 
     await login()
 
-    expect(loginSpy).toHaveBeenCalled()
+    // NOTE: ページ遷移のテストは view のテストに書いた => e2e の方がいい？
+    expect(authLoginSpy).toHaveBeenCalled()
     expect(ShareModule.toastrs.length).toBe(0)
-    // TODO: ログイン成功時のページ遷移テストを追加（viewのテスト？e2eのテスト？）
+
+    // NOTE: AuthService.login() のテストを分離すべきか？
+    expect(localStorage.getItem('access-token')).toBe(access_token)
+    expect(localStorage.getItem('client')).toBe(client)
+    expect(localStorage.getItem('uid')).toBe(uid)
+    expect(ShareModule.is_logined).toBe(true)
+    expect(ShareModule.login_status).toBe(true)
   })
 })
