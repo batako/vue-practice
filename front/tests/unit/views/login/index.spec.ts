@@ -2,8 +2,8 @@ import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
 
 import plugins from '@/plugins'
+import router from '@/router'
 import { ShareModule } from '@/store/modules/share'
-
 import * as composition from '@/views/login/index.composition'
 import LoginIndex from '@/views/login/index.vue'
 import {
@@ -108,16 +108,23 @@ describe('@/views/login/login.vue', () => {
 
     const wrapper = shallowMount(LoginIndex, {
       localVue,
+      router,
     })
 
     wrapper.find('form').trigger('submit.prevent')
     expect(loginSpy).toHaveBeenCalled()
 
+    await wrapper.vm.$nextTick()
+
     await login()
+
+    await wrapper.vm.$nextTick()
 
     expect(localStorage.getItem('access-token')).toBe(access_token)
     expect(localStorage.getItem('client')).toBe(client)
     expect(localStorage.getItem('uid')).toBe(uid)
     expect(ShareModule.is_logined).toBe(true)
+    // パスのテストはできるが要素は変化しない
+    expect(wrapper.vm.$route.path).toBe('/')
   })
 })
