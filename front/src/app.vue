@@ -38,20 +38,20 @@
     </v-app-bar>
 
     <v-content>
-      <HelloWorld/>
+      <HelloWorldVuetify/>
     </v-content>
   </v-app>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
+import HelloWorldVuetify from './components/hello_world_vuetify.vue';
 
 export default Vue.extend({
   name: 'App',
 
   components: {
-    HelloWorld,
+    HelloWorldVuetify,
   },
 
   data: () => ({
