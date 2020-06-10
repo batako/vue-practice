@@ -1,5 +1,3 @@
-import Vue from 'vue'
-import { VueConstructor } from 'vue/types/vue'
 import {
     getModule,
     Module,
@@ -11,7 +9,6 @@ import store from '@/store/index'
 import { Toastr } from '@/types/toastr'
 
 export interface ShareState {
-  vm:            VueConstructor;
   is_processing: boolean;
   toastrs:       Toastr[];
   is_logined:    boolean;
@@ -24,15 +21,9 @@ export interface ShareState {
   namespaced: true,
 })
 class Share extends VuexModule {
-  vm            = Vue
   is_processing = false
   toastrs       = [] as Toastr[]
   is_logined    = false
-
-  @Mutation
-  setVue(vm: VueConstructor) {
-    this.vm = vm
-  }
 
   @Mutation
   setToastr(toastr: Toastr) {

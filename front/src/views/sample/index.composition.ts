@@ -1,6 +1,6 @@
-import { reactive } from '@vue/composition-api'
-import { ShareModule } from '@/store/modules/share'
 import SampleModal from '@/components/modal/sample.vue'
+import app from '@/main'
+import { reactive } from '@vue/composition-api'
 
 const composition = () => {
   const state = reactive({
@@ -14,7 +14,7 @@ const composition = () => {
 
 
   const openModal = () => {
-    ShareModule.vm.$modal.show(
+    app.$modal.show(
       SampleModal,
       {
         title: 'タイトル',

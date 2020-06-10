@@ -18,7 +18,7 @@ Vue.use(SharedComponents)
 
 Vue.config.productionTip = false
 
-const vue = new Vue({
+const app = new Vue({
   router,
   store,
   render: h => h(App),
@@ -27,4 +27,4 @@ const vue = new Vue({
   }
 }).$mount('#app')
 
-ShareModule.setVue(vue)
+export default app
