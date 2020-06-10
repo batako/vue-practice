@@ -1,3 +1,5 @@
 - e2eのテストを追加する
 - ローカル vue 問題が解決したので localStrage から vue-ls に戻してもいいかも
 - view のテストのページ遷移テスト見直し
+- Element UI について調査
+- vutify について調査
