@@ -1,8 +1,5 @@
-import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import { ShareModule } from '../store/modules/share'
-
-Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
   {
