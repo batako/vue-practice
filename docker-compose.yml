@@ -26,6 +26,7 @@ services:
       - api
     ports:
       - 8080:8080
+      - 8081:8081
     volumes:
       - ./api/public:/public:delegated
       - ./front:/front:cached
