@@ -3,7 +3,7 @@ import Navbar from '@/components/shared/navbar';
   <div id="app">
     <loading />
     <toastrs />
-    <navbar />
+    <!-- <navbar /> -->
     <router-view/>
   </div>
 </template>
