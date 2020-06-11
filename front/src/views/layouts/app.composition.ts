@@ -3,7 +3,6 @@ import { reactive } from '@vue/composition-api'
 
 const composition = () => {
   const state = reactive({
-    show_post_modal: false,
     drawer: null,
     items: [
       { icon: 'mdi-contacts', text: 'Contacts' },
@@ -49,25 +48,8 @@ const composition = () => {
   })
 
 
-  const _init = () => {
-    document.title = 'Home'
-  }
-
-
-  const showPostModal = () => {
-    state.show_post_modal = true
-  }
-
-
-  const closePostModal = () => {
-    state.show_post_modal = false
-  }
-
   return {
     state,
-    _init,
-    showPostModal,
-    closePostModal,
   }
 }
 

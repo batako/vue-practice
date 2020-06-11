@@ -10,8 +10,11 @@ import Plugins from '@/plugins'
 import router from '@/router'
 import store from '@/store'
 import { ShareModule } from '@/store/modules/share'
-import vuetify from './plugins/vuetify';
+import Layouts from '@/views/layouts'
 
+import vuetify from './plugins/vuetify'
+
+Vue.use(Layouts)
 Vue.use(Plugins)
 Vue.use(SharedComponents)
 
