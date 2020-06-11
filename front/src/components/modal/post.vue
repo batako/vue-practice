@@ -47,7 +47,7 @@
         <v-spacer></v-spacer>
         <v-btn
           color="warning"
-          @click="closeModal()"
+          @click="uploadImage()"
           :disabled="!upload_image_url"
         >シェア</v-btn>
       </v-card-actions>
@@ -73,6 +73,8 @@ import {
 
 import { composition } from './post.composition'
 
+import { ShareModule } from '@/store/modules/share'
+
 type Props = {
   type: boolean;
 };
@@ -96,8 +98,20 @@ export default defineComponent({
     }
 
 
+    const uploadImage = () => {
+      ShareModule.startProcess()
+      setTimeout(() => {
+        state.input_image = null
+        state.upload_image_url = null
+        context.emit('close')
+        ShareModule.stopProcess()
+      }, 2000)
+    }
+
+
     return {
       onImagePicked,
+      uploadImage,
       closeModal,
       ...toRefs(state),
     }
