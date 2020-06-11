@@ -27,7 +27,7 @@
                   <v-text-field
                     type="email"
                     label="E-Mail"
-                    prepend-icon="mdi-account"
+                    prepend-icon="mdi-email"
                     v-model="email"
                   ></v-text-field>
 
