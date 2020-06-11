@@ -48,6 +48,7 @@
         <v-btn
           color="warning"
           @click="closeModal()"
+          :disabled="!upload_image_url"
         >シェア</v-btn>
       </v-card-actions>
     </v-card>
