@@ -57,7 +57,7 @@
 @import './common.scss';
 </style>
 
-<style lang="scss" scope>
+<style lang="scss" scoped>
 .body {
   height: 200px;
   overflow: auto;
