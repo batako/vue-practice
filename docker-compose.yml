@@ -41,6 +41,10 @@ services:
       - front
     environment:
       - CYPRESS_baseUrl=http://front
+      # default
+      # - CYPRESS_browser=chrome
+      # - CYPRESS_screenshotsFolder=/cypress/screenshots
+      # - CYPRESS_videosFolder=/cypress/videos
     volumes:
       - ./front:/cypress:cached
       # exclude volumes
