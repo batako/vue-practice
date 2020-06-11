@@ -1,3 +1,4 @@
+import router from '@/router'
 import { reactive } from '@vue/composition-api'
 
 const composition = () => {
@@ -39,8 +40,9 @@ const composition = () => {
     main_manu_items: [
       {
         title: 'Logout',
+        icon: 'mdi-login',
         action: () => {
-          console.log('@logout');
+          router.push('/login')
         },
       },
     ],
