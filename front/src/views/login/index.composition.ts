@@ -7,8 +7,9 @@ import { ShareModule } from '../../store/modules/share'
 
 const composition = () => {
   const state = reactive({
-    email:    '',
-    password: '',
+    email:         '',
+    password:      '',
+    show_password: false,
   })
 
 

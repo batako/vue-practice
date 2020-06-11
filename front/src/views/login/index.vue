@@ -25,21 +25,20 @@
               <v-card-text>
                 <v-form>
                   <v-text-field
-                    label="E-Mail"
-                    name="login"
-                    prepend-icon="mdi-account"
                     type="email"
+                    label="E-Mail"
+                    prepend-icon="mdi-account"
                     v-model="email"
                   ></v-text-field>
 
                   <v-text-field
-                    id="password"
+                    :type="show_password ? 'text' : 'password'"
                     label="Password"
-                    name="password"
                     prepend-icon="mdi-lock"
-                    type="password"
+                    :append-icon="show_password ? 'mdi-eye' : 'mdi-eye-off'"
                     v-model="password"
                     @keyup.enter="login()"
+                    @click:append="show_password = !show_password"
                   ></v-text-field>
                 </v-form>
               </v-card-text>
