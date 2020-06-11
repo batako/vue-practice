@@ -7,81 +7,48 @@
   >
     <v-card>
       <v-card-title class="blue darken-3">
-        Create contact
+        Post Image
       </v-card-title>
 
       <v-container>
-        <v-row class="mx-2">
+        <v-row justify="center">
           <v-col
-            class="align-center justify-space-between"
-            cols="12"
+            sm="12"
+            md="11"
+            lg="9"
+            xl="6"
           >
-            <v-row
-              align="center"
-              class="mr-0"
-            >
-              <v-avatar
-                size="40px"
-                class="mx-3"
-              >
-                <img
-                  src="//ssl.gstatic.com/s2/oz/images/sge/grey_silhouette.png"
-                  alt=""
-                >
-              </v-avatar>
-              <v-text-field
-                placeholder="Name"
-              ></v-text-field>
-            </v-row>
-          </v-col>
-          <v-col cols="6">
-            <v-text-field
-              prepend-icon="mdi-account-card-details-outline"
-              placeholder="Company"
-            ></v-text-field>
-          </v-col>
-          <v-col cols="6">
-            <v-text-field
-              placeholder="Job title"
-            ></v-text-field>
-          </v-col>
-          <v-col cols="12">
-            <v-text-field
-              prepend-icon="mdi-mail"
-              placeholder="Email"
-            ></v-text-field>
-          </v-col>
-          <v-col cols="12">
-            <v-text-field
-              type="tel"
-              prepend-icon="mdi-phone"
-              placeholder="(000) 000 - 0000"
-            ></v-text-field>
-          </v-col>
-          <v-col cols="12">
-            <v-text-field
-              prepend-icon="mdi-text"
-              placeholder="Notes"
-            ></v-text-field>
+            <v-sheet class="pa-3">
+              <v-form ref="form">
+                <div align="center">
+                  <img
+                  v-if="upload_image_url"
+                  :src="upload_image_url"
+                  class="upload-image" />
+                </div>
+                <v-file-input
+                  v-model="input_image"
+                  accept="image/*"
+                  show-size
+                  label="画像ファイルをアップロードしてください"
+                  prepend-icon="mdi-image"
+                  @change="onImagePicked"
+                ></v-file-input>
+              </v-form>
+            </v-sheet>
           </v-col>
         </v-row>
       </v-container>
 
       <v-card-actions>
         <v-btn
-          text
-          color="primary"
-        >More</v-btn>
+          @click="closeModal()"
+        >キャンセル</v-btn>
         <v-spacer></v-spacer>
         <v-btn
-          text
-          color="primary"
+          color="warning"
           @click="closeModal()"
-        >Cancel</v-btn>
-        <v-btn
-          text
-          @click="closeModal()"
-        >Save</v-btn>
+        >シェア</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -91,13 +58,19 @@
 .v-card__title {
   color: white;
 }
+.upload-image {
+  width: 80%;
+}
 </style>
 
 <script lang="ts">
 import {
     defineComponent,
     SetupContext,
+    toRefs,
   } from '@vue/composition-api'
+
+import { composition } from './post.composition'
 
 type Props = {
   type: boolean;
@@ -111,12 +84,21 @@ export default defineComponent({
     }
   },
   setup(props, context) {
+    const {
+        state,
+        onImagePicked,
+      } = composition()
+
+
     const closeModal = () => {
       context.emit('close')
     }
 
+
     return {
+      onImagePicked,
       closeModal,
+      ...toRefs(state),
     }
   }
 })
