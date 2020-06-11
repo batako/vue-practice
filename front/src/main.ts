@@ -1,7 +1,5 @@
 import '@/registerServiceWorker'
 // style
-import 'bootstrap-vue/dist/bootstrap-vue.css'
-import 'bootstrap/dist/css/bootstrap.css'
 import 'element-ui/lib/theme-chalk/index.css'
 
 import Vue from 'vue'
