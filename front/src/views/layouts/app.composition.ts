@@ -38,6 +38,13 @@ const composition = () => {
     ],
     main_manu_items: [
       {
+        title: 'Settings',
+        icon: 'mdi-cog',
+        action: () => {
+          router.push('/account')
+        },
+      },
+      {
         title: 'Logout',
         icon: 'mdi-login',
         action: () => {

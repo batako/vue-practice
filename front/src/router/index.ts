@@ -23,6 +23,11 @@ const routes: Array<RouteConfig> = [
     component: () => import('@/views/sample/index.vue')
   },
   {
+    path: '/account',
+    name: 'account',
+    component: () => import('@/views/account/index.vue')
+  },
+  {
     path: '*',
     name: '404',
     component: () => import('@/views/shared/404.vue')
