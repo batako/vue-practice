@@ -175,9 +175,11 @@ export const API = new class {
     if (this.action_response.data) {
       switch (typeof this.action_response.data) {
         case 'object':
-          if (this.action_response.data.errors.length > 0) {
+          if (this.action_response.data.errors && this.action_response.data.errors.length > 0) {
             const errors: Array<string> = this.action_response.data.errors
             value = errors.map(error => '<div>' + error + '</div>').join()
+          } else if (this.action_response.data.error) {
+            value = this.action_response.data.error
           }
           break;
         case 'string':
