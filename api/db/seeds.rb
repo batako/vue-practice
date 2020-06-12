@@ -8,8 +8,14 @@
 
 # ユーザ作成
 [
-  {email: 'example@example.com', password: 'password'}
+  {email: 'example1@example.com', password: 'password', login_id: 'example1'},
+  {email: 'example2@example.com', password: 'password', login_id: 'example2'},
+  {email: 'example3@example.com', password: 'password', login_id: 'example3'},
 ].each{|user, arr|
   User.find_or_initialize_by(email: user[:email]) \
-    .update(password: user[:password], password_confirmation: user[:password])
+    .update(
+      password: user[:password],
+      password_confirmation: user[:password],
+      login_id: user[:login_id],
+    )
 }
