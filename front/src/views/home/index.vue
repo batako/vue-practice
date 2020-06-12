@@ -10,6 +10,7 @@
             class="article"
           >
             <v-img
+              v-if="airticle.image_url"
               :src="airticle.image_url"
               class="white--text align-end"
               gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
