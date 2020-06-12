@@ -1,6 +1,6 @@
 class Api::ArticlesController < ApplicationController
   def index
-    @articles = Article.all.order(id: :desc)
+    @articles = Article.includes(:creator).with_attached_image.order(id: :desc)
   end
 
   def create
