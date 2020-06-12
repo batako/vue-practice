@@ -1,4 +1,4 @@
-module Userstamps
+module Userstamp
   extend ActiveSupport::Concern
 
   included do

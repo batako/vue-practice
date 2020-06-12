@@ -1,5 +1,5 @@
 class Article < ApplicationRecord
-  include Userstamps
+  include Userstamp
 
   has_one_attached :image
 end
