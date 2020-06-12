@@ -1,6 +1,21 @@
 import { API } from '@/shared/api'
 
 export default {
+  all() {
+    return new Promise((resolve, reject) => {
+      API.submit({
+        settings: {
+          method: 'get',
+          url:    '/api/articles',
+        },
+      }).then((response: any) => {
+        resolve(response)
+      }).catch((error: any) => {
+        reject(error)
+      })
+    })
+  },
+
   post(file: File) {
     const params = new FormData()
     params.append('image', file)
