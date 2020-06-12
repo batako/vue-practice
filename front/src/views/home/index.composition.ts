@@ -47,12 +47,22 @@ const composition = () => {
         },
       },
     ],
+    airticles: [],
   })
+
+
+  const getArticles = () => {
+    return ArticleService
+      .all()
+      .then((response: any) => {
+        state.airticles = response.data.articles
+      })
+  }
 
 
   const _init = () => {
     document.title = 'Home'
-    ArticleService.all()
+    getArticles()
   }
 
 
@@ -65,11 +75,13 @@ const composition = () => {
     state.show_post_modal = false
   }
 
+
   return {
     state,
     _init,
     showPostModal,
     closePostModal,
+    getArticles,
   }
 }
 

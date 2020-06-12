@@ -4,20 +4,20 @@
       <v-row>
         <v-col cols="12" sm="6" offset-sm="3">
           <v-card
-            v-for="n in 10"
-            :key="n"
+            v-for="airticle in airticles"
+            :key="airticle.id"
             cols="12"
             class="article"
           >
             <v-img
-              :src="`https://picsum.photos/500/300?image=${n * 5 + 10}`"
+              :src="airticle.image_url"
               class="white--text align-end"
               gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
               height="200px"
             >
               <v-card-title>
                 <v-icon class="user-icon">mdi-account</v-icon>
-                <span class="user-name">user {{n}}</span>
+                <span class="user-name">{{ airticle.creator.email }}</span>
               </v-card-title>
             </v-img>
 
@@ -58,7 +58,8 @@
       <!-- 投稿モーダル -->
       <post-modal
         :is_shown="show_post_modal"
-        @close="closePostModal()"></post-modal>
+        @close="closePostModal()"
+        @complete="getArticles()"></post-modal>
     </template>
   </app-layout>
 </template>
@@ -101,6 +102,7 @@ export default defineComponent({
         _init,
         showPostModal,
         closePostModal,
+        getArticles,
       } = composition()
 
 
@@ -112,6 +114,7 @@ export default defineComponent({
     return {
       showPostModal,
       closePostModal,
+      getArticles,
       ...toRefs(state),
     }
   }

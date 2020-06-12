@@ -7,7 +7,7 @@ const composition = () => {
   })
 
 
-  const onImagePicked = (file: File) => {
+  const onImagePicked = (file: any) => {
     if (file !== undefined && file !== null) {
       if (file.name.lastIndexOf('.') <= 0) return
       const fr = new FileReader()

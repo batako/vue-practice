@@ -16,7 +16,7 @@ export default {
     })
   },
 
-  post(file: File) {
+  post(file: any) {
     const params = new FormData()
     params.append('image', file)
 

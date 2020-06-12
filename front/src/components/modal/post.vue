@@ -105,6 +105,7 @@ export default defineComponent({
           state.input_image = null
           state.upload_image_url = null
           context.emit('close')
+          context.emit('complete')
         })
     }
 
