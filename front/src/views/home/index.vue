@@ -17,7 +17,16 @@
               height="200px"
             >
               <v-card-title>
-                <v-icon class="user-icon">mdi-account</v-icon>
+                <v-img
+                  v-if="airticle.creator.image_url"
+                  :src="airticle.creator.image_url"
+                  class="avatar"
+                  max-width="25px"
+                ></v-img>
+                <v-icon
+                  v-else
+                  class="user-icon"
+                >mdi-account</v-icon>
                 <span class="user-name">{{ airticle.creator.email }}</span>
               </v-card-title>
             </v-img>
@@ -73,6 +82,9 @@
 .article {
   margin-bottom: 60px;
 
+  .avatar {
+    border-radius: 50%;
+  }
   .user-name,
   .created-by {
     font-size: 14px;
