@@ -4,10 +4,10 @@ json.articles @articles do |article|
     :created_at,
   )
 
-  json.image_url article.image.attached? ? url_for(article.image) : nil
+  json.photo article.image.attached? ? url_for(article.image) : nil
 
   json.creator do
-    json.image_url article.creator.avatar.attached? ? url_for(article.creator.avatar) : nil
-    json.email     article.creator.email
+    json.avatar article.creator.avatar.attached? ? url_for(article.creator.avatar) : nil
+    json.name   article.creator.login_id
   end
 end

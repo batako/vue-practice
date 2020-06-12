@@ -10,16 +10,16 @@
             class="article"
           >
             <v-img
-              v-if="airticle.image_url"
-              :src="airticle.image_url"
+              v-if="airticle.photo"
+              :src="airticle.photo"
               class="white--text align-end"
               gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
               height="200px"
             >
               <v-card-title>
                 <v-img
-                  v-if="airticle.creator.image_url"
-                  :src="airticle.creator.image_url"
+                  v-if="airticle.creator.avatar"
+                  :src="airticle.creator.avatar"
                   class="avatar"
                   max-width="25px"
                 ></v-img>
@@ -27,7 +27,7 @@
                   v-else
                   class="user-icon"
                 >mdi-account</v-icon>
-                <span class="user-name">{{ airticle.creator.email }}</span>
+                <span class="user-name">{{ airticle.creator.name }}</span>
               </v-card-title>
             </v-img>
 
