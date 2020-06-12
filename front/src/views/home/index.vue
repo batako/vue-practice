@@ -22,6 +22,10 @@
             </v-img>
 
             <v-card-actions>
+              <v-container>
+                <span class="created-by">{{ airticle.created_at | moment }}</span>
+              </v-container>
+
               <v-spacer></v-spacer>
 
               <v-btn icon>
@@ -68,13 +72,17 @@
 .article {
   margin-bottom: 60px;
 
+  .user-name,
+  .created-by {
+    font-size: 14px;
+  }
+
   .user-icon {
     background: white;
     border-radius: 50%;
   }
   .user-name {
     margin-left: 16px;
-    font-size: 14px;
     font-weight: 400;
     font-stretch: 100%;
     line-height: 14px;
@@ -92,7 +100,14 @@ import PostModal from '@/components/modal/post.vue'
 
 import { composition } from './index.composition'
 
+import moment from 'moment'
+
 export default defineComponent({
+  filters: {
+    moment: (date) => {
+      return moment(date).format('YYYY/MM/DD HH:mm')
+    },
+  },
   components: {
     PostModal,
   },
