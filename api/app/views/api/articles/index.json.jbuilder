@@ -7,6 +7,7 @@ json.articles @articles do |article|
   json.image_url article.image.attached? ? url_for(article.image) : nil
 
   json.creator do
-    json.email article.creator.email
+    json.image_url article.creator.avatar.attached? ? url_for(article.creator.avatar) : nil
+    json.email     article.creator.email
   end
 end
