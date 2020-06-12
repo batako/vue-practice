@@ -2,7 +2,7 @@ import Navbar from '@/components/shared/navbar';
 <template>
   <div id="app">
     <loading />
-    <toastrs />
+    <!-- <toastrs /> -->
     <!-- <navbar /> -->
     <router-view/>
   </div>
