@@ -24,7 +24,6 @@ const composition = () => {
 
 
   const updateAvatar = () => {
-    console.log('updateAvatar')
     UserService
       .updateAvatar(state.input_image)
       .then((response: any) => {
