@@ -73,7 +73,7 @@ import {
 
 import { composition } from './post.composition'
 
-import { ShareModule } from '@/store/modules/share'
+import ArticleService from '@/services/article'
 
 type Props = {
   type: boolean;
@@ -99,13 +99,13 @@ export default defineComponent({
 
 
     const uploadImage = () => {
-      ShareModule.startProcess()
-      setTimeout(() => {
-        state.input_image = null
-        state.upload_image_url = null
-        context.emit('close')
-        ShareModule.stopProcess()
-      }, 2000)
+      ArticleService
+        .post(state.input_image)
+        .then((response: any) => {
+          state.input_image = null
+          state.upload_image_url = null
+          context.emit('close')
+        })
     }
 
 
