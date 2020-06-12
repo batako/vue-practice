@@ -15,7 +15,7 @@ const composition = () => {
 
   const _init = () => {
     document.title = 'ログイン'
-    state.email    = 'example@example.com'
+    state.email    = 'example1@example.com'
     state.password = 'password'
     AuthService.logout()
   }
