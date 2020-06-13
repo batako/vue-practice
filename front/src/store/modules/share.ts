@@ -8,10 +8,15 @@ import {
 import store from '@/store/index'
 import { Toastr } from '@/types/toastr'
 
+interface User {
+  id:     number;
+  avatar: string;
+}
 export interface ShareState {
   is_processing: boolean;
   toastrs:       Toastr[];
   is_logined:    boolean;
+  current_user:  User;
 }
 
 @Module({
@@ -24,6 +29,7 @@ class Share extends VuexModule {
   is_processing = false
   toastrs       = [] as Toastr[]
   is_logined    = false
+  current_user  = {} as User
 
   @Mutation
   setToastr(toastr: Toastr) {
@@ -51,11 +57,19 @@ class Share extends VuexModule {
   @Mutation
   login() {
     this.is_logined = !!(localStorage.getItem('access-token') && localStorage.getItem('client') && localStorage.getItem('uid'))
+    this.current_user = JSON.parse(localStorage.getItem('user') as string)
   }
 
   @Mutation
   logout() {
     this.is_logined = false
+  }
+
+  @Mutation
+  setAvatar(image_base64: string) {
+    this.current_user.avatar = image_base64
+    localStorage.setItem('user', JSON.stringify(this.current_user))
+    this.current_user = JSON.parse(localStorage.getItem('user') as string)
   }
 
   public get login_status(): boolean {

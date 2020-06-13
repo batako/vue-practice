@@ -1,4 +1,5 @@
 import { API } from '@/shared/api'
+import { ShareModule } from '@/store/modules/share'
 
 export default {
   updateAvatar(file: any) {
@@ -13,6 +14,7 @@ export default {
           data:   params,
         },
       }).then((response: any) => {
+        ShareModule.setAvatar(response.data.avatar)
         resolve(response)
       }).catch((error: any) => {
         reject(error)

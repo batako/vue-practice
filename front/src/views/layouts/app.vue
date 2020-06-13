@@ -120,7 +120,11 @@
               size="32px"
               item
             >
-              <v-icon>mdi-account</v-icon>
+              <v-img
+                v-if="current_user.avatar"
+                :src="current_user.avatar"
+              />
+              <v-icon v-else>mdi-account</v-icon>
             </v-avatar>
           </v-btn>
         </template>
@@ -171,20 +175,24 @@ html {
 
 <script>
 import {
+    computed,
     defineComponent,
     toRefs,
   } from '@vue/composition-api'
 
 import { composition } from './app.composition'
+import { ShareModule } from '@/store/modules/share'
 
 export default defineComponent({
   setup() {
     const {
         state,
       } = composition()
+    const current_user = computed(() => ShareModule.current_user)
 
 
     return {
+      current_user,
       ...toRefs(state),
     }
   }
