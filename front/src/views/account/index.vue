@@ -5,55 +5,79 @@
         class="account"
         flat
       >
-        <v-card-title>
-          Account
-        </v-card-title>
-
-        <v-container class="grey lighten-5">
-          <v-row no-gutters>
-            <div align="center">
-              <img
-                v-if="upload_image_url"
-                :src="upload_image_url"
-                class="upload-image" />
-            </div>
-          </v-row>
-          <v-row no-gutters>
-            <v-col
-              class="pr-4"
-              cols="10"
-            >
-              <v-file-input
-                v-model="input_image"
-                accept="image/*"
-                show-size
-                label="プロフィール写真をアップロードしてください"
-                prepend-icon="mdi-image"
-                @change="onImagePicked"
-              ></v-file-input>
-            </v-col>
-            <v-col
-              class="pt-3"
-              cols="2"
-            >
-              <v-btn
-                color="warning"
-                @click="updateAvatar()"
-                :disabled="!upload_image_url"
-              >更新</v-btn>
-            </v-col>
-          </v-row>
-        </v-container>
-
-        <v-card-actions>
-          <v-layout justify-center>
-            <v-btn
-
-              @click="goHome()"
-            >ホーム</v-btn>
-          </v-layout>
-        </v-card-actions>
+        <h2>プロフィール</h2>
       </v-card>
+
+      <v-container>
+        <v-row
+          justify="center"
+        >
+          <v-col
+            cols="12"
+            sm="8"
+            md="8"
+          >
+            <v-card flat>
+              <v-row>
+                <v-col>
+                  <v-avatar
+                    size="60px"
+                    item
+                  >
+                    <v-img
+                      v-if="current_user.avatar"
+                      :src="current_user.avatar"
+                    />
+                    <v-icon v-else>mdi-account</v-icon>
+                  </v-avatar>
+
+                  <span class="ml-3">{{ current_user.login_id }}</span>
+                </v-col>
+
+                <v-col
+                  class="pr-4"
+                  cols="8"
+                >
+                  <v-file-input
+                    v-model="input_image"
+                    accept="image/*"
+                    show-size
+                    label="プロフィール写真をアップロードしてください"
+                    prepend-icon="mdi-image"
+                    @change="updateAvatar"
+                  ></v-file-input>
+                </v-col>
+              </v-row>
+            </v-card>
+
+            <v-card flat>
+              <v-text-field
+                type="text"
+                label="表示名"
+                prepend-icon="mdi-account"
+                v-model="form.name"
+              ></v-text-field>
+            </v-card>
+
+            <v-card flat>
+              <v-text-field
+                type="email"
+                label="E-Mail"
+                prepend-icon="mdi-email"
+                v-model="form.email"
+              ></v-text-field>
+            </v-card>
+
+            <v-card-actions class="justify-center">
+              <v-btn
+                color="primary"
+              >
+                更新する
+              </v-btn>
+            </v-card-actions>
+          </v-col>
+        </v-row>
+      </v-container>
     </template>
   </app-layout>
 </template>
@@ -69,30 +93,23 @@
 
 <script lang="ts">
 import {
+    computed,
     defineComponent,
     onMounted,
     toRefs,
+    reactive,
   } from '@vue/composition-api'
 
 import { composition } from './index.composition'
 
-
 export default defineComponent({
-  props: {
-    is_shown: {
-      type:     Boolean,
-      required: true,
-    }
-  },
   setup() {
     const {
         state,
         _init,
-        onImagePicked,
         updateAvatar,
         goHome,
       } = composition()
-
 
     onMounted(() => {
       _init()
@@ -100,7 +117,6 @@ export default defineComponent({
 
 
     return {
-      onImagePicked,
       updateAvatar,
       goHome,
       ...toRefs(state),

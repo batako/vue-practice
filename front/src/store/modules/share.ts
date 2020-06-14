@@ -9,8 +9,9 @@ import store from '@/store/index'
 import { Toastr } from '@/types/toastr'
 
 interface User {
-  id:     number;
-  avatar: string;
+  login_id: string;
+  email:    string;
+  avatar:   string;
 }
 export interface ShareState {
   is_processing: boolean;
