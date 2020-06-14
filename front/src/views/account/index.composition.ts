@@ -9,6 +9,11 @@ const composition = () => {
   })
 
 
+  const _init = () => {
+    document.title = 'プロフィール'
+  }
+
+
   const onImagePicked = (file: any) => {
     if (file !== undefined && file !== null) {
       if (file.name.lastIndexOf('.') <= 0) return
@@ -40,6 +45,7 @@ const composition = () => {
 
   return {
     state,
+    _init,
     onImagePicked,
     updateAvatar,
     goHome,

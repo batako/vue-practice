@@ -70,6 +70,7 @@
 <script lang="ts">
 import {
     defineComponent,
+    onMounted,
     toRefs,
   } from '@vue/composition-api'
 
@@ -86,10 +87,16 @@ export default defineComponent({
   setup() {
     const {
         state,
+        _init,
         onImagePicked,
         updateAvatar,
         goHome,
       } = composition()
+
+
+    onMounted(() => {
+      _init()
+    })
 
 
     return {
