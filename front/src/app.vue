@@ -4,7 +4,10 @@ import Navbar from '@/components/shared/navbar';
     <loading />
     <!-- <toastrs /> -->
     <!-- <navbar /> -->
-    <router-view/>
+    <v-app>
+      <vuetify-toast-snackbar />
+      <router-view/>
+    </v-app>
   </div>
 </template>
 

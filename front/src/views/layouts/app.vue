@@ -1,8 +1,5 @@
 <template>
-  <v-app
-    id="inspire"
-    class="home-index"
-  >
+  <div>
     <!-- サイドメニュー -->
     <!-- <v-navigation-drawer
       v-model="drawer"
@@ -165,7 +162,7 @@
     </v-content>
 
     <slot name="bottom-content"></slot>
-  </v-app>
+  </div>
 </template>
 
 <style lang="scss">
