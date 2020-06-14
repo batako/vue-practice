@@ -4,8 +4,9 @@ class Api::Users::SessionsController < DeviseTokenAuth::SessionsController
     render json: {
       status:  'success',
       user: {
-        id:      @resource.id,
-        avatar:  @resource.avatar.attached? ? url_for(@resource.avatar) : nil,
+        login_id: @resource.login_id,
+        email:    @resource.email,
+        avatar:   @resource.avatar.attached? ? url_for(@resource.avatar) : nil,
       },
     }
   end
