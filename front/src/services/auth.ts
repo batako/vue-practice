@@ -14,9 +14,10 @@ export default {
           },
         },
       }).then((response: any) => {
-        localStorage.setItem('access-token', response.headers['access-token'])
-        localStorage.setItem('client',       response.headers.client)
-        localStorage.setItem('uid',          response.headers.uid)
+        localStorage.setItem('access-token', response.headers['access-token'] || '')
+        localStorage.setItem('client',       response.headers.client || '')
+        localStorage.setItem('uid',          response.headers.uid || '')
+        localStorage.setItem('user',         JSON.stringify(response.data.user) ||  '')
         ShareModule.login()
         resolve(response)
       }).catch((error: any) => {
