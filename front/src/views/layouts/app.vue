@@ -4,7 +4,7 @@
     class="home-index"
   >
     <!-- サイドメニュー -->
-    <v-navigation-drawer
+    <!-- <v-navigation-drawer
       v-model="drawer"
       :clipped="$vuetify.breakpoint.lgAndUp"
       app
@@ -76,7 +76,7 @@
           </v-list-item>
         </template>
       </v-list>
-    </v-navigation-drawer>
+    </v-navigation-drawer> -->
 
     <!-- メニューバー -->
     <v-app-bar
