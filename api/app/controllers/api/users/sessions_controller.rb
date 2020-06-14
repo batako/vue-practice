@@ -5,7 +5,7 @@ class Api::Users::SessionsController < DeviseTokenAuth::SessionsController
       status:  'success',
       user: {
         id:      @resource.id,
-        avatar:  @resource.avatar.attached? ? @resource.avatar_base64 : nil,
+        avatar:  @resource.avatar.attached? ? url_for(@resource.avatar) : nil,
       },
     }
   end
