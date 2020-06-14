@@ -10,6 +10,7 @@ import { Toastr } from '@/types/toastr'
 
 interface User {
   login_id: string;
+  name:     string;
   email:    string;
   avatar:   string;
 }

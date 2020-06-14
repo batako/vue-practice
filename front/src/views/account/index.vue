@@ -71,6 +71,7 @@
             <v-card-actions class="justify-center">
               <v-btn
                 color="primary"
+                @click="updateUser"
               >
                 更新する
               </v-btn>
@@ -108,6 +109,7 @@ export default defineComponent({
         state,
         _init,
         updateAvatar,
+        updateUser,
         goHome,
       } = composition()
 
@@ -118,6 +120,7 @@ export default defineComponent({
 
     return {
       updateAvatar,
+      updateUser,
       goHome,
       ...toRefs(state),
     }

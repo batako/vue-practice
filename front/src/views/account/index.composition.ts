@@ -8,7 +8,7 @@ const composition = () => {
     input_image: null,
     current_user: ShareModule.current_user,
     form: {
-      name:  '',
+      name:  ShareModule.current_user.name,
       email: ShareModule.current_user.email,
     },
   })
@@ -30,6 +30,12 @@ const composition = () => {
   }
 
 
+  const updateUser = () => {
+    UserService
+      .update(state.form.name, state.form.email)
+  }
+
+
   const goHome = () => {
     router.push('/')
   }
@@ -39,6 +45,7 @@ const composition = () => {
     state,
     _init,
     updateAvatar,
+    updateUser,
     goHome,
   }
 }

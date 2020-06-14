@@ -9,6 +9,10 @@ Rails.application.routes.draw do
   namespace :api, { format: 'json' } do
     resources :articles, only: [:index, :create]
 
+    controller :users do
+      put '/users' => :update
+    end
+
     namespace :users do
       controller :avatar do
         put 'avatar' => :update

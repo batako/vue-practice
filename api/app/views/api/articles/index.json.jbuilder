@@ -8,6 +8,6 @@ json.articles @articles do |article|
 
   json.creator do
     json.avatar article.creator.avatar.attached? ? url_for(article.creator.avatar) : nil
-    json.name   article.creator.login_id
+    json.name   article.creator.name.presence || article.creator.login_id
   end
 end
