@@ -88,7 +88,8 @@
       <!-- <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon> -->
       <v-toolbar-title
         style="width: 300px"
-        class="ml-0 pl-4"
+        class="cursor-pointer ml-0 pl-4"
+        @click="goHome()"
       >
         <span class="hidden-sm-and-down">Sample App</span>
       </v-toolbar-title>
@@ -167,32 +168,34 @@
   </v-app>
 </template>
 
-<style>
+<style lang="scss">
 html {
   overflow-y: auto !important;
+
+  .cursor-pointer {
+    cursor: pointer;
+  }
 }
 </style>
 
 <script>
 import {
-    computed,
     defineComponent,
     toRefs,
   } from '@vue/composition-api'
 
 import { composition } from './app.composition'
-import { ShareModule } from '@/store/modules/share'
 
 export default defineComponent({
   setup() {
     const {
         state,
+        goHome,
       } = composition()
-    const current_user = computed(() => ShareModule.current_user)
 
 
     return {
-      current_user,
+      goHome,
       ...toRefs(state),
     }
   }

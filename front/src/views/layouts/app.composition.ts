@@ -1,4 +1,5 @@
 import router from '@/router'
+import { ShareModule } from '@/store/modules/share'
 import { reactive } from '@vue/composition-api'
 
 const composition = () => {
@@ -52,11 +53,18 @@ const composition = () => {
         },
       },
     ],
+    current_user: ShareModule.current_user,
   })
+
+
+  const goHome = () => {
+    router.push('/')
+  }
 
 
   return {
     state,
+    goHome,
   }
 }
 
