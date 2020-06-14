@@ -72,6 +72,7 @@ import {
     Vue,
   } from 'vue-property-decorator'
 
+import { Toast } from '../../shared/toast'
 import { ShareModule } from '../../store/modules/share'
 
 @Component
@@ -85,7 +86,7 @@ export default class LoginIndex extends Vue {
     setTimeout(() => {
       this.$emit('close')
       ShareModule.clearToastrs()
-      ShareModule.setToastr({
+      Toast.show({
         type:    'success',
         message: 'Primary ボタンを押下しました',
         force:   true,
@@ -95,7 +96,7 @@ export default class LoginIndex extends Vue {
   }
 
   danger() {
-    ShareModule.setToastr({
+    Toast.show({
       type:    'danger',
       message: 'Danger ボタンを押下しました',
       force:   false,
@@ -103,7 +104,7 @@ export default class LoginIndex extends Vue {
   }
 
   warning() {
-    ShareModule.setToastr({
+    Toast.show({
       type:    'warning',
       message: 'Warning ボタンを押下しました',
       force:   false,

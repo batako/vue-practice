@@ -1,5 +1,6 @@
 import axios from 'axios'
 
+import { Toast } from '@/shared/toast'
 import { ShareModule } from '@/store/modules/share'
 
 import router from '../router/index'
@@ -87,7 +88,7 @@ export const API = new class {
         ) {
           switch (response_data.status) {
             case 'success':
-              ShareModule.setToastr({
+              Toast.show({
                 type:    'success',
                 message: response_data.message,
                 force:   false,
@@ -95,7 +96,7 @@ export const API = new class {
               break
             case 'caution':
             case 'failure':
-              ShareModule.setToastr({
+              Toast.show({
                 type:    'danger',
                 message: response_data.message,
                 force:   false,
@@ -104,13 +105,13 @@ export const API = new class {
             default:
               if (this.response_status == 'failure') {
                 if (response_data.error_detail) {
-                  ShareModule.setToastr({
+                  Toast.show({
                     type:    'danger',
                     message: response_data.error_detail,
                     force:   true,
                   })
                 } else if (response_data.message) {
-                  ShareModule.setToastr({
+                  Toast.show({
                     type:    'danger',
                     message: response_data.message,
                     force:   true,
@@ -131,7 +132,7 @@ export const API = new class {
     ) {
       switch (this.action_response.data.status) {
         case 'success':
-          ShareModule.setToastr({
+          Toast.show({
             type: 'success',
             message: this.action_response.data.message,
             force: false,
@@ -139,7 +140,7 @@ export const API = new class {
           break
         case 'caution':
         case 'failure':
-          ShareModule.setToastr({
+          Toast.show({
             type:    'danger',
             message: this.action_response.data.error_detail || this.action_response.data.message,
             force:   false,
@@ -147,7 +148,7 @@ export const API = new class {
           break
         default:
           if (this.response_status == 'failure') {
-            ShareModule.setToastr({
+            Toast.show({
               type:    'danger',
               message: this.action_response.data.error_detail || this.action_response.data.message,
               force:   true,
@@ -158,7 +159,7 @@ export const API = new class {
 
     // エラーの場合
     } else if (this.action_response.status != 200) {
-      ShareModule.setToastr({
+      Toast.show({
         type:    'danger',
         message: this.getResposeMessage(),
         force:   false,
@@ -181,10 +182,10 @@ export const API = new class {
           } else if (this.action_response.data.error) {
             value = this.action_response.data.error
           }
-          break;
+          break
         case 'string':
           this.action_response.data
-          break;
+          break
       }
     }
 

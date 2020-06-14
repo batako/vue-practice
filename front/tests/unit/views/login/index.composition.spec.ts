@@ -1,18 +1,15 @@
-import plugins from '@/plugins'
-import {
-    createLocalVue,
-  } from '@vue/test-utils'
-
-const localVue = createLocalVue()
-localVue.use(plugins)
-
-import { composition } from '@/views/login/index.composition'
-import { ShareModule } from '@/store/modules/share'
-
 import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
 
+import plugins from '@/plugins'
 import AuthService from '@/services/auth'
+import { Toast } from '@/shared/toast'
+import { ShareModule } from '@/store/modules/share'
+import { composition } from '@/views/login/index.composition'
+import { createLocalVue } from '@vue/test-utils'
+
+const localVue = createLocalVue()
+localVue.use(plugins)
 
 describe('@/views/login/index.composition.ts', () => {
   it('state', () => {
@@ -74,7 +71,7 @@ describe('@/views/login/index.composition.ts', () => {
       'uid':          uid,
     })
 
-    ShareModule.setToastr({
+    Toast.show({
       type:    'success',
       message: 'message',
       force:   false,
