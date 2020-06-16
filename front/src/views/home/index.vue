@@ -1,57 +1,59 @@
 <template>
   <app-layout>
     <template>
-      <v-row>
-        <v-col cols="12" sm="6" offset-sm="3">
-          <v-card
-            v-for="airticle in airticles"
-            :key="airticle.id"
-            cols="12"
-            class="article"
-          >
-            <v-img
-              v-if="airticle.photo"
-              :src="airticle.photo"
-              class="white--text align-end"
-              gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+      <v-container>
+        <v-row>
+          <v-col cols="12" sm="6" offset-sm="3">
+            <v-card
+              v-for="airticle in airticles"
+              :key="airticle.id"
+              cols="12"
+              class="article"
             >
-              <v-card-title>
-                <v-img
-                  v-if="airticle.creator.avatar"
-                  :src="airticle.creator.avatar"
-                  class="avatar"
-                  max-width="25px"
-                ></v-img>
-                <v-icon
-                  v-else
-                  class="user-icon"
-                >mdi-account</v-icon>
-                <span class="user-name">{{ airticle.creator.name }}</span>
-              </v-card-title>
-            </v-img>
+              <v-img
+                v-if="airticle.photo"
+                :src="airticle.photo"
+                class="white--text align-end"
+                gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+              >
+                <v-card-title>
+                  <v-img
+                    v-if="airticle.creator.avatar"
+                    :src="airticle.creator.avatar"
+                    class="avatar"
+                    max-width="25px"
+                  ></v-img>
+                  <v-icon
+                    v-else
+                    class="user-icon"
+                  >mdi-account</v-icon>
+                  <span class="user-name">{{ airticle.creator.name }}</span>
+                </v-card-title>
+              </v-img>
 
-            <v-card-actions>
-              <v-container>
-                <span class="created-by">{{ airticle.created_at | moment }}</span>
-              </v-container>
+              <v-card-actions>
+                <v-container>
+                  <span class="created-by">{{ airticle.created_at | moment }}</span>
+                </v-container>
 
-              <v-spacer></v-spacer>
+                <v-spacer></v-spacer>
 
-              <v-btn icon>
-                <v-icon>mdi-heart</v-icon>
-              </v-btn>
+                <v-btn icon>
+                  <v-icon>mdi-heart</v-icon>
+                </v-btn>
 
-              <v-btn icon>
-                <v-icon>mdi-bookmark</v-icon>
-              </v-btn>
+                <v-btn icon>
+                  <v-icon>mdi-bookmark</v-icon>
+                </v-btn>
 
-              <v-btn icon>
-                <v-icon>mdi-share-variant</v-icon>
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-col>
-      </v-row>
+                <v-btn icon>
+                  <v-icon>mdi-share-variant</v-icon>
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
     </template>
 
     <template #bottom-content>
