@@ -88,7 +88,7 @@
         class="cursor-pointer ml-0 pl-4"
         @click="goHome()"
       >
-        <span class="hidden-sm-and-down">Sample App</span>
+        <span >Sample App</span>
       </v-toolbar-title>
       <v-text-field
         flat
