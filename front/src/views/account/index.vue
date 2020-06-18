@@ -20,32 +20,27 @@
             <v-card flat>
               <v-row>
                 <v-col>
-                  <v-avatar
-                    size="60px"
-                    item
+                  <label
+                    class="cursor-pointer"
                   >
-                    <v-img
-                      v-if="current_user.avatar"
-                      :src="current_user.avatar"
-                    />
-                    <v-icon v-else>mdi-account</v-icon>
-                  </v-avatar>
-
-                  <span class="ml-3">{{ current_user.login_id }}</span>
-                </v-col>
-
-                <v-col
-                  class="pr-4"
-                  cols="8"
-                >
-                  <v-file-input
-                    v-model="input_image"
-                    accept="image/*"
-                    show-size
-                    label="プロフィール写真をアップロードしてください"
-                    prepend-icon="mdi-image"
-                    @change="updateAvatar"
-                  ></v-file-input>
+                    <v-avatar
+                      size="60px"
+                      item
+                    >
+                      <v-img
+                        v-if="current_user.avatar"
+                        :src="current_user.avatar"
+                      />
+                      <v-icon v-else>mdi-account</v-icon>
+                    </v-avatar>
+                    <v-file-input
+                      v-model="input_image"
+                      accept="image/*"
+                      class="d-none"
+                      @change="updateAvatar"
+                    ></v-file-input>
+                  </label>
+                  <span class="pl-4 user-id">{{ current_user.login_id }}</span>
                 </v-col>
               </v-row>
             </v-card>
@@ -87,8 +82,8 @@
 .account {
   width: 80%;
 }
-.upload-image {
-  width: 80%;
+.user-id {
+  line-height: 60px;
 }
 </style>
 
