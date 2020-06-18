@@ -71,7 +71,13 @@ class Share extends VuexModule {
   setAvatar(image_base64: string) {
     this.current_user.avatar = image_base64
     localStorage.setItem('user', JSON.stringify(this.current_user))
-    this.current_user = JSON.parse(localStorage.getItem('user') as string)
+  }
+
+  @Mutation
+  setUser(name: string, email: string) {
+    this.current_user.name  = name
+    this.current_user.email = email
+    localStorage.setItem('user', JSON.stringify(this.current_user))
   }
 
   public get login_status(): boolean {

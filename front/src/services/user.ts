@@ -34,6 +34,7 @@ export default {
           },
         },
       }).then((response: any) => {
+        ShareModule.setUser(name, email)
         resolve(response)
       }).catch((error: any) => {
         reject(error)
