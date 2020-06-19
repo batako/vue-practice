@@ -104,13 +104,13 @@
 }
 </style>
 
-<script>
+<script lang="ts">
 import {
     defineComponent,
     onMounted,
     toRefs,
   } from '@vue/composition-api'
-import PostModal from '@/components/modal/post.vue'
+import PostModal from '../../components/modal/post.vue'
 
 import { composition } from './index.composition'
 

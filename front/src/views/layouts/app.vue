@@ -175,7 +175,7 @@ html {
 }
 </style>
 
-<script>
+<script lang="ts">
 import {
     defineComponent,
     toRefs,

@@ -26,14 +26,14 @@
 }
 </style>
 
-<script>
+<script lang="ts">
 import {
     Component,
     Vue,
   } from 'vue-property-decorator'
 import { VueLoading } from 'vue-loading-template'
 
-import { ShareStore } from '@/store/modules/share'
+import { ShareStore } from '../../store/modules/share'
 
 @Component({
   components: {

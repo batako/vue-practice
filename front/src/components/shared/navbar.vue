@@ -28,7 +28,7 @@ import {
     Vue,
   } from 'vue-property-decorator'
 
-import { ShareStore } from '@/store/modules/share'
+import { ShareStore } from '../../store/modules/share'
 
 @Component
 export default class Toastr extends Vue {
