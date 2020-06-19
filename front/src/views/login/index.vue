@@ -28,6 +28,7 @@
                   label="E-Mail"
                   prepend-icon="mdi-email"
                   v-model="email"
+                  test-email
                 ></v-text-field>
 
                 <v-text-field
@@ -38,6 +39,7 @@
                   v-model="password"
                   @keyup.enter="login()"
                   @click:append="show_password = !show_password"
+                  test-password
                 ></v-text-field>
               </v-form>
             </v-card-text>
@@ -46,6 +48,7 @@
               <v-btn
                 color="primary"
                 @click="login()"
+                test-submit
               >Login</v-btn>
             </v-card-actions>
           </v-card>

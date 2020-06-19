@@ -9,10 +9,19 @@ import LoginIndex from '@/views/login/index.vue'
 import {
     createLocalVue,
     shallowMount,
+    mount,
   } from '@vue/test-utils'
+
+import { vuetify } from '@/plugins/vuetify'
 
 const localVue = createLocalVue()
 localVue.use(plugins)
+
+// vuetify 内部では Vue.extend を使用しているためグローバルにインストールする必要がある
+// see: https://github.com/vuetifyjs/vuetify/discussions/4068
+// import Vue from 'vue'
+// Vue.use(plugins)
+// Vue.use(vuetify)
 
 const init_access_token = 'init_access_token'
 const init_client       = 'init_client'
@@ -58,14 +67,15 @@ describe('@/views/login/login.vue', () => {
 
 
   it('has a login form', () => {
-    const wrapper = shallowMount(LoginIndex, {
+    const wrapper = mount(LoginIndex, {
       localVue,
+      vuetify,
     })
 
     expect(wrapper.find('form').exists()).toBe(true)
-    expect(wrapper.find('input[type=email]').exists()).toBe(true)
-    expect(wrapper.find('input[type=password]').exists()).toBe(true)
-    expect(wrapper.find('input[type=submit]').exists()).toBe(true)
+    expect(wrapper.find('[test-email]').exists()).toBe(true)
+    expect(wrapper.find('[test-password]').exists()).toBe(true)
+    expect(wrapper.find('[test-submit]').exists()).toBe(true)
   })
 
 
@@ -73,6 +83,7 @@ describe('@/views/login/login.vue', () => {
   it("can't go to other page", async () => {
     const wrapper = shallowMount(LoginIndex, {
       localVue,
+      vuetify,
       router,
     })
 
@@ -93,6 +104,7 @@ describe('@/views/login/login.vue', () => {
 
     shallowMount(LoginIndex, {
       localVue,
+      vuetify,
     })
 
     expect(initSpy).toHaveBeenCalled()
@@ -104,6 +116,7 @@ describe('@/views/login/login.vue', () => {
   it('can sign out', () => {
     shallowMount(LoginIndex, {
       localVue,
+      vuetify,
     })
 
     expect(Object.keys(localStorage).length).toBe(0)
@@ -121,11 +134,12 @@ describe('@/views/login/login.vue', () => {
       login: loginMock
     })
 
-    const wrapper = shallowMount(LoginIndex, {
+    const wrapper = mount(LoginIndex, {
       localVue,
+      vuetify,
     })
 
-    wrapper.find('form').trigger('submit.prevent')
+    wrapper.find('[test-submit]').trigger('click')
 
     expect(loginMock).toHaveBeenCalled()
   })
@@ -138,6 +152,12 @@ describe('@/views/login/login.vue', () => {
 
     mockAxios.onPost('/api/auth/sign_in').reply(200, {
       status: 'sucess',
+      user: {
+        avatar:   'http://localhost:8080/rails/active_storage/blobs/hoge.png',
+        email:    'example1@example.com',
+        login_id: 'example1',
+        name:     'example1',
+      },
     }, {
       'access-token': access_token,
       'client':       client,
@@ -146,6 +166,7 @@ describe('@/views/login/login.vue', () => {
 
     const wrapper = shallowMount(LoginIndex, {
       localVue,
+      vuetify,
       router,
     })
 
@@ -165,6 +186,12 @@ describe('@/views/login/login.vue', () => {
 
     mockAxios.onPost('/api/auth/sign_in').reply(200, {
       status: 'sucess',
+      user: {
+        avatar:   'http://localhost:8080/rails/active_storage/blobs/hoge.png',
+        email:    'example1@example.com',
+        login_id: 'example1',
+        name:     'example1',
+      },
     }, {
       'access-token': access_token,
       'client':       client,
@@ -173,6 +200,7 @@ describe('@/views/login/login.vue', () => {
 
     const wrapper = shallowMount(LoginIndex, {
       localVue,
+      vuetify,
       router,
     })
 
