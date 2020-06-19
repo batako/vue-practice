@@ -5,7 +5,7 @@ import { ShareStore } from '@/store/modules/share'
 
 const composition = () => {
   const state = reactive({
-    input_image: null,
+    input_image: null, // File
     current_user: ShareStore.current_user,
     form: {
       name:  ShareStore.current_user.name,
@@ -20,15 +20,19 @@ const composition = () => {
 
 
   const updateAvatar = () => {
-    UserService.updateAvatar(state.input_image)
-      .then(() => {
-        state.input_image = null
-      })
+    UserService.update({
+      avatar: state.input_image,
+    }).then(() => {
+      state.input_image = null
+    })
   }
 
 
   const updateUser = () => {
-    UserService.update(state.form.name, state.form.email)
+    UserService.update({
+      name:  state.form.name,
+      email: state.form.email,
+    })
   }
 
 

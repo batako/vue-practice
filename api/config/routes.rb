@@ -12,12 +12,6 @@ Rails.application.routes.draw do
     controller :users do
       put '/users' => :update
     end
-
-    namespace :users do
-      controller :avatar do
-        put 'avatar' => :update
-      end
-    end
   end
 
   get '*vue_routes', to: 'application#index'

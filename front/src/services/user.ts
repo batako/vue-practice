@@ -1,40 +1,30 @@
 import { API } from '@/shared/api'
 import { ShareStore } from '@/store/modules/share'
 
+interface UserParams {
+  name?:     string;
+  email?:    string;
+  avatar?:   any; // File
+}
+
 export const UserService = {
-  updateAvatar(file: any) {
+  update(user_params: UserParams) {
     const params = new FormData()
-    params.append('avatar', file)
+    const keys = Object.keys(user_params)
 
-    return new Promise((resolve, reject) => {
-      API.submit({
-        settings: {
-          method: 'put',
-          url:    '/api/users/avatar',
-          data:   params,
-        },
-      }).then((response: any) => {
-        ShareStore.setUser({avatar: response.data.avatar})
-        resolve(response)
-      }).catch((error: any) => {
-        reject(error)
-      })
-    })
-  },
+    if (keys.indexOf('name') > -1)  params.append('name', user_params.name || '')
+    if (keys.indexOf('email') > -1) params.append('email', user_params.email || '')
+    if (user_params.avatar) params.append('avatar', user_params.avatar)
 
-  update(name: string, email: string) {
     return new Promise((resolve, reject) => {
       API.submit({
         settings: {
           method: 'put',
           url:    '/api/users',
-          data:   {
-            name:  name,
-            email: email,
-          },
+          data:   params,
         },
       }).then((response: any) => {
-        ShareStore.setUser({name: name, email: email})
+        ShareStore.setUser(response.data.user)
         resolve(response)
       }).catch((error: any) => {
         reject(error)
