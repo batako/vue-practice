@@ -9,7 +9,7 @@ import SharedComponents from '@/components/shared'
 import Plugins from '@/plugins'
 import router from '@/router'
 import store from '@/store'
-import { ShareModule } from '@/store/modules/share'
+import { ShareStore } from '@/store/modules/share'
 import Layouts from '@/views/layouts'
 
 import vuetify from './plugins/vuetify'
@@ -27,7 +27,7 @@ const app = new Vue({
   vuetify,
 
   beforeCreate: () => {
-    ShareModule.login()
+    ShareStore.login()
   }
 }).$mount('#app')
 

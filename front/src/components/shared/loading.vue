@@ -33,7 +33,7 @@ import {
   } from 'vue-property-decorator'
 import { VueLoading } from 'vue-loading-template'
 
-import { ShareModule } from '@/store/modules/share'
+import { ShareStore } from '@/store/modules/share'
 
 @Component({
   components: {
@@ -42,7 +42,7 @@ import { ShareModule } from '@/store/modules/share'
 })
 export default class Loading extends Vue {
   get is_processing() {
-    return ShareModule.is_processing
+    return ShareStore.is_processing
   }
 }
 </script>

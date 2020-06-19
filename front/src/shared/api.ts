@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 import { Toast } from '@/shared/toast'
-import { ShareModule } from '@/store/modules/share'
+import { ShareStore } from '@/store/modules/share'
 
 import router from '../router/index'
 import { ApiSettings, ApiSubmitParams } from '../types/api'
@@ -49,7 +49,7 @@ export const API = new class {
       },
     )
 
-    if (!params.skip_loading) ShareModule.startProcess()
+    if (!params.skip_loading) ShareStore.startProcess()
 
     if (process.env.URL_BASE && params.settings.url) {
       params.settings.url = process.env.URL_BASE + params.settings.url
@@ -166,7 +166,7 @@ export const API = new class {
       })
     }
 
-    if (!this.submit_params.skip_loading) ShareModule.stopProcess()
+    if (!this.submit_params.skip_loading) ShareStore.stopProcess()
   }
 
 

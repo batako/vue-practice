@@ -3,7 +3,7 @@ import MockAdapter from 'axios-mock-adapter'
 
 import plugins from '@/plugins'
 import router from '@/router'
-import { ShareModule } from '@/store/modules/share'
+import { ShareStore } from '@/store/modules/share'
 import * as composition from '@/views/login/index.composition'
 import LoginIndex from '@/views/login/index.vue'
 import {
@@ -22,7 +22,7 @@ const signin = () => {
   localStorage.setItem('access-token', init_access_token)
   localStorage.setItem('client',       init_client)
   localStorage.setItem('uid',          init_uid)
-  ShareModule.login()
+  ShareStore.login()
 }
 
 const {
@@ -52,8 +52,8 @@ describe('@/views/login/login.vue', () => {
     expect(localStorage.getItem('access-token')).toBe(init_access_token)
     expect(localStorage.getItem('client')).toBe(init_client)
     expect(localStorage.getItem('uid')).toBe(init_uid)
-    expect(ShareModule.is_logined).toBe(true)
-    expect(ShareModule.login_status).toBe(true)
+    expect(ShareStore.is_logined).toBe(true)
+    expect(ShareStore.login_status).toBe(true)
   })
 
 
@@ -107,8 +107,8 @@ describe('@/views/login/login.vue', () => {
     })
 
     expect(Object.keys(localStorage).length).toBe(0)
-    expect(ShareModule.is_logined).toBe(false)
-    expect(ShareModule.login_status).toBe(false)
+    expect(ShareStore.is_logined).toBe(false)
+    expect(ShareStore.login_status).toBe(false)
   })
 
 
@@ -181,8 +181,8 @@ describe('@/views/login/login.vue', () => {
     expect(localStorage.getItem('access-token')).toBe(access_token)
     expect(localStorage.getItem('client')).toBe(client)
     expect(localStorage.getItem('uid')).toBe(uid)
-    expect(ShareModule.is_logined).toBe(true)
-    expect(ShareModule.login_status).toBe(true)
-    expect(ShareModule.toastrs.length).toBe(0)
+    expect(ShareStore.is_logined).toBe(true)
+    expect(ShareStore.login_status).toBe(true)
+    expect(ShareStore.toastrs.length).toBe(0)
   })
 })

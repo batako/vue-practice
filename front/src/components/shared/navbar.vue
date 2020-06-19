@@ -28,12 +28,12 @@ import {
     Vue,
   } from 'vue-property-decorator'
 
-import { ShareModule } from '@/store/modules/share'
+import { ShareStore } from '@/store/modules/share'
 
 @Component
 export default class Toastr extends Vue {
   get is_logined() {
-    return ShareModule.login_status
+    return ShareStore.login_status
   }
 }
 </script>

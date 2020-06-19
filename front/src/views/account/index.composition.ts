@@ -1,15 +1,15 @@
 import router from '@/router'
 import { reactive } from '@vue/composition-api'
 import UserService from '@/services/user'
-import { ShareModule } from '@/store/modules/share'
+import { ShareStore } from '@/store/modules/share'
 
 const composition = () => {
   const state = reactive({
     input_image: null,
-    current_user: ShareModule.current_user,
+    current_user: ShareStore.current_user,
     form: {
-      name:  ShareModule.current_user.name,
-      email: ShareModule.current_user.email,
+      name:  ShareStore.current_user.name,
+      email: ShareStore.current_user.email,
     },
   })
 

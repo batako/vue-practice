@@ -4,7 +4,7 @@ import MockAdapter from 'axios-mock-adapter'
 import plugins from '@/plugins'
 import AuthService from '@/services/auth'
 import { Toast } from '@/shared/toast'
-import { ShareModule } from '@/store/modules/share'
+import { ShareStore } from '@/store/modules/share'
 import { composition } from '@/views/login/index.composition'
 import { createLocalVue } from '@vue/test-utils'
 
@@ -34,10 +34,10 @@ describe('@/views/login/index.composition.ts', () => {
     localStorage.setItem('uid',          'dumy')
 
     // NOTE: AuthService.logout() のテストを分離すべきか？
-    ShareModule.login()
+    ShareStore.login()
     expect(Object.keys(localStorage).length).toBe(3)
-    expect(ShareModule.is_logined).toBe(true)
-    expect(ShareModule.login_status).toBe(true)
+    expect(ShareStore.is_logined).toBe(true)
+    expect(ShareStore.login_status).toBe(true)
 
     _init()
 
@@ -48,8 +48,8 @@ describe('@/views/login/index.composition.ts', () => {
 
     // NOTE: AuthService.logout() のテストを分離すべきか？
     expect(Object.keys(localStorage).length).toBe(0)
-    expect(ShareModule.is_logined).toBe(false)
-    expect(ShareModule.login_status).toBe(false)
+    expect(ShareStore.is_logined).toBe(false)
+    expect(ShareStore.login_status).toBe(false)
   })
 
 
@@ -77,19 +77,19 @@ describe('@/views/login/index.composition.ts', () => {
       force:   false,
     })
 
-    expect(ShareModule.toastrs.length).toBe(1)
+    expect(ShareStore.toastrs.length).toBe(1)
 
     await login()
 
     // NOTE: ページ遷移のテストは view のテストに書いた => e2e の方がいい？
     expect(authLoginSpy).toHaveBeenCalled()
-    expect(ShareModule.toastrs.length).toBe(0)
+    expect(ShareStore.toastrs.length).toBe(0)
 
     // NOTE: AuthService.login() のテストを分離すべきか？
     expect(localStorage.getItem('access-token')).toBe(access_token)
     expect(localStorage.getItem('client')).toBe(client)
     expect(localStorage.getItem('uid')).toBe(uid)
-    expect(ShareModule.is_logined).toBe(true)
-    expect(ShareModule.login_status).toBe(true)
+    expect(ShareStore.is_logined).toBe(true)
+    expect(ShareStore.login_status).toBe(true)
   })
 })

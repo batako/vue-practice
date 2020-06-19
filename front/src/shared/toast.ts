@@ -1,5 +1,5 @@
 // import app from '@/main'
-// import { ShareModule } from '@/store/modules/share'
+// import { ShareStore } from '@/store/modules/share'
 import { ToastStore } from '@/store/modules/toast'
 
 export interface Params {
@@ -14,7 +14,7 @@ export const Toast = new class {
       case 'success':
         // vue-toasted
         // this.success(params.message, params.force)
-        // ShareModule.setToastr({
+        // ShareStore.setToastr({
         //   type:    'success',
         //   message: params.message,
         //   force:   params.force || false,
@@ -31,7 +31,7 @@ export const Toast = new class {
       case 'danger':
         // vue-toasted
         // this.error(params.message, params.force)
-        // ShareModule.setToastr({
+        // ShareStore.setToastr({
         //   type:    'danger',
         //   message: params.message,
         //   force:   params.force || false,

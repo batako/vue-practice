@@ -73,7 +73,7 @@ import {
   } from 'vue-property-decorator'
 
 import { Toast } from '../../shared/toast'
-import { ShareModule } from '../../store/modules/share'
+import { ShareStore } from '../../store/modules/share'
 
 @Component
 export default class LoginIndex extends Vue {
@@ -81,17 +81,17 @@ export default class LoginIndex extends Vue {
   title!: string
 
   primary() {
-    ShareModule.startProcess()
+    ShareStore.startProcess()
 
     setTimeout(() => {
       this.$emit('close')
-      ShareModule.clearToastrs()
+      ShareStore.clearToastrs()
       Toast.show({
         type:    'success',
         message: 'Primary ボタンを押下しました',
         force:   true,
       })
-      ShareModule.stopProcess()
+      ShareStore.stopProcess()
     }, 2000)
   }
 

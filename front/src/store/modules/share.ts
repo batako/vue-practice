@@ -93,4 +93,4 @@ class Share extends VuexModule {
   }
 }
 
-export const ShareModule = getModule(Share)
+export const ShareStore = getModule(Share)

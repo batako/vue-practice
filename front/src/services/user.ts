@@ -1,5 +1,5 @@
 import { API } from '@/shared/api'
-import { ShareModule } from '@/store/modules/share'
+import { ShareStore } from '@/store/modules/share'
 
 export default {
   updateAvatar(file: any) {
@@ -14,7 +14,7 @@ export default {
           data:   params,
         },
       }).then((response: any) => {
-        ShareModule.setUser({avatar: response.data.avatar})
+        ShareStore.setUser({avatar: response.data.avatar})
         resolve(response)
       }).catch((error: any) => {
         reject(error)
@@ -34,7 +34,7 @@ export default {
           },
         },
       }).then((response: any) => {
-        ShareModule.setUser({name: name, email: email})
+        ShareStore.setUser({name: name, email: email})
         resolve(response)
       }).catch((error: any) => {
         reject(error)

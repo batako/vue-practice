@@ -118,7 +118,7 @@ export default defineComponent({
 
 // import AuthService from '../../services/auth'
 // import Title from '../../components/mixins/title'
-// import { ShareModule } from '../../store/modules/share'
+// import { ShareStore } from '../../store/modules/share'
 
 // @Component
 // export default class LoginIndex extends Mixins(Title) {
@@ -139,7 +139,7 @@ export default defineComponent({
 //       .login(this.email, this.password)
 //       .then((response: any) => {
 //         this.$router.push('/')
-//         ShareModule.clearToastrs()
+//         ShareStore.clearToastrs()
 //       })
 //   }
 
@@ -161,7 +161,7 @@ export default defineComponent({
 // import Title from '../../components/mixins/title.legacy'
 
 // import AuthService from '../../services/auth'
-// import { ShareModule } from '../../store/modules/share'
+// import { ShareStore } from '../../store/modules/share'
 
 // export default Vue.extend({
 //   mixins: [
@@ -186,7 +186,7 @@ export default defineComponent({
 //         .login(this.email, this.password)
 //         .then((response: any) => {
 //           this.$router.push('/')
-//           ShareModule.clearToastrs()
+//           ShareStore.clearToastrs()
 //         })
 //     },
 //   },

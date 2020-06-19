@@ -1,5 +1,5 @@
 import VueRouter, { RouteConfig } from 'vue-router'
-import { ShareModule } from '../store/modules/share'
+import { ShareStore } from '../store/modules/share'
 
 const routes: Array<RouteConfig> = [
   {
@@ -42,8 +42,8 @@ const router = new VueRouter({
 
 // グローバルガード
 router.beforeEach((to, from, next) => {
-  // ShareModule.login() より先に実行されるので vue-ls からログイン状態を取得する
-  if (to.path == '/login' || ShareModule.login_status) {
+  // ShareStore.login() より先に実行されるので vue-ls からログイン状態を取得する
+  if (to.path == '/login' || ShareStore.login_status) {
     next()
   } else {
     next({ path: '/login' })

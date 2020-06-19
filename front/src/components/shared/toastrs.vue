@@ -25,16 +25,16 @@ import {
     Component,
     Vue,
   } from 'vue-property-decorator'
-import { ShareModule } from '@/store/modules/share'
+import { ShareStore } from '@/store/modules/share'
 
 @Component({})
 export default class Toastrs extends Vue {
   destroyed() {
-    ShareModule.clearToastrs()
+    ShareStore.clearToastrs()
   }
 
   get toastrs() {
-    return ShareModule.toastrs
+    return ShareStore.toastrs
   }
 }
 </script>

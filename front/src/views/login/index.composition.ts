@@ -1,7 +1,7 @@
 // import Title from '@/components/mixins/title'
 import router from '@/router'
 import AuthService from '@/services/auth'
-// import { ShareModule } from '@/store/modules/share'
+// import { ShareStore } from '@/store/modules/share'
 import { ToastStore } from '@/store/modules/toast'
 import { reactive } from '@vue/composition-api'
 
@@ -26,7 +26,7 @@ const composition = () => {
       .login(state.email, state.password)
       .then(() => {
         router.push('/')
-        // ShareModule.clearToastrs()
+        // ShareStore.clearToastrs()
         ToastStore.clear()
       })
   }

@@ -1,5 +1,5 @@
 import { API } from '../shared/api'
-import { ShareModule } from '../store/modules/share'
+import { ShareStore } from '../store/modules/share'
 
 export default {
   login(email: string, password: string) {
@@ -18,7 +18,7 @@ export default {
         localStorage.setItem('client',       response.headers.client || '')
         localStorage.setItem('uid',          response.headers.uid || '')
         localStorage.setItem('user',         JSON.stringify(response.data.user) ||  '')
-        ShareModule.login()
+        ShareStore.login()
         resolve(response)
       }).catch((error: any) => {
         reject(error)
@@ -29,6 +29,6 @@ export default {
 
   logout() {
     localStorage.clear()
-    ShareModule.logout()
+    ShareStore.logout()
   },
 }
