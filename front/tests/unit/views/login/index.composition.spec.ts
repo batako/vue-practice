@@ -5,6 +5,7 @@ import plugins from '@/plugins'
 import { AuthService } from '@/services/auth'
 import { Toast } from '@/shared/toast'
 import { ShareStore } from '@/store/modules/share'
+import { ToastStore } from '@/store/modules/toast'
 import { composition } from '@/views/login/index.composition'
 import { createLocalVue } from '@vue/test-utils'
 
@@ -42,7 +43,7 @@ describe('@/views/login/index.composition.ts', () => {
     _init()
 
     expect(document.title).toBe('ログイン')
-    expect(state.email).toBe('example@example.com')
+    expect(state.email).toBe('example1@example.com')
     expect(state.password).toBe('password')
     expect(authLogoutSpy).toHaveBeenCalled()
 
@@ -65,6 +66,12 @@ describe('@/views/login/index.composition.ts', () => {
 
     mockAxios.onPost('/api/auth/sign_in').reply(200, {
       status: 'sucess',
+      user: {
+        avatar:   'http://localhost:8080/rails/active_storage/blobs/hoge.png',
+        email:    'example1@example.com',
+        login_id: 'example1',
+        name:     'example1',
+      },
     }, {
       'access-token': access_token,
       'client':       client,
@@ -77,13 +84,13 @@ describe('@/views/login/index.composition.ts', () => {
       force:   false,
     })
 
-    expect(ShareStore.toastrs.length).toBe(1)
+    expect(ToastStore.toastrs.length).toBe(1)
 
     await login()
 
     // NOTE: ページ遷移のテストは view のテストに書いた => e2e の方がいい？
     expect(authLoginSpy).toHaveBeenCalled()
-    expect(ShareStore.toastrs.length).toBe(0)
+    expect(ToastStore.toastrs.length).toBe(0)
 
     // NOTE: AuthService.login() のテストを分離すべきか？
     expect(localStorage.getItem('access-token')).toBe(access_token)
