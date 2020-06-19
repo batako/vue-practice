@@ -1,7 +1,16 @@
-import Vue from 'vue';
-import Vuetify from 'vuetify/lib';
+// 一括でロードする場合
+// import Vuetify from 'vuetify/lib'
 
-Vue.use(Vuetify);
+// 個別にロードする場合（別途CSSをインポートする必要あり）
+import Vuetify from 'vuetify'
+// import 'vuetify/dist/vuetify.min.css'
+import { VueConstructor } from 'vue/types/vue'
 
-export default new Vuetify({
-});
+export default {
+  install (Vue: VueConstructor) {
+    Vue.use(Vuetify)
+  }
+}
+
+const opts = {}
+export const vuetify = new Vuetify(opts)

@@ -12,7 +12,8 @@ import store from '@/store'
 import { ShareStore } from '@/store/modules/share'
 import Layouts from '@/views/layouts'
 
-import vuetify from './plugins/vuetify'
+import { vuetify } from '@/plugins/vuetify'
+import 'vuetify/dist/vuetify.min.css'
 
 Vue.use(Layouts)
 Vue.use(Plugins)
