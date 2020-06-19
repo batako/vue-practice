@@ -14,6 +14,12 @@ interface User {
   email:    string;
   avatar:   string;
 }
+interface UserParams {
+  login_id?: string;
+  name?:     string;
+  email?:    string;
+  avatar?:   string;
+}
 export interface ShareState {
   is_processing: boolean;
   toastrs:       Toastr[];
@@ -68,15 +74,14 @@ class Share extends VuexModule {
   }
 
   @Mutation
-  setAvatar(image_base64: string) {
-    this.current_user.avatar = image_base64
-    localStorage.setItem('user', JSON.stringify(this.current_user))
-  }
+  setUser(user_params: UserParams) {
+    const keys = Object.keys(user_params)
 
-  @Mutation
-  setUser(name: string, email: string) {
-    this.current_user.name  = name
-    this.current_user.email = email
+    if (keys.indexOf('login_id') > -1) this.current_user.login_id = user_params.login_id || ''
+    if (keys.indexOf('name') > -1)     this.current_user.name     = user_params.name     || ''
+    if (keys.indexOf('email') > -1)    this.current_user.email    = user_params.email    || ''
+    if (keys.indexOf('avatar') > -1)   this.current_user.avatar   = user_params.avatar   || ''
+
     localStorage.setItem('user', JSON.stringify(this.current_user))
   }
 

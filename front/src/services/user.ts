@@ -14,7 +14,7 @@ export default {
           data:   params,
         },
       }).then((response: any) => {
-        ShareModule.setAvatar(response.data.avatar)
+        ShareModule.setUser({avatar: response.data.avatar})
         resolve(response)
       }).catch((error: any) => {
         reject(error)
@@ -34,7 +34,7 @@ export default {
           },
         },
       }).then((response: any) => {
-        ShareModule.setUser(name, email)
+        ShareModule.setUser({name: name, email: email})
         resolve(response)
       }).catch((error: any) => {
         reject(error)
