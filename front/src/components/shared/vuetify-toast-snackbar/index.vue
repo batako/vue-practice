@@ -51,19 +51,21 @@
 
 <script lang="ts">
 import {
-    Component,
-    Vue,
-  } from 'vue-property-decorator'
-import { ToastStore } from '../../store/modules/toast'
+    defineComponent,
+    toRefs,
+  } from '@vue/composition-api'
 
-@Component
-export default class VuetifyToastSnackbar extends Vue {
-  destroyed() {
-    ToastStore.clear()
-  }
+import { composition } from './index.composition'
 
-  get toastrs() {
-    return ToastStore.toastrs
+export default defineComponent({
+  setup() {
+    const {
+        state,
+      } = composition()
+
+    return {
+      ...toRefs(state),
+    }
   }
-}
+})
 </script>
