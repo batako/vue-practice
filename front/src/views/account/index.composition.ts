@@ -19,9 +19,7 @@ const composition = () => {
   }
 
 
-  const updateAvatar = (file: any) => {
-    if (file === undefined || file === null) return
-
+  const updateAvatar = () => {
     UserService.updateAvatar(state.input_image)
       .then(() => {
         state.input_image = null
