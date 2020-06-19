@@ -1,7 +1,7 @@
-import { API } from '../shared/api'
-import { ShareStore } from '../store/modules/share'
+import { API } from '@/shared/api'
+import { ShareStore } from '@/store/modules/share'
 
-export default {
+export const AuthService = {
   login(email: string, password: string) {
     return new Promise((resolve, reject) => {
       API.submit({

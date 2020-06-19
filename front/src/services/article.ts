@@ -1,6 +1,6 @@
 import { API } from '@/shared/api'
 
-export default {
+export const ArticleService = {
   all() {
     return new Promise((resolve, reject) => {
       API.submit({

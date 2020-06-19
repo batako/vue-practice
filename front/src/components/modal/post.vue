@@ -73,7 +73,7 @@ import {
 
 import { composition } from './post.composition'
 
-import ArticleService from '@/services/article'
+import { ArticleService } from '../../services/article'
 
 type Props = {
   type: boolean;

@@ -2,7 +2,7 @@ import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
 
 import plugins from '@/plugins'
-import AuthService from '@/services/auth'
+import { AuthService } from '@/services/auth'
 import { Toast } from '@/shared/toast'
 import { ShareStore } from '@/store/modules/share'
 import { composition } from '@/views/login/index.composition'

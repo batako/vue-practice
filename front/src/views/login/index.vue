@@ -116,7 +116,7 @@ export default defineComponent({
 //     Watch,
 //   } from 'vue-property-decorator'
 
-// import AuthService from '../../services/auth'
+// import { AuthService } from '../../services/auth'
 // import Title from '../../components/mixins/title'
 // import { ShareStore } from '../../store/modules/share'
 
@@ -135,9 +135,10 @@ export default defineComponent({
 //   }
 
 //   login() {
-//     AuthService
-//       .login(this.email, this.password)
-//       .then((response: any) => {
+//     AuthService.login(
+//       this.email,
+//       this.password
+//     ).then((response: any) => {
 //         this.$router.push('/')
 //         ShareStore.clearToastrs()
 //       })

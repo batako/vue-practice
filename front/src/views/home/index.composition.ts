@@ -1,5 +1,5 @@
 import router from '@/router'
-import ArticleService from '@/services/article'
+import { ArticleService } from '@/services/article'
 import { reactive } from '@vue/composition-api'
 
 const composition = () => {
