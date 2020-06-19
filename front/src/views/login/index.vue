@@ -183,8 +183,7 @@ export default defineComponent({
 //       AuthService.logout()
 //     },
 //     login() {
-//       AuthService
-//         .login(this.email, this.password)
+//       AuthService.login(this.email, this.password)
 //         .then((response: any) => {
 //           this.$router.push('/')
 //           ShareStore.clearToastrs()

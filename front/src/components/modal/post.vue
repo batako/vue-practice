@@ -99,8 +99,7 @@ export default defineComponent({
 
 
     const uploadImage = () => {
-      ArticleService
-        .post(state.input_image)
+      ArticleService.post(state.input_image)
         .then((response: any) => {
           state.input_image = null
           state.upload_image_url = null
