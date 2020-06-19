@@ -1,7 +1,7 @@
 import { API } from '@/shared/api'
 import { ShareStore } from '@/store/modules/share'
 
-export default {
+export const UserService = {
   updateAvatar(file: any) {
     const params = new FormData()
     params.append('avatar', file)

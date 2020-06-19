@@ -1,6 +1,6 @@
 import router from '@/router'
 import { reactive } from '@vue/composition-api'
-import UserService from '@/services/user'
+import { UserService } from '@/services/user'
 import { ShareStore } from '@/store/modules/share'
 
 const composition = () => {
@@ -22,8 +22,7 @@ const composition = () => {
   const updateAvatar = (file: any) => {
     if (file === undefined || file === null) return
 
-    UserService
-      .updateAvatar(state.input_image)
+    UserService.updateAvatar(state.input_image)
       .then(() => {
         state.input_image = null
       })
@@ -31,8 +30,7 @@ const composition = () => {
 
 
   const updateUser = () => {
-    UserService
-      .update(state.form.name, state.form.email)
+    UserService.update(state.form.name, state.form.email)
   }
 
 
