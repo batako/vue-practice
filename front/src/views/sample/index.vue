@@ -1,4 +1,8 @@
 <template>
+  <app-layout>
+    <template>
+
+
   <div class="test">
     <h1>This is an test page</h1>
 
@@ -41,6 +45,10 @@
                       placeholder="日時を選択してください" />
     </div>
   </div>
+
+
+    </template>
+  </app-layout>
 </template>
 
 <style lang="scss" scoped>
