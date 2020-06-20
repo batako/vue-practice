@@ -1,9 +1,9 @@
 import { reactive } from '@vue/composition-api'
-import { ToastStore } from '@/store/modules/toast'
+import { ToastrStore } from '@/store/modules/toastr'
 
 const composition = () => {
   const state = reactive({
-    toastrs: ToastStore.toastrs,
+    toastrs: ToastrStore.toastrs,
   })
 
 

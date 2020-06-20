@@ -1,11 +1,23 @@
-import axios from 'axios'
+import Axios from 'axios'
 
-import { Toast } from '@/shared/toast'
+import Router from '@/router/index'
+import { upperCase } from '@/shared/util'
 import { ShareStore } from '@/store/modules/share'
+import { ToastrStore } from '@/store/modules/toastr'
 
-import router from '../router/index'
-import { ApiSettings, ApiSubmitParams } from '../types/api'
-import { upperCase } from './util'
+export interface ApiSettings {
+  method:   'get' | 'delete'| 'post'| 'put';
+  url:      string;
+  data?:    any; // BODYに含めるパラメータ
+  params?:  any; // URLに含めるパラメータ
+  headers?: any;
+}
+
+export interface ApiSubmitParams {
+  settings:            ApiSettings;
+  skip_loading?:        boolean;
+  skip_success_toastr?: boolean;
+}
 
 export const API = new class {
   private submit_params = {} as ApiSubmitParams
@@ -18,16 +30,16 @@ export const API = new class {
     this.initialize(params)
 
     return new Promise((resolve, reject) => {
-        axios(this.settings)
-          .then((response) => {
-            this.sucess(response)
-            resolve(response)
-          }).catch((error) => {
-            this.error(error)
-            reject(error)
-          }).finally(() => {
-            this.finally()
-          })
+      Axios(this.settings)
+        .then((response) => {
+          this.sucess(response)
+          resolve(response)
+        }).catch((error) => {
+          this.error(error)
+          reject(error)
+        }).finally(() => {
+          this.finally()
+        })
     })
   }
 
@@ -67,7 +79,7 @@ export const API = new class {
     this.action_response = error.response
     this.response_status = 'failure'
 
-    if (error.response.status == 401) router.push('/Login')
+    if (error.response.status == 401) Router.push('/Login')
   }
 
 
@@ -88,7 +100,7 @@ export const API = new class {
         ) {
           switch (response_data.status) {
             case 'success':
-              Toast.show({
+              ToastrStore.set({
                 type:    'success',
                 message: response_data.message,
                 force:   false,
@@ -96,8 +108,8 @@ export const API = new class {
               break
             case 'caution':
             case 'failure':
-              Toast.show({
-                type:    'danger',
+              ToastrStore.set({
+                type:    'error',
                 message: response_data.message,
                 force:   false,
               })
@@ -105,14 +117,14 @@ export const API = new class {
             default:
               if (this.response_status == 'failure') {
                 if (response_data.error_detail) {
-                  Toast.show({
-                    type:    'danger',
+                  ToastrStore.set({
+                    type:    'error',
                     message: response_data.error_detail,
                     force:   true,
                   })
                 } else if (response_data.message) {
-                  Toast.show({
-                    type:    'danger',
+                  ToastrStore.set({
+                    type:    'error',
                     message: response_data.message,
                     force:   true,
                   })
@@ -132,7 +144,7 @@ export const API = new class {
     ) {
       switch (this.action_response.data.status) {
         case 'success':
-          Toast.show({
+          ToastrStore.set({
             type: 'success',
             message: this.action_response.data.message,
             force: false,
@@ -140,16 +152,16 @@ export const API = new class {
           break
         case 'caution':
         case 'failure':
-          Toast.show({
-            type:    'danger',
+          ToastrStore.set({
+            type:    'error',
             message: this.action_response.data.error_detail || this.action_response.data.message,
             force:   false,
           })
           break
         default:
           if (this.response_status == 'failure') {
-            Toast.show({
-              type:    'danger',
+            ToastrStore.set({
+              type:    'error',
               message: this.action_response.data.error_detail || this.action_response.data.message,
               force:   true,
             })
@@ -159,8 +171,8 @@ export const API = new class {
 
     // エラーの場合
     } else if (this.action_response.status != 200) {
-      Toast.show({
-        type:    'danger',
+      ToastrStore.set({
+        type:    'error',
         message: this.getResposeMessage(),
         force:   false,
       })

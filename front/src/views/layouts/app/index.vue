@@ -181,7 +181,7 @@ import {
     toRefs,
   } from '@vue/composition-api'
 
-import { composition } from './app.composition'
+import { composition } from './index.composition'
 
 export default defineComponent({
   setup() {

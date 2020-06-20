@@ -1,4 +1,4 @@
-import { API } from '@/shared/api'
+import { API } from '@/services/api'
 import { ShareStore } from '@/store/modules/share'
 
 interface UserParams {

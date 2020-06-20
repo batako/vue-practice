@@ -1,23 +1,22 @@
 import '@/registerServiceWorker'
 // style
 import 'element-ui/lib/theme-chalk/index.css'
+import 'vuetify/dist/vuetify.min.css'
 
 import Vue from 'vue'
 
 import App from '@/app.vue'
-import SharedComponents from '@/components/shared'
-import Plugins from '@/plugins'
+import shared from '@/components/shared'
+import plugins from '@/plugins'
+import { vuetify } from '@/plugins/vuetify'
 import router from '@/router'
 import store from '@/store'
 import { ShareStore } from '@/store/modules/share'
-import Layouts from '@/views/layouts'
+import layouts from '@/views/layouts'
 
-import { vuetify } from '@/plugins/vuetify'
-import 'vuetify/dist/vuetify.min.css'
-
-Vue.use(Layouts)
-Vue.use(Plugins)
-Vue.use(SharedComponents)
+Vue.use(layouts)
+Vue.use(plugins)
+Vue.use(shared)
 
 Vue.config.productionTip = false
 

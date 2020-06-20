@@ -14,7 +14,7 @@ export interface Toastr {
   key?:    string;  // v-for の key
 }
 
-export interface ToastsState {
+export interface ToastrState {
   toastrs: Toastr[];
 }
 
@@ -24,11 +24,11 @@ export interface ToastsState {
   name:       'toast',
   namespaced: true,
 })
-class Toast extends VuexModule {
+class Toast extends VuexModule implements ToastrState {
   toastrs = [] as Toastr[]
 
   @Mutation
-  set(toastr: Toastr) {
+  public set(toastr: Toastr) {
     toastr.key = String(Date.now())
 
     if (toastr.force) this.toastrs = [toastr]
@@ -36,9 +36,9 @@ class Toast extends VuexModule {
   }
 
   @Mutation
-  clear() {
+  public clear() {
     this.toastrs = []
   }
 }
 
-export const ToastStore = getModule(Toast)
+export const ToastrStore = getModule(Toast)

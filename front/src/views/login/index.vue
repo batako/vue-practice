@@ -82,7 +82,6 @@
 </style>
 
 <script lang="ts">
-/* composition-api */
 import {
     defineComponent,
     onMounted,
@@ -110,96 +109,4 @@ export default defineComponent({
     }
   }
 })
-
-
-/* vue-property-decorator */
-// import {
-//     Component,
-//     Mixins,
-//     Watch,
-//   } from 'vue-property-decorator'
-
-// import { AuthService } from '../../services/auth'
-// import Title from '../../components/mixins/title'
-// import { ShareStore } from '../../store/modules/share'
-
-// @Component
-// export default class LoginIndex extends Mixins(Title) {
-//   title    = 'ログイン'
-//   email    = 'example@example.com'
-//   password = 'password'
-
-//   mounted() {
-//     this.$_init()
-//   }
-
-//   $_init() {
-//     AuthService.logout()
-//   }
-
-//   login() {
-//     AuthService.login(
-//       this.email,
-//       this.password
-//     ).then((response: any) => {
-//         this.$router.push('/')
-//         ShareStore.clearToastrs()
-//       })
-//   }
-
-//   @Watch('email')
-//   onEmailChanged(newText: string, oldText: string) {
-//     this.email = newText.replace(
-//       /[Ａ-Ｚａ-ｚ０-９]/g,
-//       function(s) { return String.fromCharCode(s.charCodeAt(0) - 65248).replace(/^[^0-9a-zA-Z]*$/g, '') }
-//     )
-//   }
-// }
-
-
-/* options api */
-// import Vue from 'vue'
-
-// // mixin ファイルは options api 記法でも vue-property-decorator 記法でも動く
-// // import Title from '../../components/mixins/title'
-// import Title from '../../components/mixins/title.legacy'
-
-// import AuthService from '../../services/auth'
-// import { ShareStore } from '../../store/modules/share'
-
-// export default Vue.extend({
-//   mixins: [
-//     Title,
-//   ],
-//   data() {
-//     return {
-//       title:    'ログイン',
-//       email:    'example@example.com',
-//       password: 'password',
-//     }
-//   },
-//   mounted() {
-//     this.$_init()
-//   },
-//   methods: {
-//     $_init() {
-//       AuthService.logout()
-//     },
-//     login() {
-//       AuthService.login(this.email, this.password)
-//         .then((response: any) => {
-//           this.$router.push('/')
-//           ShareStore.clearToastrs()
-//         })
-//     },
-//   },
-//   // watch: {
-//   //   email(newVlue = '') {
-//   //     this.email = newVlue.replace(
-//   //       /[Ａ-Ｚａ-ｚ０-９]/g,
-//   //       function(s: string) { return String.fromCharCode(s.charCodeAt(0) - 65248).replace(/^[^0-9a-zA-Z]*$/g, '') }
-//   //     )
-//   //   },
-//   // },
-// })
 </script>

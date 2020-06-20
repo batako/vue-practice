@@ -1,4 +1,4 @@
-import { API } from '@/shared/api'
+import { API } from '@/services/api'
 
 export const ArticleService = {
   all() {

@@ -72,7 +72,7 @@ import {
     Vue,
   } from 'vue-property-decorator'
 
-import { Toast } from '../../shared/toast'
+import { ToastrStore } from '../../store/modules/toastr'
 import { ShareStore } from '../../store/modules/share'
 
 @Component
@@ -85,8 +85,8 @@ export default class LoginIndex extends Vue {
 
     setTimeout(() => {
       this.$emit('close')
-      ShareStore.clearToastrs()
-      Toast.show({
+      ToastrStore.clear()
+      ToastrStore.set({
         type:    'success',
         message: 'Primary ボタンを押下しました',
         force:   true,
@@ -96,15 +96,15 @@ export default class LoginIndex extends Vue {
   }
 
   danger() {
-    Toast.show({
-      type:    'danger',
+    ToastrStore.set({
+      type:    'error',
       message: 'Danger ボタンを押下しました',
       force:   false,
     })
   }
 
   warning() {
-    Toast.show({
+    ToastrStore.set({
       type:    'warning',
       message: 'Warning ボタンを押下しました',
       force:   false,

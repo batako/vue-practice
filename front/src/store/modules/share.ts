@@ -6,7 +6,6 @@ import {
   } from 'vuex-module-decorators'
 
 import store from '@/store/index'
-import { Toastr } from '@/types/toastr'
 
 interface User {
   login_id: string;
@@ -22,7 +21,6 @@ interface UserParams {
 }
 export interface ShareState {
   is_processing: boolean;
-  toastrs:       Toastr[];
   is_logined:    boolean;
   current_user:  User;
 }
@@ -33,48 +31,34 @@ export interface ShareState {
   name:       'share',
   namespaced: true,
 })
-class Share extends VuexModule {
+class Share extends VuexModule implements ShareState {
   is_processing = false
-  toastrs       = [] as Toastr[]
   is_logined    = false
   current_user  = {} as User
 
   @Mutation
-  setToastr(toastr: Toastr) {
-    toastr.key = String(Date.now())
-
-    if (toastr.force) this.toastrs = [toastr]
-    else this.toastrs.push(toastr)
-  }
-
-  @Mutation
-  clearToastrs() {
-    this.toastrs = []
-  }
-
-  @Mutation
-  startProcess() {
+  public startProcess() {
     this.is_processing = true
   }
 
   @Mutation
-  stopProcess() {
+  public stopProcess() {
     this.is_processing = false
   }
 
   @Mutation
-  login() {
+  public login() {
     this.is_logined = !!(localStorage.getItem('access-token') && localStorage.getItem('client') && localStorage.getItem('uid'))
     this.current_user = JSON.parse(localStorage.getItem('user') as string)
   }
 
   @Mutation
-  logout() {
+  public logout() {
     this.is_logined = false
   }
 
   @Mutation
-  setUser(user_params: UserParams) {
+  public setUser(user_params: UserParams) {
     const keys = Object.keys(user_params)
 
     if (keys.indexOf('login_id') > -1) this.current_user.login_id = user_params.login_id || ''

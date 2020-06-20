@@ -2,17 +2,17 @@ import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
 
 import plugins from '@/plugins'
+import { vuetify } from '@/plugins/vuetify'
 import router from '@/router'
 import { ShareStore } from '@/store/modules/share'
+import { ToastrStore } from '@/store/modules/toastr'
 import * as composition from '@/views/login/index.composition'
 import LoginIndex from '@/views/login/index.vue'
 import {
     createLocalVue,
-    shallowMount,
     mount,
+    shallowMount,
   } from '@vue/test-utils'
-
-import { vuetify } from '@/plugins/vuetify'
 
 const localVue = createLocalVue()
 localVue.use(plugins)
@@ -211,6 +211,6 @@ describe('@/views/login/login.vue', () => {
     expect(localStorage.getItem('uid')).toBe(uid)
     expect(ShareStore.is_logined).toBe(true)
     expect(ShareStore.login_status).toBe(true)
-    expect(ShareStore.toastrs.length).toBe(0)
+    expect(ToastrStore.toastrs.length).toBe(0)
   })
 })

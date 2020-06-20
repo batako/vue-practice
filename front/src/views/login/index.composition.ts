@@ -1,8 +1,7 @@
-// import Title from '@/components/mixins/title'
 import router from '@/router'
 import { AuthService } from '@/services/auth'
 // import { ShareStore } from '@/store/modules/share'
-import { ToastStore } from '@/store/modules/toast'
+import { ToastrStore } from '@/store/modules/toastr'
 import { reactive } from '@vue/composition-api'
 
 const composition = () => {
@@ -28,7 +27,7 @@ const composition = () => {
     ).then(() => {
       router.push('/')
       // ShareStore.clearToastrs()
-      ToastStore.clear()
+      ToastrStore.clear()
     })
   }
 

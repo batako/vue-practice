@@ -3,9 +3,8 @@ import MockAdapter from 'axios-mock-adapter'
 
 import plugins from '@/plugins'
 import { AuthService } from '@/services/auth'
-import { Toast } from '@/shared/toast'
 import { ShareStore } from '@/store/modules/share'
-import { ToastStore } from '@/store/modules/toast'
+import { ToastrStore } from '@/store/modules/toastr'
 import { composition } from '@/views/login/index.composition'
 import { createLocalVue } from '@vue/test-utils'
 
@@ -78,19 +77,19 @@ describe('@/views/login/index.composition.ts', () => {
       'uid':          uid,
     })
 
-    Toast.show({
+    ToastrStore.set({
       type:    'success',
       message: 'message',
       force:   false,
     })
 
-    expect(ToastStore.toastrs.length).toBe(1)
+    expect(ToastrStore.toastrs.length).toBe(1)
 
     await login()
 
     // NOTE: ページ遷移のテストは view のテストに書いた => e2e の方がいい？
     expect(authLoginSpy).toHaveBeenCalled()
-    expect(ToastStore.toastrs.length).toBe(0)
+    expect(ToastrStore.toastrs.length).toBe(0)
 
     // NOTE: AuthService.login() のテストを分離すべきか？
     expect(localStorage.getItem('access-token')).toBe(access_token)

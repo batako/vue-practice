@@ -7,7 +7,6 @@ import VueJsModal from '@/plugins/vue-js-modal'
 import VueKinesis from '@/plugins/vue-kinesis'
 import VueRouter from '@/plugins/vue-router'
 import Vuetify from '@/plugins/vuetify'
-import VueToasted from '@/plugins/vue-toasted'
 
 export default {
   install (Vue: VueConstructor) {
@@ -18,17 +17,5 @@ export default {
     Vue.use(VueKinesis)
     Vue.use(VueRouter)
     Vue.use(Vuetify)
-    Vue.use(VueToasted)
   }
-}
-
-export {
-  Axios,
-  CompositionApi,
-  ElementUi,
-  VueJsModal,
-  VueKinesis,
-  VueRouter,
-  Vuetify,
-  VueToasted,
 }
