@@ -7,7 +7,7 @@ class Api::Users::SessionsController < DeviseTokenAuth::SessionsController
         login_id: @resource.login_id,
         name:     @resource.name,
         email:    @resource.email,
-        avatar:   @resource.avatar.attached? ? url_for(@resource.avatar) : nil,
+        avatar:   @resource.avatar.attached? ? @resource.avatar_base64 : nil,
       },
     }
   end

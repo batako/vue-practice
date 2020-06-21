@@ -46,4 +46,9 @@ class User < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
 
   has_one_attached :avatar
+
+  def avatar_base64
+    base64 = Base64.encode64(avatar.download)
+    "data:#{avatar.content_type};base64,#{base64}"
+  end
 end
