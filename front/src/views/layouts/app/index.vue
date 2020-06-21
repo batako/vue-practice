@@ -90,7 +90,7 @@
       >
         <span >Sample App</span>
       </v-toolbar-title>
-      <v-text-field
+      <!--<v-text-field
         flat
         solo-inverted
         hide-details
@@ -98,7 +98,7 @@
         label="Search"
         class="hidden-sm-and-down"
       ></v-text-field>
-      <v-spacer></v-spacer>
+      <v-spacer></v-spacer>-->
       <!-- <v-btn icon>
         <v-icon>mdi-apps</v-icon>
       </v-btn>
