@@ -66,8 +66,7 @@ const composition = () => {
 
 
   const getArticles = () => {
-    return ArticleService
-      .all()
+    return ArticleService.all()
       .then((response: any) => {
         state.airticles = response.data.articles
       })
