@@ -38,7 +38,9 @@
 
                 <v-spacer></v-spacer>
 
-                <v-btn icon
+                <v-btn
+                  icon
+                  :color="airticle.current_user_like ? 'red lighten-2' : ''"
                   @click="toggleLike(airticle)"
                 >
                   <v-icon>mdi-heart</v-icon>
