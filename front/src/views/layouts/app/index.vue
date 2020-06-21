@@ -97,8 +97,8 @@
         prepend-inner-icon="mdi-magnify"
         label="Search"
         class="hidden-sm-and-down"
-      ></v-text-field>
-      <v-spacer></v-spacer>-->
+      ></v-text-field>-->
+      <v-spacer></v-spacer>
       <!-- <v-btn icon>
         <v-icon>mdi-apps</v-icon>
       </v-btn>
