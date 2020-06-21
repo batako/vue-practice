@@ -27,6 +27,8 @@ RUN apk update; \
         less \
         # deployment environment
         yarn \
+        # for dbconsole
+        sqlite \
     ;
 
 WORKDIR $APP_HOME

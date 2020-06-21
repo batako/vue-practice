@@ -1,0 +1,12 @@
+#!/bin/sh
+
+__DIR__=$(cd $(dirname $0); pwd)
+APP_PATH=${APP_PATH:-$(cd $__DIR__/../..; pwd)}
+
+cd $APP_PATH
+
+# api と front のみ起動
+docker-compose up -d front
+
+# rails server 起動
+docker-compose exec api /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"

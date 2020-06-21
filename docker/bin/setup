@@ -1,0 +1,12 @@
+#!/bin/sh
+
+__DIR__=$(cd $(dirname $0); pwd)
+APP_PATH=${APP_PATH:-$(cd $__DIR__/../..; pwd)}
+
+cd $APP_PATH
+
+# Docker の起動
+docker-compose up -d
+
+# DB のセットアップ
+docker-compose exec api rake db:setup
