@@ -2,6 +2,20 @@ import router from '@/router'
 import { ArticleService } from '@/services/article'
 import { reactive } from '@vue/composition-api'
 
+export interface User {
+  avatar: string;
+  name:   string;
+}
+
+export interface Airticle {
+  id:         number;
+  created_at: string;
+  photo:      string;
+  creator:    User;
+  likes:      User[];
+  current_user_like: boolean;
+}
+
 const composition = () => {
   const state = reactive({
     show_post_modal: false,
@@ -47,7 +61,7 @@ const composition = () => {
         },
       },
     ],
-    airticles: [],
+    airticles: [] as Airticle[],
   })
 
 
@@ -76,7 +90,7 @@ const composition = () => {
   }
 
 
-  const toggleLike = (airticle: any) => {
+  const toggleLike = (airticle: Airticle) => {
     if (airticle.current_user_like) {
       ArticleService.dislike(airticle.id)
         .then(() => {
