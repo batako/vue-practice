@@ -8,7 +8,8 @@ Rails.application.routes.draw do
 
   namespace :api, { format: 'json' } do
     resources :articles, only: [:index, :create] do
-      resource :like, only: [:create, :destroy]
+      post   '/like',    to: 'articles/like#create'
+      delete '/dislike', to: 'articles/like#destroy'
     end
 
     controller :users do

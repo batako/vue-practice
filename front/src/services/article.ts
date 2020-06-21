@@ -34,4 +34,34 @@ export const ArticleService = {
       })
     })
   },
+
+  like(article_id: number) {
+    return new Promise((resolve, reject) => {
+      API.submit({
+        settings: {
+          method: 'post',
+          url:   `/api/articles/${article_id}/like`,
+        },
+      }).then((response: any) => {
+        resolve(response)
+      }).catch((error: any) => {
+        reject(error)
+      })
+    })
+  },
+
+  dislike(article_id: number) {
+    return new Promise((resolve, reject) => {
+      API.submit({
+        settings: {
+          method: 'delete',
+          url:   `/api/articles/${article_id}/dislike`,
+        },
+      }).then((response: any) => {
+        resolve(response)
+      }).catch((error: any) => {
+        reject(error)
+      })
+    })
+  },
 }

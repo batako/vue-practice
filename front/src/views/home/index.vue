@@ -38,7 +38,9 @@
 
                 <v-spacer></v-spacer>
 
-                <v-btn icon>
+                <v-btn icon
+                  @click="toggleLike(airticle)"
+                >
                   <v-icon>mdi-heart</v-icon>
                 </v-btn>
 
@@ -132,6 +134,7 @@ export default defineComponent({
         showPostModal,
         closePostModal,
         getArticles,
+        toggleLike,
       } = composition()
 
 
@@ -144,6 +147,7 @@ export default defineComponent({
       showPostModal,
       closePostModal,
       getArticles,
+      toggleLike,
       ...toRefs(state),
     }
   }

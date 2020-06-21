@@ -76,12 +76,28 @@ const composition = () => {
   }
 
 
+  const toggleLike = (airticle: any) => {
+    if (airticle.current_user_like) {
+      ArticleService.dislike(airticle.id)
+        .then(() => {
+          airticle.current_user_like = false
+        })
+    } else {
+      ArticleService.like(airticle.id)
+        .then(() => {
+          airticle.current_user_like = true
+        })
+    }
+  }
+
+
   return {
     state,
     _init,
     showPostModal,
     closePostModal,
     getArticles,
+    toggleLike,
   }
 }
 
