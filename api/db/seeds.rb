@@ -8,9 +8,9 @@
 
 # ユーザ作成
 [
-  {email: 'example1@example.com', password: 'password', login_id: 'example1'},
-  {email: 'example2@example.com', password: 'password', login_id: 'example2'},
-  {email: 'example3@example.com', password: 'password', login_id: 'example3'},
+  {email: 'example1@example.com', password: 'password', login_id: 'example1', name: 'user-name-1'},
+  {email: 'example2@example.com', password: 'password', login_id: 'example2', name: 'user-name-2'},
+  {email: 'example3@example.com', password: 'password', login_id: 'example3', name: 'user-name-3'},
 ].each{|user, arr|
   User.find_or_initialize_by(email: user[:email]) \
     .update(
