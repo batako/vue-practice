@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   end
 
   namespace :api, { format: 'json' } do
-    resources :articles, only: [:index, :create]
+    resources :articles, only: [:index, :create] do
+      resource :like, only: [:create, :destroy]
+    end
 
     controller :users do
       put '/users' => :update
