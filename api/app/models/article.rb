@@ -10,5 +10,6 @@
 class Article < ApplicationRecord
   include Userstamp
 
+  has_many :likes, dependent: :destroy
   has_one_attached :image
 end
