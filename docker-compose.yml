@@ -4,7 +4,7 @@ services:
     build:
       context: .
       dockerfile: ./docker/api/Dockerfile
-    container_name: api
+    container_name: vue-practice-api
     entrypoint: /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     ports:
       - 3000:3000
@@ -16,11 +16,12 @@ services:
       - /api/tmp
       - /api/log
       - /api/.git
+
   front:
     build:
       context: .
       dockerfile: ./docker/front/Dockerfile
-    container_name: front
+    container_name: vue-practice-front
     entrypoint: yarn serve
     depends_on:
       - api
@@ -32,11 +33,12 @@ services:
       - ./front:/front:cached
       - ./front/node_modules:/front/node_modules:delegated
       - yarn_cache:/usr/local/share/.cache/yarn/v6:cached # `yarn cache dir`
+
   e2e:
     build:
       context: .
       dockerfile: ./docker/cypress/Dockerfile
-    container_name: cypress
+    container_name: vue-practice-cypress
     command: yarn test:e2e
     depends_on:
       - front
@@ -46,11 +48,12 @@ services:
       - ./front:/cypress:cached
       # exclude volumes
       - /cypress/node_modules
+
   vue3:
     build:
       context: .
       dockerfile: ./docker/vue3/Dockerfile
-    container_name: vue3
+    container_name: vue-practice-vue3
     entrypoint: yarn serve
     depends_on:
       - api
@@ -61,6 +64,7 @@ services:
       - yarn_cache2:/usr/local/share/.cache/yarn/v6:cached # `yarn cache dir`
       # exclude volumes
       - /vue3/node_modules
+
 volumes:
   bundle:
   yarn_cache:
